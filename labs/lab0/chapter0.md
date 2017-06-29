@@ -1,51 +1,23 @@
 ## Introduction
 
-In order to make this lab simple to work with, we are going to leverage
-a product known as the Container Development Kit (CDK). The CDK leverages a tool called [minishift](https://github.com/minishift/minishift) to setup a RHEL VM with docker and OpenShift already installed. You should register your minishift instance in order to access Red Hat content and be able to build in OpenShift and docker correctly. The CDK also includes documentation, getting started and howto guides, and a community of users to learn from.
+In order to make this lab simple to work with, we are going to leverage a process known as `oc cluster up`. `oc cluster up` [oc cluster up](https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md) enables us to quickly stand up an OpenShift Container Platform to start our evaluation. Please refer to the link provided for more information about how to get started with `oc cluster up`. 
 
-The key feature of minishift is a reliable, reproducible environment to iterate on. If you are unfamiliar with minishift that is OK, as we will cover the basics here. 
+The key feature of `oc cluster up` is a reliable, reproducible environment to iterate on. If you are unfamiliar with `oc cluster up` that is OK, as we will cover the basics here. 
 
-Unfortunately, we are just briefly discussing the CDK here. You should definitely 
-[dig in more](http://developers.redhat.com/products/cdk/) as you have time.
-The CDK is a free download for registered users, and gives you access to
-many tools in the Red Hat Container Ecosystem.
+## Getting Set Up
 
-## Getting the CDK
+In order to get started, the easiest way is to head over to github.com and follow the "[cluster up and down instructions](https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md)" instructions. The instructions cover getting started on Windows, MacOS, and Linux. 
 
-**NOTE** If you are attending a lab in person, you can skip this step
-         and move directly to [Get Lab Materials](#get-lab-materials) as 
-         the steps have already been performed on the machine you are using.
+## Lab Materials
 
-In order to get the CDK, the easiest way is to head over to developers.redhat.com and follow the "[install the Container Development Kit](http://developers.redhat.com/products/cdk/get-started/)" instructions. The instructions cover installing the CDK on Windows, MacOS, and Linux. 
-
-**NOTE** At the time of this writing, the CDK version we are using is CDK-3.0 
-        which is still in beta so there are no installation docs as yet. 
-        However, they should end up at the end of the URL above 
-
-## Get Lab Materials
-
-For the convience of users of the lab, we created a script and installed it on the Lab VM. If you are in the lab, please run the following:
+We used git to clone the repo with the following commands.
 
 ```bash
 $ cd ~/
-$ /usr/local/bin/getlab 
-Cloning into 'summit-2017-container-lab'...
-remote: Counting objects: 727, done.
-remote: Compressing objects: 100% (80/80), done.
-remote: Total 727 (delta 21), reused 0 (delta 0), pack-reused 645
-Receiving objects: 100% (727/727), 13.75 MiB | 2.08 MiB/s, done.
-Resolving deltas: 100% (320/320), done.    
+$ git clone https://github.com/tchughesiv/aws-loft-2017-container-lab
 ```
 
-For those of you following along at home, just `git clone` the repo you 
-found this file in:
-
-```bash
-$ cd ~/
-$ git clone https://github.com/dustymabe/summit-2017-container-lab
-```
-
-## Minishift Walkthrough
+## `oc cluster up` Walkthrough
 
 Your major units of operation with minishift are `minishift start`, `minishift ssh`, 
 `minishift docker-env`, and `minishift stop`. We will walk through these. 
