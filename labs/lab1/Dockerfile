@@ -1,7 +1,6 @@
 FROM registry.access.redhat.com/rhel7
 MAINTAINER Student <student@foo.io>
 
-ADD ./custom.repo /etc/yum.repos.d/custom.repo
 RUN yum -y update && yum clean all
 RUN yum -y install httpd && yum clean all
 RUN echo "Apache" >> /var/www/html/index.html
