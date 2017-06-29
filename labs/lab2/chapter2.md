@@ -11,7 +11,7 @@ of multiple services. We will also observe several bad practices when
 composing Dockerfiles and explore how to avoid those mistakes. In lab 3
 we will decompose the application into more manageable pieces.
 
-This lab should be performed on **workstation.example.com** unless 
+This lab should be performed on **YOUR ASSIGNED AWS VM** unless 
 otherwise instructed.
 
 Expected completion: 20-25 minutes
@@ -114,10 +114,10 @@ port 80:
 docker port bigapp 80
 ```
 
-Now connect to the port via the web browser on your machine using ```http://cdk.example.com:<port>```.  You can also use curl to connect, for example:
+Now connect to the port via the web browser on your machine using ```http://<YOUR AWS VM INSTANCE PUBLIC DNS NAME>:<port>```.  You can also use curl to connect, for example:
 
 ```bash
-curl -L http://cdk.example.com:<port>
+curl -L http://<YOUR AWS VM INSTANCE PUBLIC DNS NAME>:<port>
 ```
 
 ## Review Dockerfile practices
