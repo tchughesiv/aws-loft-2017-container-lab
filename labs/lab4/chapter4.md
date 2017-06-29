@@ -3,7 +3,7 @@
 In this lab we introduce how to orchestrate a multi-container application in 
 OpenShift.
 
-This lab should be performed on **workstation.example.com** unless otherwise instructed.
+This lab should be performed on **YOUR ASSIGNED AWS VM** unless otherwise instructed.
 
 Expected completion: 40-60 minutes
 
@@ -19,7 +19,7 @@ docker run -d -p 1080:80 --link mariadb:db --name wordpress wordpress
 ```
 
 Take a look at the site in your web browser on your machine using 
-[http://cdk.example.com:1080](http://cdk.example.com:1080). As you learned 
+[http://<YOUR AWS VM PUBLIC DNS NAME HERE>:1080](http://<YOUR AWS VM PUBLIC DNS NAME HERE>:1080). As you learned 
 before, you can confirm the port that your server is running on by
 executing:
 
@@ -28,15 +28,10 @@ docker ps
 docker port wordpress
 ```
 
-and taking look at the "PORTS" column for the wordpress site. You 
-can also get your ip address w/ the following minishift command:
-
-```bash
-minishift ip
-```
+and taking look at the "PORTS" column for the wordpress site. 
 
 However, we have some nice DNS set up and chose port 1080, so you 
-can just use [http://cdk.example.com:1080](http://cdk.example.com:1080).
+can just use [http://<YOUR AWS VM PUBLIC DNS NAME HERE>:1080](http://<YOUR AWS VM PUBLIC DNS NAME HERE>:1080).
 
 Now, let's see what happens when we kick over the database. However,
 for a later experiment, let's grab the container-id right before you do it. 
@@ -51,7 +46,7 @@ imagine, explosions! (*making sound effects will be much appreciated
 by your lab mates.*)
 
 ```bash
-web browser -> http://cdk.example.com:1080 OR curl -L http://cdk.example.com:1080
+web browser -> http://<YOUR AWS VM PUBLIC DNS NAME HERE>:1080 OR curl -L http://<YOUR AWS VM PUBLIC DNS NAME HERE>:1080
 ```
 
 Now, what is neat about a container system, assuming your web application
@@ -73,7 +68,7 @@ about what you would expect for a web server and a database running on
 VMs, but a whole lot faster. Let's take a look at the site now.
 
 ```bash
-web browser -> http://cdk.example.com:1080 OR curl -L http://cdk.example.com:1080
+web browser -> http://<YOUR AWS VM PUBLIC DNS NAME HERE>:1080 OR curl -L http://<YOUR AWS VM PUBLIC DNS NAME HERE>:1080
 ```
 
 And.. Your site is back! Fortunately wordpress seems to be designed
@@ -105,7 +100,7 @@ Now using project "devel" on server "https://192.168.xx.xxx:8443".
 
 You are now logged in to OpenShift and are using the ```devel``` 
 project. You can also view the OpenShift web console by using the same 
-credentials to log in to ```https://cdk.example.com:8443``` using firefox.
+credentials to log in to ```https://<YOUR AWS VM PUBLIC DNS NAME HERE>:8443``` using firefox.
 
 ## Pod Creation
 
@@ -154,7 +149,7 @@ To start, we will add the most basic information. Please replace the
 ```
   containers:
     - name: mariadb
-      image: cdk.example.com:5000/mariadb
+      image: localhost:5000/mariadb
       ports:
         - containerPort: 3306
       env:
@@ -189,7 +184,7 @@ metadata:
 spec:
   containers:
     - name: mariadb
-      image: cdk.example.com:5000/mariadb
+      image: localhost:5000/mariadb
       ports:
         - containerPort: 3306
       env:
@@ -218,7 +213,7 @@ metadata:
 spec:
   containers:
   - name: wordpress
-    image: cdk.example.com:5000/wordpress
+    image: localhost:5000/wordpress
     ports:
       - containerPort: 80
     env:
@@ -404,13 +399,13 @@ And you should be able to see the service's accessible URL by viewing the routes
 ```bash
 $ oc get routes
 NAME        HOST/PORT                         PATH      SERVICES    PORT      TERMINATION
-wordpress   wordpress-devel.cdk.example.com             wordpress   80        
+wordpress   wordpress-devel.<YOUR AWS VM PUBLIC DNS NAME HERE>             wordpress   80        
 ```
 
 Check and make sure you can access the wordpress service through the route:
 
 ```bash
-curl -L wordpress-devel.cdk.example.com
+curl -L wordpress-devel.<YOUR AWS VM PUBLIC DNS NAME HERE>
 or
 point your browser to the URL to view the GUI
 ```
