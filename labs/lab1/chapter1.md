@@ -1,6 +1,6 @@
 # LAB 1: docker Refresh
 
-In this lab we will explore the docker environment within the CDK. If you are familiar with 
+In this lab we will explore the docker environment. If you are familiar with 
 docker this may function as a brief refresher. If you are new to docker this 
 will serve as an introduction to docker basics. Don't worry, we will progress
 rapidly. To get through this lab, we are going to focus on the environment 
@@ -8,11 +8,7 @@ itself as well as walk through some exercises with a couple of docker images
 / containers to tell a complete story and point out some things that you might 
 have to consider when containerizing your application.
 
-This lab should be performed on **workstation.example.com** unless otherwise instructed.
-
-The **cdk.example.com** running minishift should have been brought up in lab0. 
-You can access that machine using the ```oc``` and ```docker``` commands as shown
-in lab0.
+This lab should be performed on **your assigned AWS VM** unless otherwise instructed.
 
 Expected completion: 15-20 minutes
 
@@ -31,7 +27,7 @@ Perform the following commands as student unless instructed otherwise.
 
 ## docker and systemd
 
-Check out the systemd unit file that starts docker on the CDK and notice that 
+Check out the systemd unit file that starts docker and notice that 
 it includes 3 EnvironmentFiles. These files tell docker how the docker daemon, 
 storage and networking should be set up and configured. Take a look at those 
 files too. Specifically, in the /etc/sysconfig/docker file check out the registry 
@@ -39,7 +35,6 @@ settings. You may find it interesting that you can `ADD_REGISTRY` and
 `BLOCK_REGISTRY`. Think about the different use cases for that.
 
 ```bash
-minishift ssh
 cat /usr/lib/systemd/system/docker.service
 cat /usr/lib/systemd/system/docker-storage-setup.service
 cat /etc/sysconfig/docker
@@ -58,10 +53,7 @@ systemctl status docker
 Now that we see how the docker startup process works, we should make sure we 
 know how to get help when we need it.  Run the following commands to get familiar 
 with what is included in the docker package as well as what is provided in the man 
-pages. Spend some time exploring here. The CDK automatically sets up storage 
-for us by creating an LVM thin pool for use as a device mapper direct docker 
-storage backend.
-
+pages. Spend some time exploring here. 
 
 Check out the executables provided:
 
@@ -81,25 +73,16 @@ Check out the documentation that is provided:
 rpm -qd docker
 ```
 
-Now exit out of the minishift VM by disconnecting from the SSH session:
+Run `docker {help,info}` to check out the storage configuration and how to find more information. 
 
 ```bash
-exit
-```
-
-Please run the following command to get access to the minishift docker. When you run
-`docker info` check out the storage configuration. 
-
-```bash
-eval $(minishift docker-env)
 docker --help
 docker run --help
 docker info
 ```
 
 Take a look at the docker images on the system. You should see some 
-Openshift images that are cached in the CDK so you can start OpenShift 
-without having to wait for the container images to download.
+Openshift images that are cached.
   
 ```bash
 docker images
@@ -112,7 +95,7 @@ to have a look at some of the basic commands that are used to construct a docker
 image. For this lab, we will explore a basic Apache Dockerfile and then confirm 
 functionality.
 
-As the vagrant user, change directory to `~/labs/lab1/` and `cat` out the Dockerfile
+Change to `~/summit-2017-container-lab/labs/lab1` and `cat` out the Dockerfile
 
 ```bash
 cd ~/summit-2017-container-lab/labs/lab1
@@ -141,10 +124,10 @@ Here you can see in the `FROM` command that we are pulling a RHEL 7 base image
 that we are going to build on. We are also adding a custom yum repo file. In disconnected 
 lab environments this file will be used to reference a local yum repository.
 In non-disconnected environments you will get access to content by
-registering the system. Registration is done for you in the CDK on bringup.
+registering the system. ***FIXME*** Registration is done for you in the CDK on bringup.
 Containers that are being built inherit the subscriptions of
 the host they are running on, so you only need to register the host
-system.
+system. ***End of FIXME***
 
 After gaining access to a repository we update the container and install `httpd`.
 Finally, we modify the index.html file, `EXPOSE` port 80, which 
@@ -182,7 +165,7 @@ the container. Finally, we passed in the name of the image that we built earlier
 Okay, let's make sure we can access the web server.
 
 ```bash
-curl http://cdk.example.com:1080
+curl http://<YOUR AWS INSTANCE PUBLIC DNS NAME HERE>:1080
 Apache
 ```
 
