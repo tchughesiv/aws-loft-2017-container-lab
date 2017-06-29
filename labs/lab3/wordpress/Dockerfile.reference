@@ -1,8 +1,6 @@
 FROM registry.access.redhat.com/rhel7:7.3-74
 MAINTAINER Student <student@foo.io>
 
-ADD ./custom.repo /etc/yum.repos.d/custom.repo
-
 RUN yum -y install httpd php php-mysql php-gd openssl psmisc tar && \
     yum clean all
 

@@ -1,9 +1,6 @@
 FROM registry.access.redhat.com/rhel7:7.3-74
 MAINTAINER Student <student@foo.io>
 
-# Add in custom yum repository and update
-ADD ./custom.repo /etc/yum.repos.d/custom.repo
-
 # Deps for mariadb
 RUN yum -y install mariadb-server openssl psmisc net-tools hostname && \
     yum clean all

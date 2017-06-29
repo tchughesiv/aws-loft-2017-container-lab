@@ -106,10 +106,6 @@ ls -lR wordpress
         FROM registry.access.redhat.com/rhel7:7.3-74
         MAINTAINER Student <student@foo.io>
 
-1. Add local files for this lab environment. This is only required for this lab.
-
-        ADD ./custom.repo /etc/yum.repos.d/custom.repo
-
 1. Add the required packages. We'll include `yum clean all` at the end to clear the yum cache.
 
         RUN yum -y install mariadb-server openssl psmisc net-tools hostname && \
@@ -147,10 +143,6 @@ Now we'll create the Wordpress Dockerfile.
 
         FROM registry.access.redhat.com/rhel7:7.3-74
         MAINTAINER Student <student@foo.io>
-
-1. Add local files for this lab environment. This is only required for this lab.
-
-        ADD ./custom.repo /etc/yum.repos.d/custom.repo
 
 1. Add the required packages. We'll include `yum clean all` at the end to clear the yum cache.
 
@@ -216,14 +208,14 @@ Now we are ready to build the images to test our Dockerfiles.
 
 
 ```
-minishift ssh "ls -lZd /var/lib/mariadb"
+ls -lZd /var/lib/mariadb
 docker run -d -v /var/lib/mariadb:/var/lib/mysql:Z -p 3306:3306 -e DBUSER=user -e DBPASS=mypassword -e DBNAME=mydb --name mariadb mariadb
 ```
 
 Note: See the difference in SELinux context after running w/ a volume & :Z.
 
 ```
-minishift ssh "ls -lZd /var/lib/mariadb"
+ls -lZd /var/lib/mariadb
 docker logs $(docker ps -ql)
 docker ps
 curl http://cdk.example.com:3306
@@ -238,14 +230,14 @@ curl http://cdk.example.com:3306
 
 
 ```
-minishift ssh "ls -lZd /var/lib/wp_uploads"
+ls -lZd /var/lib/wp_uploads
 docker run -d -v /var/lib/wp_uploads:/var/www/html/wp-content/uploads:Z -p 1080:80 --link mariadb:db --name wordpress wordpress
 ```
 
 Note: See the difference in SELinux context after running w/ a volume & :Z.
 
 ```
-minishift ssh "ls -lZd /var/lib/wp_uploads"
+ls -lZd /var/lib/wp_uploads
 docker logs $(docker ps -ql)
 docker ps
 curl -L http://cdk.example.com:1080
@@ -275,10 +267,11 @@ to copy+paste from README files.
         docker build -t wordpress wordpress/
 
 1. Re-run the Wordpress image using the `atomic` CLI. We don't need to use a complicated,
-   error-prone `docker run` string. Test using the methods from the earlier step.
+   error-prone `docker run` string. Test using the methods from the earlier step. In addition, we are going to launch the image using the `atomic` command. Before we can do that, we'll install it as noted below.
 
         docker stop wordpress
         docker rm wordpress
+	yum -y install atomic
         atomic run wordpress
         curl -L http://cdk.example.com:1080
 
