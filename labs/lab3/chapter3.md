@@ -4,7 +4,7 @@ In this lab you will deconstruct an application into microservices, creating
 a multi-container application. In this process we explore the challenges of 
 networking, storage and configuration.
 
-This lab should be performed on **workstation.example.com** unless otherwise instructed.
+This lab should be performed on **YOUR ASSIGNED AWS VM** unless otherwise instructed.
 
 Expected completion: 20-30 minutes
 
@@ -191,9 +191,9 @@ Now we are ready to build the images to test our Dockerfiles.
 
         docker images
 
-1. Create the local directories within the minishift VM for persistent storage.
+1. Create the local directories for persistent storage.
 
-        minishift ssh "sudo mkdir -p /var/lib/mariadb /var/lib/wp_uploads"
+        sudo mkdir -p /var/lib/mariadb /var/lib/wp_uploads
 
 1. Run the database image to confirm connectivity. It takes some time to discover
    all of the necessary `docker run` options.
@@ -218,7 +218,7 @@ Note: See the difference in SELinux context after running w/ a volume & :Z.
 ls -lZd /var/lib/mariadb
 docker logs $(docker ps -ql)
 docker ps
-curl http://cdk.example.com:3306
+curl http://<YOUR AWS VM PUBLIC DNS NAME HERE>:3306
 ```
 
 
@@ -240,7 +240,7 @@ Note: See the difference in SELinux context after running w/ a volume & :Z.
 ls -lZd /var/lib/wp_uploads
 docker logs $(docker ps -ql)
 docker ps
-curl -L http://cdk.example.com:1080
+curl -L http://<YOUR AWS VM PUBLIC DNS NAME HERE>:1080
 ```
 
 You may also load the Wordpress application in a browser to test its full functionality.
@@ -269,24 +269,26 @@ to copy+paste from README files.
 1. Re-run the Wordpress image using the `atomic` CLI. We don't need to use a complicated,
    error-prone `docker run` string. Test using the methods from the earlier step. In addition, we are going to launch the image using the `atomic` command. Before we can do that, we'll install it as noted below.
 
+```
         docker stop wordpress
         docker rm wordpress
 	yum -y install atomic
         atomic run wordpress
-        curl -L http://cdk.example.com:1080
+        curl -L http://<YOUR AWS VM PUBLIC DNS NAME HERE>:1080
+```
 
 1. Once satisfied with the images tag them with the URI of the local lab local registry. 
    The tag is what docker uses to identify the particular image that we want to upload to
    a registry.
 
-        docker tag mariadb cdk.example.com:5000/mariadb
-        docker tag wordpress cdk.example.com:5000/wordpress
+        docker tag mariadb localhost:5000/mariadb
+        docker tag wordpress localhost:5000/wordpress
         docker images
 
 1. Push the images
 
-        docker push cdk.example.com:5000/mariadb
-        docker push cdk.example.com:5000/wordpress
+        docker push localhost:5000/mariadb
+        docker push localhost:5000/wordpress
 
 ## Clean Up
 
