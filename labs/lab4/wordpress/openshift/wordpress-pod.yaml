@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
   - name: wordpress
-    image: cdk.example.com:5000/wordpress
+    image: localhost:5000/wordpress
     ports:
       - containerPort: 80
     env:
