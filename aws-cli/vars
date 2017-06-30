@@ -1,27 +1,31 @@
-# Create Custom Variables
+# Create Custom Variables.  You can change this to anything you want, makes a unique environment.
+# Example: UNIQ_VAR=tohuges-loft or UNIQ_VAR=scollier-loft
 UNIQ_VAR="loft"
 
 # Number of loft nodes that need to be created
-NODE_COUNT=`seq 1 4`
-
-# VPC Configuration
-IG_TAG=${UNIQ_VAR}-IG
+# Just provide a start and finish number
+NODE_COUNT=`seq 1 20`
 
 # AMI Id
-AMI_ID=ami-35deec23
+# This needs to be updated everytime you update the AMI on AWS.
+AMI_ID=ami-60b88a76
 
 # Instance types
+# I only requested an extension to 105 instances for this type.  Can't launch more than 15 of any other type.
 LOFT_INST_TYPE=t2.xlarge
 
 # Network info
+# This is all static. Already created in our VPC
 SUBNET_CIDR_1='10.15.0.0/24'
 SUBNET_ID_1=subnet-cabb9091
 
 # Availability Zones
+# Will need to change this once we swap to the west coast.
 REGION=us-east-1
 AZ_1=us-east-1a
 
 # Security Groups
+# This is static
 LOFT_SEC_GROUP=scollier-testing-sg
 
 # Tags
