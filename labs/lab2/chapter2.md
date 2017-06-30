@@ -1,18 +1,10 @@
 # LAB 2: Analyzing a Monolithic Application
 
-Typically, it is best to break down services into the simplest
-components and then containerize each of them independently. However,
-when initially migrating an application it is not always easy to break
-it up into little pieces but you can start with big containers and
-work towards breaking them into smaller pieces. 
+Typically, it is best to break down services into the simplest components and then containerize each of them independently. However, when initially migrating an application it is not always easy to break it up into little pieces but you can start with big containers and work towards breaking them into smaller pieces.
 
-In this lab we will create an all-in-one container image comprised 
-of multiple services. We will also observe several bad practices when 
-composing Dockerfiles and explore how to avoid those mistakes. In lab 3
-we will decompose the application into more manageable pieces.
+In this lab we will create an all-in-one container image comprised of multiple services. We will also observe several bad practices when composing Dockerfiles and explore how to avoid those mistakes. In lab 3 we will decompose the application into more manageable pieces.
 
-This lab should be performed on **YOUR ASSIGNED AWS VM** unless 
-otherwise instructed.
+This lab should be performed on **YOUR ASSIGNED AWS VM** as `ec2-user` unless otherwise instructed.
 
 Expected completion: 20-25 minutes
 
@@ -46,7 +38,7 @@ To build the docker image for this lab please execute the following
 commands:
 
 ```bash
-cd ~/summit-2017-container-lab/labs/lab2/bigapp/
+cd ~/aws-loft-2017-container-lab/labs/lab2/bigapp/
 docker build -t bigimg .
 ```
 
