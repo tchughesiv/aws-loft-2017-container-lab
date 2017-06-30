@@ -1,8 +1,7 @@
 FROM registry.access.redhat.com/rhel7
 MAINTAINER Student <student@foo.io>
 
-RUN yum -y update && yum clean all
-RUN yum -y install httpd && yum clean all
+RUN yum -y install httpd --disablerepo "*" --enablerepo rhel-7-server-rpms
 RUN echo "Apache" >> /var/www/html/index.html
 RUN echo 'PS1="[apache]#  "' > /etc/profile.d/ps1.sh
 

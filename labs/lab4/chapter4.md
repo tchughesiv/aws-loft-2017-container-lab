@@ -3,7 +3,7 @@
 In this lab we introduce how to orchestrate a multi-container application in 
 OpenShift.
 
-This lab should be performed on **YOUR ASSIGNED AWS VM** unless otherwise instructed.
+This lab should be performed on **YOUR ASSIGNED AWS VM** as `ec2-user` unless otherwise instructed.
 
 Expected completion: 40-60 minutes
 
@@ -86,7 +86,7 @@ Starting and stopping is definitely easy, and fast. However, it is still pretty 
 What if we could automate the recovery? Or, in buzzword terms, "ensure the service 
 remains available"? Enter Kubernetes/OpenShift.
 
-## Using OpenShift in the CDK
+## Using OpenShift
 
 Now login to our local OpenShift & create a new project:
 

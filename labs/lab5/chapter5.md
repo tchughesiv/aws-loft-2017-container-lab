@@ -2,7 +2,7 @@
 
 In this lab we introduce how to simplify your container deployments w/ OpenShift templates.  We will also explore the web console.
 
-This lab should be performed on **workstation.example.com** unless otherwise instructed.
+This lab should be performed on **YOUR ASSIGNED AWS VM** as `ec2-user` unless otherwise instructed.
 
 Expected completion: 20 minutes
 
@@ -32,7 +32,7 @@ No resources found.
 
 This time, let's simplify things by deploying an application template.  We've already included a template w/ lab5 which leverages our wordpress & mariadb images.
 ```shell
-$ cd ~/summit-2017-container-lab/labs/lab5/
+$ cd ~/aws-loft-2017-container-lab/labs/lab5/
 $ grep -i cdk.example.com wordpress-template.yaml
 ```
 

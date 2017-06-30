@@ -6,8 +6,8 @@ metadata:
   name: wordpress
   annotations:
     openshift.io/display-name: "WordPress MariaDB Example" 
-    description: "An example WordPress application with a MariaDB database. \n\nFor more information see https://github.com/dustymabe/summit-2017-container-lab/blob/master/labs/lab5/chapter5.md"
-    tags: "wordpress,php,mariadb,summit"
+    description: "An example WordPress application with a MariaDB database. \n\nFor more information see https://github.com/tchughesiv/aws-loft-2017-container-lab/blob/master/labs/lab5/chapter5.md"
+    tags: "wordpress,php,mariadb,aws,loft"
     iconClass: "icon-php"
 objects:
 - apiVersion: v1

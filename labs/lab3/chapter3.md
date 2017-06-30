@@ -1,10 +1,8 @@
 # LAB 3: Deconstructing an application into microservices
 
-In this lab you will deconstruct an application into microservices, creating 
-a multi-container application. In this process we explore the challenges of 
-networking, storage and configuration.
+In this lab you will deconstruct an application into microservices, creating a multi-container application. In this process we explore the challenges of networking, storage and configuration.
 
-This lab should be performed on **YOUR ASSIGNED AWS VM** unless otherwise instructed.
+This lab should be performed on **YOUR ASSIGNED AWS VM** as `ec2-user` unless otherwise instructed.
 
 Expected completion: 20-30 minutes
 
@@ -89,8 +87,8 @@ contents and checkout the startup scripts.
 ```bash
 mkdir ~/workspace
 cd ~/workspace
-cp -R ~/summit-2017-container-lab/labs/lab3/mariadb .
-cp -R ~/summit-2017-container-lab/labs/lab3/wordpress .
+cp -R ~/aws-loft-2017-container-lab/labs/lab3/mariadb .
+cp -R ~/aws-loft-2017-container-lab/labs/lab3/wordpress .
 ls -lR mariadb
 ls -lR wordpress
 ```
@@ -103,7 +101,7 @@ ls -lR wordpress
 
 1. Add a `FROM` line that uses a specific image tag. Also add `MAINTAINER` information.
 
-        FROM registry.access.redhat.com/rhel7:7.3-74
+        FROM registry.access.redhat.com/rhel7:7.3-97
         MAINTAINER Student <student@foo.io>
 
 1. Add the required packages. We'll include `yum clean all` at the end to clear the yum cache.
@@ -141,7 +139,7 @@ Now we'll create the Wordpress Dockerfile.
 
 1. Add a `FROM` line that uses a specific image tag. Also add `MAINTAINER` information.
 
-        FROM registry.access.redhat.com/rhel7:7.3-74
+        FROM registry.access.redhat.com/rhel7:7.3-97
         MAINTAINER Student <student@foo.io>
 
 1. Add the required packages. We'll include `yum clean all` at the end to clear the yum cache.
