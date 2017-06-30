@@ -8,18 +8,18 @@ NODE_COUNT=`seq 1 4`
 IG_TAG=${UNIQ_VAR}-IG
 
 # AMI Id
-AMI_ID=ami-35deec23
+AMI_ID=ami-5c8fa33c
 
 # Instance types
 LOFT_INST_TYPE=t2.xlarge
 
 # Network info
 SUBNET_CIDR_1='10.15.0.0/24'
-SUBNET_ID_1=subnet-cabb9091
+SUBNET_ID_1=subnet-1d185045
 
 # Availability Zones
-REGION=us-east-1
-AZ_1=us-east-1a
+REGION=us-west-1
+AZ_1=us-west-1a
 
 # Security Groups
 LOFT_SEC_GROUP=scollier-testing-sg
@@ -32,4 +32,4 @@ LOFT_TAGS=${UNIQ_VAR}
 LOFT_NODE=${UNIQ_VAR}
 
 # AWS Key
-KEY_NAME=aws-loft-scollier
+KEY_NAME=aws-devops-loft
