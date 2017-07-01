@@ -45,11 +45,7 @@ $ ls -l /var/www/html
 ```
 
 These are sensitive files for our application and it would be
-unfortunate if changes to these files were lost. Currently the running
-container does not have any associated "volumes", which means that if
-this container dies all changes will be lost. This mount point in the
-container should be backed by a "volume". Later in this lab we'll use
-a host directory backed "volume" to make sure these files persist.
+unfortunate if changes to these files were lost. Currently the running container does not have any associated "volumes", which means that if this container dies all changes will be lost. This mount point in the container should be backed by a "volume". Later in this lab we'll use a host directory backed "volume" to make sure these files persist.
 
 #### Database
 
@@ -150,10 +146,10 @@ Now we'll create the Wordpress Dockerfile.
 1. Add the Wordpress source from gzip tar file. docker will extract the files. Also, modify permissions to support non-root container runtime. Switch to port 8080 for non-root apache runtime.
 
         COPY latest.tar.gz /latest.tar.gz
-        RUN tar xvzf /latest.tar.gz -C /var/www/html --strip-components=1
-        RUN rm /latest.tar.gz
-        RUN sed -i 's/^Listen 80/Listen 8080/g' /etc/httpd/conf/httpd.conf
-        RUN APACHE_DIRS="/var/www/html /usr/share/httpd /var/log/httpd /run/httpd" && \
+        RUN tar xvzf /latest.tar.gz -C /var/www/html --strip-components=1 && \
+            rm /latest.tar.gz && \
+            sed -i 's/^Listen 80/Listen 8080/g' /etc/httpd/conf/httpd.conf && \
+            APACHE_DIRS="/var/www/html /usr/share/httpd /var/log/httpd /run/httpd" && \
             chown -R apache:0 ${APACHE_DIRS} && \
             find ${APACHE_DIRS} -type d -exec chmod g+rwx {} +
 

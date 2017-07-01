@@ -19,14 +19,12 @@ Agenda:
 
 ## Monolithic Application Overview
 
-Our monolithic application we are going to use in this lab is a simple wordpress application. Rather than decompose the application into
-multiple parts we have elected to put the database and the wordpress application into the same container. Our container image will have:
+Our monolithic application we are going to use in this lab is a simple wordpress application. Rather than decompose the application into multiple parts we have elected to put the database and the wordpress application into the same container. Our container image will have:
 
 * mariadb and all dependencies
 * wordpress and all dependencies
 
-To perform some generic configuration of mariadb and wordpress there are startup configuration scripts that are executed each time a
-container is started from the image. These scripts configure the services and then start them in the running container.
+To perform some generic configuration of mariadb and wordpress there are startup configuration scripts that are executed each time a container is started from the image. These scripts configure the services and then start them in the running container.
 
 ## Building the docker Image
 
