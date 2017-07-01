@@ -9,7 +9,7 @@ Expected completion: 20 minutes
 ## Project preparation
 
 Let's create a new project.
-```shell
+```bash
 $ oc new-project production
 Now using project "production" on server "https://10.xx.xx.xxx:8443".
 ```
@@ -23,13 +23,13 @@ developer
 ## Wordpress templated deployment
 
 This time, let's simplify things by deploying an application template.  We've already included a template w/ lab5 which leverages our wordpress & mariadb images.
-```shell
+```bash
 $ cd ~/aws-loft-2017-container-lab/labs/lab5/
 $ grep localhost:5000 wordpress-template.yaml
 ```
 
 Let's deploy this wordpress template:
-```shell
+```bash
 # add your template to the production project
 $ oc create -f wordpress-template.yaml
 template "wordpress" created
@@ -39,22 +39,37 @@ $ oc new-app --template wordpress
 --> Deploying template "production/wordpress" to project production
 ```
 
-Watch all of the newly created resources until the pods are in "Running" status... ctrl-c to exit
-```shell
-$ watch -n 5 oc get all
+View all of the newly created resources
+```bash
+$ oc get all
 NAME                   READY     STATUS    RESTARTS   AGE
 po/mariadb-1-nujmr     1/1	 Running   0          2m
 po/wordpress-1-pz9fu   1/1	 Running   0          2m
+```
 
-# wait for the database to start... ctrl-c when done.
-$ oc logs -f dc/mariadb
+Wait for rollout to finish
+```bash
+$ oc rollout status -w dc/mariadb
+replication controller "mariadb-1" successfully rolled out
+
+$ oc rollout status -w dc/wordpress
+replication controller "wordpress-1" successfully rolled out
+```
+
+Verify the database started
+```bash
+$ oc logs dc/mariadb
 mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql
+```
 
-# wait for wordpress to start... ctrl-c when done.
-$ oc logs -f dc/wordpress
+Verify wordpress started
+```bash
+$ oc logs dc/wordpress
 /usr/sbin/httpd -D FOREGROUND
+```
 
-# oc status gives a nice view of how these resources connect
+`oc status` gives a nice view of how these resources connect
+```bash
 $ oc status
 ```
 
@@ -79,7 +94,8 @@ For more information on templates, reference the official OpenShift documentatio
 ## Web console
 
 Now that we have deployed our template, let’s login as developer to the OpenShift web console - `https://<YOUR AWS VM PUBLIC DNS NAME HERE>:8443`
-Your web console url can be retrieved w/ the following command:
+
+The console url can be retrieved with:
 ```bash
 $ oc cluster status
 ```
