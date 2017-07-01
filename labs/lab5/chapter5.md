@@ -42,9 +42,6 @@ $ oc new-app --template wordpress
 View all of the newly created resources
 ```bash
 $ oc get all
-NAME                   READY     STATUS    RESTARTS   AGE
-po/mariadb-1-nujmr     1/1	 Running   0          2m
-po/wordpress-1-pz9fu   1/1	 Running   0          2m
 ```
 
 Wait for rollout to finish
