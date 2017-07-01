@@ -22,7 +22,6 @@ Take a look at the site in your web browser on your machine using
 [http://<YOUR AWS VM PUBLIC DNS NAME HERE>:1080](http://<YOUR AWS VM PUBLIC DNS NAME HERE>:1080). As you learned 
 before, you can confirm the port that your server is running on by
 executing:
-
 ```bash
 docker ps
 docker port wordpress

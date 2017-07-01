@@ -160,8 +160,7 @@ $ ip addr
 
 Exit the container namespace with `CTRL+d` or `exit`.
 
-Whew, so we do have some options. Now, remember that this lab is all about containerizing your existing apps. You will need some of the tools listed above to go through the process of containerizing your apps. Troubleshooting 
-problems when you are in a container is going to be something that you get very familiar with.
+Whew, so we do have some options. Now, remember that this lab is all about containerizing your existing apps. You will need some of the tools listed above to go through the process of containerizing your apps. Troubleshooting problems when you are in a container is going to be something that you get very familiar with.
 
 Before we move on to the next section let's clean up the apache container so we don't have it hanging around.
 ```bash

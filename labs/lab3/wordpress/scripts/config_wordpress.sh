@@ -26,7 +26,7 @@ EOF
     # Update keys/salts in wp-config for security
     RE='put your unique phrase here'
     for i in {1..8}; do
-        KEY=$(openssl rand -base64 40)
+        KEY=$(RANDFILE="/usr/share/httpd/.rnd" openssl rand -base64 40)
         sed -i "0,/$RE/s|$RE|$KEY|" /var/www/html/wp-config.php
     done
 }
@@ -50,7 +50,7 @@ __httpd_perms() {
 __check() {
     if [ ! -f /var/www/html/wp-config.php ]; then
         __handle_passwords
-        __httpd_perms
+#        __httpd_perms
     fi
     __handle_db_host
 }

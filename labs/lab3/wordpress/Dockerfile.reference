@@ -1,17 +1,22 @@
 FROM registry.access.redhat.com/rhel7:7.3-97
 MAINTAINER Student <student@foo.io>
 
-RUN yum -y install httpd php php-mysql php-gd openssl psmisc tar && \
+RUN yum -y install --disablerepo "*" --enablerepo rhel-7-server-rpms \
+      httpd php php-mysql php-gd openssl psmisc && \
     yum clean all
 
 ADD scripts /scripts 
 RUN chmod 755 /scripts/*
 
 COPY latest.tar.gz /latest.tar.gz
-RUN tar xvzf /latest.tar.gz -C /var/www/html --strip-components=1
-RUN rm /latest.tar.gz
-RUN chown -R apache:apache /var/www/
+RUN tar xvzf /latest.tar.gz -C /var/www/html --strip-components=1 && \
+    rm /latest.tar.gz && \
+    sed -i 's/^Listen 80/Listen 8080/g' /etc/httpd/conf/httpd.conf && \
+    APACHE_DIRS="/var/www/html /usr/share/httpd /var/log/httpd /run/httpd" && \
+    chown -R apache:0 ${APACHE_DIRS} && \
+    find ${APACHE_DIRS} -type d -exec chmod g+rwx {} +
 
-EXPOSE 80
-VOLUME /var/www/html/wp-content/uploads
+EXPOSE 8080
+VOLUME /var/www/html/wp-content/uploads /var/log/httpd /run/httpd
+USER apache
 CMD ["/bin/bash", "/scripts/start.sh"]

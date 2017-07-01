@@ -2,13 +2,19 @@ FROM registry.access.redhat.com/rhel7:7.3-97
 MAINTAINER Student <student@foo.io>
 
 # Deps for mariadb
-RUN yum -y install mariadb-server openssl psmisc net-tools hostname && \
+RUN yum -y install --disablerepo "*" --enablerepo rhel-7-server-rpms \
+      mariadb-server openssl psmisc net-tools hostname && \
     yum clean all
 
 # Add set up scripts
 ADD scripts /scripts
 RUN chmod 755 /scripts/*
+RUN MARIADB_DIRS="/var/lib/mysql /var/log/mariadb /run/mariadb" && \
+    chown -R mysql:0 ${MARIADB_DIRS} && \
+    chmod -R g+w /var/log/mariadb && \
+    find ${MARIADB_DIRS} -type d -exec chmod g+rwx {} +
 
 EXPOSE 3306
-VOLUME /var/lib/mysql
+VOLUME /var/lib/mysql /var/log/mariadb /run/mariadb
+USER mysql
 CMD ["/bin/bash", "/scripts/start.sh"]
