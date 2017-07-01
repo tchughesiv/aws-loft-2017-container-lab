@@ -11,26 +11,30 @@ ADD  scripts /scripts
 
 RUN chmod 755 /scripts/*
 
-# Add in custom yum repository and update
-ADD ./custom.repo /etc/yum.repos.d/custom.repo
-RUN yum -y update
+# Disable all but the necessary repo(s)
+RUN yum repolist
+RUN yum-config-manager --disable \* &> /dev/null
+RUN yum-config-manager --enable rhel-7-server-rpms
+
+>>> The yum-config-manager method to managing repos can be time consuming during a "docker build"...
+>>> whereas, enabling the necessary repo(s) during a "yum install" is much faster.
+
+# Common Deps
+RUN yum -y install openssl
+RUN yum -y install psmisc
 
 >>> Running a yum clean all in the same statement would clear the yum
 >>> cache in our intermediate cached image layer
 
-# Common Deps
-RUN yum -y install openssl
-RUN yum -y install psmisc 
-
 # Deps for wordpress
-RUN yum -y install httpd 
-RUN yum -y install php 
-RUN yum -y install php-mysql 
+RUN yum -y install httpd
+RUN yum -y install php
+RUN yum -y install php-mysql
 RUN yum -y install php-gd
 RUN yum -y install tar
 
 # Deps for mariadb
-RUN yum -y install mariadb-server 
+RUN yum -y install mariadb-server
 RUN yum -y install net-tools
 RUN yum -y install hostname
 
