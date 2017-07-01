@@ -147,7 +147,7 @@ Now we'll create the Wordpress Dockerfile.
         COPY latest.tar.gz /latest.tar.gz
         RUN tar xvzf /latest.tar.gz -C /var/www/html --strip-components=1 && \
             rm /latest.tar.gz && \
-            usermod -u 48 apache && \
+            usermod -u 27 apache && \
             sed -i 's/^Listen 80/Listen 8080/g' /etc/httpd/conf/httpd.conf && \
             APACHE_DIRS="/var/www/html /usr/share/httpd /var/log/httpd /run/httpd" && \
             chown -R apache:0 ${APACHE_DIRS} && \
@@ -187,8 +187,7 @@ Now we are ready to build the images to test our Dockerfiles.
 1. Create the local directories for persistent storage & set permissions for container runtime.
 
         $ sudo mkdir -p /var/lib/mariadb /var/lib/wp_uploads
-        $ sudo chown 27 /var/lib/mariadb
-        $ sudo chown 48 /var/lib/wp_uploads
+        $ sudo chown 27 /var/lib/mariadb /var/lib/wp_uploads
 
 1. Run the database image to confirm connectivity. It takes some time to discover all of the necessary `docker run` options.
 

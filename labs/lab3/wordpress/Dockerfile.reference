@@ -11,7 +11,7 @@ RUN chmod 755 /scripts/*
 COPY latest.tar.gz /latest.tar.gz
 RUN tar xvzf /latest.tar.gz -C /var/www/html --strip-components=1 && \
     rm /latest.tar.gz && \
-    usermod -u 48 apache && \
+    usermod -u 27 apache && \
     sed -i 's/^Listen 80/Listen 8080/g' /etc/httpd/conf/httpd.conf && \
     APACHE_DIRS="/var/www/html /usr/share/httpd /var/log/httpd /run/httpd" && \
     chown -R apache:0 ${APACHE_DIRS} && \
