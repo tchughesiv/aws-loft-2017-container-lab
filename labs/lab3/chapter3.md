@@ -259,6 +259,11 @@ When we have a working `docker run` recipe we want a way to communicate that to 
         $ docker tag wordpress localhost:5000/wordpress
         $ docker images
 
+1. Push the images
+
+        $ docker push localhost:5000/mariadb
+        $ docker push localhost:5000/wordpress
+
 ## Clean Up
 
 Stop the mariadb and wordpress containers.

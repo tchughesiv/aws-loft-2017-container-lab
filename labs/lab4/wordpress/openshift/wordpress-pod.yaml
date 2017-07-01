@@ -9,11 +9,11 @@ spec:
   - name: wordpress
     image: localhost:5000/wordpress
     ports:
-      - containerPort: 8080
+    - containerPort: 8080
     env:
-      - name: DB_ENV_DBUSER
-        value: user
-      - name: DB_ENV_DBPASS
-        value: mypassword
-      - name: DB_ENV_DBNAME
-        value: mydb
+    - name: DB_ENV_DBUSER
+      value: user
+    - name: DB_ENV_DBPASS
+      value: mypassword
+    - name: DB_ENV_DBNAME
+      value: mydb
