@@ -21,4 +21,4 @@ spec:
         - name: wordpress
           image: wordpress
           ports:
-            - containerPort: 80
+            - containerPort: 8080

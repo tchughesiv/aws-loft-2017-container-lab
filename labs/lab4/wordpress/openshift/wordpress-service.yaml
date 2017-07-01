@@ -6,6 +6,6 @@ metadata:
     name: wordpress
 spec:
   ports:
-    - port: 80
+    - port: 8080
   selector:
     name: wordpress

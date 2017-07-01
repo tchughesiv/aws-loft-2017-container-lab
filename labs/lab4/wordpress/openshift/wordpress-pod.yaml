@@ -9,7 +9,7 @@ spec:
   - name: wordpress
     image: localhost:5000/wordpress
     ports:
-      - containerPort: 80
+      - containerPort: 8080
     env:
       - name: DB_ENV_DBUSER
         value: user
