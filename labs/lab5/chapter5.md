@@ -95,7 +95,12 @@ Now that we have deployed our template, let’s login as developer to the OpenSh
 The console url can be retrieved with:
 ```bash
 $ oc cluster status
+
 ```
+
+The credentials are `developer | developer`
+
+
 ![image not loading](images/1.png "Login")
 
 And after we’ve logged in, we see a list of projects that the developer user has access to. Let's select the `production` project:
