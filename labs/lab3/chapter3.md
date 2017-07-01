@@ -44,8 +44,7 @@ The Wordpress tar file was extracted into `/var/www/html`. List the files.
 $ ls -l /var/www/html
 ```
 
-These are sensitive files for our application and it would be
-unfortunate if changes to these files were lost. Currently the running container does not have any associated "volumes", which means that if this container dies all changes will be lost. This mount point in the container should be backed by a "volume". Later in this lab we'll use a host directory backed "volume" to make sure these files persist.
+These are sensitive files for our application and it would be unfortunate if changes to these files were lost. Currently the running container does not have any associated "volumes", which means that if this container dies all changes will be lost. This mount point in the container should be backed by a "volume". Later in this lab we'll use a host directory backed "volume" to make sure these files persist.
 
 #### Database
 
