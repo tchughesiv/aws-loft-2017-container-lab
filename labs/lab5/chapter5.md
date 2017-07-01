@@ -8,36 +8,28 @@ Expected completion: 20 minutes
 
 ## Project preparation
 
-We should still be in our "production" project space at this point.
-```shell
-$ oc project
-Using project "production" on server "https://atomic-host.example.com:8443".
+Let's create a new project.
+```bash
+$ oc new-project production
+Now using project "production" on server "https://10.xx.xx.xxx:8443".
 ```
 
-Ensure you're still logged in as the developer user & clean up the resources deployed in chapter 4.
+Ensure you're still logged in as the developer user.
 ```shell
 $ oc whoami
 developer
-
-$ oc delete all --all
-```
-
-Ensure the following command displays "No resources found" before proceeding.
-```shell
-$ oc get all
-No resources found.
 ```
 
 ## Wordpress templated deployment
 
 This time, let's simplify things by deploying an application template.  We've already included a template w/ lab5 which leverages our wordpress & mariadb images.
-```shell
+```bash
 $ cd ~/aws-loft-2017-container-lab/labs/lab5/
-$ grep -i cdk.example.com wordpress-template.yaml
+$ grep localhost:5000 wordpress-template.yaml
 ```
 
 Let's deploy this wordpress template:
-```shell
+```bash
 # add your template to the production project
 $ oc create -f wordpress-template.yaml
 template "wordpress" created
@@ -47,30 +39,45 @@ $ oc new-app --template wordpress
 --> Deploying template "production/wordpress" to project production
 ```
 
-Watch all of the newly created resources until the pods are in "Running" status... ctrl-c to exit
-```shell
-$ watch -n 5 oc get all
+View all of the newly created resources
+```bash
+$ oc get all
 NAME                   READY     STATUS    RESTARTS   AGE
 po/mariadb-1-nujmr     1/1	 Running   0          2m
 po/wordpress-1-pz9fu   1/1	 Running   0          2m
+```
 
-# wait for the database to start... ctrl-c when done.
-$ oc logs -f dc/mariadb
+Wait for rollout to finish
+```bash
+$ oc rollout status -w dc/mariadb
+replication controller "mariadb-1" successfully rolled out
+
+$ oc rollout status -w dc/wordpress
+replication controller "wordpress-1" successfully rolled out
+```
+
+Verify the database started
+```bash
+$ oc logs dc/mariadb
 mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql
+```
 
-# wait for wordpress to start... ctrl-c when done.
-$ oc logs -f dc/wordpress
+Verify wordpress started
+```bash
+$ oc logs dc/wordpress
 /usr/sbin/httpd -D FOREGROUND
+```
 
-# oc status gives a nice view of how these resources connect
+`oc status` gives a nice view of how these resources connect
+```bash
 $ oc status
 ```
 
 Check and make sure you can access the wordpress service through it's route:
 ```bash
-$ curl -L http://wordpress-production.atomic-host.example.com
-or
-point your browser to the URL to view the GUI
+$ oc get routes
+$ curl -L wordpress-production.<YOUR AWS VM PUBLIC IP>.nip.io
+# OR open the URL in a browser to view the UI
 ```
 
 OpenShift includes several ready-made templates. Let's take a look at some of them:
@@ -86,7 +93,12 @@ For more information on templates, reference the official OpenShift documentatio
 
 ## Web console
 
-Now that we have deployed our template, let’s login as developer to the OpenShift web console - [https://atomic-host.example.com:8443](https://atomic-host.example.com:8443):
+Now that we have deployed our template, let’s login as developer to the OpenShift web console - `https://<YOUR AWS VM PUBLIC DNS NAME HERE>:8443`
+
+The console url can be retrieved with:
+```bash
+$ oc cluster status
+```
 ![image not loading](images/1.png "Login")
 
 And after we’ve logged in, we see a list of projects that the developer user has access to. Let's select the `production` project:

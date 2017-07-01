@@ -21,7 +21,7 @@ objects:
     - name: latest
       from:
         kind: DockerImage
-        name: cdk.example.com:5000/mariadb:latest
+        name: localhost:5000/mariadb:latest
       importPolicy:
         insecure: true
 - apiVersion: v1
@@ -35,7 +35,7 @@ objects:
     - name: latest
       from:
         kind: DockerImage
-        name: cdk.example.com:5000/wordpress:latest
+        name: localhost:5000/wordpress:latest
       importPolicy:
         insecure: true
 - apiVersion: v1
@@ -87,16 +87,8 @@ objects:
             initialDelaySeconds: 5
             timeoutSeconds: 1
           resources: {}
-          terminationMessagePath: /dev/termination-log
-          volumeMounts:
-          - mountPath: /var/lib/mysql
-            name: mariadb-volume-1
         dnsPolicy: ClusterFirst
         restartPolicy: Always
-        volumes:
-        - emptyDir: {}
-          name: mariadb-volume-1
-    test: false
     triggers:
     - type: ConfigChange
     - imageChangeParams:
@@ -130,7 +122,7 @@ objects:
       app: wordpress
     name: wordpress
   spec:
-    replicas: 1
+    replicas: 2
     selector:
       app: wordpress
       deploymentconfig: wordpress
@@ -155,7 +147,7 @@ objects:
           livenessProbe:
             initialDelaySeconds: 30
             tcpSocket:
-              port: 80
+              port: 8080
             timeoutSeconds: 1
           name: wordpress
           ports:
@@ -166,18 +158,11 @@ objects:
             periodSeconds: 10
             successThreshold: 1
             tcpSocket:
-              port: 80
+              port: 8080
             timeoutSeconds: 1
           resources: {}
-          terminationMessagePath: /dev/termination-log
-          volumeMounts:
-          - mountPath: /var/www/html/wp-content/uploads
-            name: wordpress-volume-1
         dnsPolicy: ClusterFirst
         restartPolicy: Always
-        volumes:
-        - emptyDir: {}
-          name: wordpress-volume-1
     triggers:
     - type: ConfigChange
     - imageChangeParams:
@@ -198,10 +183,10 @@ objects:
       "service.alpha.openshift.io/dependencies": "[{\"name\": \"mariadb\", \"kind\": \"Service\"}]"
   spec:
     ports:
-    - name: 80-tcp
-      port: 80
+    - name: 8080-tcp
+      port: 8080
       protocol: TCP
-      targetPort: 80
+      targetPort: 8080
     selector:
       app: wordpress
       deploymentconfig: wordpress
@@ -215,7 +200,7 @@ objects:
   spec:
     host: ""
     port:
-      targetPort: 80-tcp
+      targetPort: 8080-tcp
     to:
       kind: Service
       name: wordpress
