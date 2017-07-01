@@ -226,7 +226,7 @@ Note: See the difference in SELinux context after running w/ a volume & :Z.
 $ ls -lZd /var/lib/wp_uploads
 $ docker exec $(docker ps -ql) ps aux
 # check volume directory ownership inside the container
-$ docker exec $(docker ps -ql) stat --format="%U" /var/www/html/wp-content
+$ docker exec $(docker ps -ql) stat --format="%U" /var/www/html/wp-content/uploads
 $ docker logs $(docker ps -ql)
 $ docker ps
 $ curl -L http://localhost:1080
