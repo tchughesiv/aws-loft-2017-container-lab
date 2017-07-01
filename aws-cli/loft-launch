@@ -7,7 +7,7 @@ source ./vars &> /dev/null
 INCLUDE="$(dirname "$0")"
 
 # Check for existance of jq package
-if [[ ! -f /usr/bin/jq ]]
+if [[ ! -f /usr/bin/jq ]] && [[ ! -f /usr/local/bin/jq ]]
     then 
         echo
         echo "no jq package installed"
@@ -27,11 +27,11 @@ SEC_GROUP_ID=$(aws ec2 describe-security-groups \
 # Create the instances and assign tags
 for NODE_COUNT in $NODE_COUNT; do
 aws ec2 create-tags \
---resources `aws ec2 run-instances \
+--resources $(aws ec2 run-instances \
 --image-id $AMI_ID \
 --instance-type $LOFT_INST_TYPE \
 --subnet-id $SUBNET_ID_1 \
 --security-group-ids $SEC_GROUP_ID \
---key-name $KEY_NAME | jq -r ".Instances[0].InstanceId"` \
+--key-name $KEY_NAME --output json | jq -r ".Instances[0].InstanceId") \
 --tags "Key=Name,Value=$LOFT_NODE-$NODE_COUNT" "Key=${KEY_TAG},Value=$LOFT_TAGS"
 done
