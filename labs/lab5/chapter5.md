@@ -8,24 +8,16 @@ Expected completion: 20 minutes
 
 ## Project preparation
 
-We should still be in our "production" project space at this point.
+Let's create a new project.
 ```shell
-$ oc project
-Using project "production" on server "https://atomic-host.example.com:8443".
+$ oc new-project production
+Now using project "production" on server "https://10.xx.xx.xxx:8443".
 ```
 
-Ensure you're still logged in as the developer user & clean up the resources deployed in chapter 4.
+Ensure you're still logged in as the developer user.
 ```shell
 $ oc whoami
 developer
-
-$ oc delete all --all
-```
-
-Ensure the following command displays "No resources found" before proceeding.
-```shell
-$ oc get all
-No resources found.
 ```
 
 ## Wordpress templated deployment
@@ -33,7 +25,7 @@ No resources found.
 This time, let's simplify things by deploying an application template.  We've already included a template w/ lab5 which leverages our wordpress & mariadb images.
 ```shell
 $ cd ~/aws-loft-2017-container-lab/labs/lab5/
-$ grep -i cdk.example.com wordpress-template.yaml
+$ grep localhost:5000 wordpress-template.yaml
 ```
 
 Let's deploy this wordpress template:
@@ -68,9 +60,9 @@ $ oc status
 
 Check and make sure you can access the wordpress service through it's route:
 ```bash
-$ curl -L http://wordpress-production.atomic-host.example.com
-or
-point your browser to the URL to view the GUI
+$ oc get routes
+$ curl -L wordpress-production.<YOUR AWS VM PUBLIC IP>.nip.io
+# OR open the URL in a browser to view the UI
 ```
 
 OpenShift includes several ready-made templates. Let's take a look at some of them:
@@ -86,7 +78,11 @@ For more information on templates, reference the official OpenShift documentatio
 
 ## Web console
 
-Now that we have deployed our template, let’s login as developer to the OpenShift web console - [https://atomic-host.example.com:8443](https://atomic-host.example.com:8443):
+Now that we have deployed our template, let’s login as developer to the OpenShift web console - `https://<YOUR AWS VM PUBLIC DNS NAME HERE>:8443`
+Your web console url can be retrieved w/ the following command:
+```bash
+$ oc cluster status
+```
 ![image not loading](images/1.png "Login")
 
 And after we’ve logged in, we see a list of projects that the developer user has access to. Let's select the `production` project:
