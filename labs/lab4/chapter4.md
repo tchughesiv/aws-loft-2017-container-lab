@@ -11,15 +11,15 @@ Let's start with a little experimentation. I am sure you are all excited about y
 So, let's see what will happen. Launch the site:
 
 ```bash
-docker run -d -p 3306:3306 -e DBUSER=user -e DBPASS=mypassword -e DBNAME=mydb --name mariadb mariadb
-docker run -d -p 1080:8080 --link mariadb:db --name wordpress wordpress
+$ docker run -d -p 3306:3306 -e DBUSER=user -e DBPASS=mypassword -e DBNAME=mydb --name mariadb mariadb
+$ docker run -d -p 1080:8080 --link mariadb:db --name wordpress wordpress
 ```
 
 Take a look at the site in your web browser on your machine using 
 [http://<YOUR AWS VM PUBLIC DNS NAME HERE>:1080](http://<YOUR AWS VM PUBLIC DNS NAME HERE>:1080). As you learned before, you can confirm the port that your server is running on by executing:
 ```bash
-docker ps
-docker port wordpress
+$ docker ps
+$ docker port wordpress
 ```
 
 and taking look at the "PORTS" column for the wordpress site. 
@@ -28,40 +28,40 @@ However, we have some nice DNS set up and chose port 1080, so you can just use [
 
 Now, let's see what happens when we kick over the database. However, for a later experiment, let's grab the container-id right before you do it. 
 ```bash
-OLD_CONTAINER_ID=$(docker inspect --format '{{ .Id }}' mariadb)
-docker stop mariadb
+$ OLD_CONTAINER_ID=$(docker inspect --format '{{ .Id }}' mariadb)
+$ docker stop mariadb
 ```
 
 Take a look at the site in your web browser or using curl now. And, imagine, explosions! (*making sound effects will be much appreciated by your lab mates.*)
 ```bash
 web browser -> http://<YOUR AWS VM PUBLIC DNS NAME HERE>:1080
 # OR
-curl -L http://localhost:1080
+$ curl -L http://localhost:1080
 ```
 
 Now, what is neat about a container system, assuming your web application can handle it, is we can bring it right back up, with no loss of data.
 ```bash
-docker start mariadb
+$ docker start mariadb
 ```
 
 OK, now, let's compare the old container id and the new one.
 ```bash
-NEW_CONTAINER_ID=$(docker inspect --format '{{ .Id }}' mariadb)
-echo -e "$OLD_CONTAINER_ID\n$NEW_CONTAINER_ID"
+$ NEW_CONTAINER_ID=$(docker inspect --format '{{ .Id }}' mariadb)
+$ echo -e "$OLD_CONTAINER_ID\n$NEW_CONTAINER_ID"
 ```
 
 Hmmm. Well, that is cool, they are exactly the same. OK, so all in all, about what you would expect for a web server and a database running on VMs, but a whole lot faster. Let's take a look at the site now.
 ```bash
 web browser -> http://<YOUR AWS VM PUBLIC DNS NAME HERE>:1080
 # OR
-curl -L http://localhost:1080
+$ curl -L http://localhost:1080
 ```
 
 And.. Your site is back! Fortunately wordpress seems to be designed such that it does not need a restart if its database goes away temporarily.
 
 Finally, let's kill off these containers to prepare for the next section.
 ```bash
-docker rm -f wordpress mariadb
+$ docker rm -f wordpress mariadb
 ```
 
 Starting and stopping is definitely easy, and fast. However, it is still pretty manual. What if we could automate the recovery? Or, in buzzword terms, "ensure the service remains available"? Enter Kubernetes/OpenShift.
@@ -70,16 +70,14 @@ Starting and stopping is definitely easy, and fast. However, it is still pretty 
 
 Now login to our local OpenShift & create a new project:
 ```bash
-oc login -u developer -p developer
+$ oc login -u developer -p developer
 Using project "myproject".
 
-oc new-project devel
-Now using project "devel" on server "https://192.168.xx.xxx:8443".
+$ oc new-project devel
+Now using project "devel" on server "https://10.xx.xx.xxx:8443".
 ```
 
-You are now logged in to OpenShift and are using the ```devel``` 
-project. You can also view the OpenShift web console by using the same 
-credentials to log in to ```https://<YOUR AWS VM PUBLIC DNS NAME HERE>:8443``` in a browser.
+You are now logged in to OpenShift and are using the ```devel``` project. You can also view the OpenShift web console by using the same credentials to log in to ```https://<YOUR AWS VM PUBLIC DNS NAME HERE>:8443``` in a browser.
 
 ## Pod Creation
 
@@ -89,8 +87,8 @@ Let's get started by talking about a pod. A pod is a set of containers that prov
 
 Let's make a pod for mariadb. Open a file called mariadb-pod.yaml.
 ```bash
-mkdir -p ~/workspace/mariadb/openshift
-vi ~/workspace/mariadb/openshift/mariadb-pod.yaml
+$ mkdir -p ~/workspace/mariadb/openshift
+$ vi ~/workspace/mariadb/openshift/mariadb-pod.yaml
 ```
 
 In that file, let's put in the pod identification information:
@@ -112,11 +110,11 @@ Generally speaking, this is the content you can copy and paste between pods, asi
 Now, let's add the custom information regarding this particular container. To start, we will add the most basic information. Please replace the ```containers:``` line with:
 ```yaml
   containers:
-    - name: mariadb
-      image: localhost:5000/mariadb
-      ports:
-        - containerPort: 3306
-      env:
+  - name: mariadb
+    image: localhost:5000/mariadb
+    ports:
+    - containerPort: 3306
+    env:
 ```
 
 Here we set the ```name``` of the container; remember we can have more than
@@ -125,19 +123,17 @@ image that should be used and the registry to get it from.
 
 Lastly, we need to configure the environment variables that need to be fed from 
 the host environment to the container. Replace ```env:``` with:
-
 ```yaml
-      env:
-        - name: DBUSER
-          value: user
-        - name: DBPASS
-          value: mypassword
-        - name: DBNAME
-          value: mydb
+    env:
+    - name: DBUSER
+      value: user
+    - name: DBPASS
+      value: mypassword
+    - name: DBNAME
+      value: mydb
 ```
 
 OK, now we are all done, and should have a file that looks like:
-
 ```yaml
 apiVersion: v1
 kind: Pod
@@ -147,24 +143,23 @@ metadata:
     name: mariadb
 spec:
   containers:
-    - name: mariadb
-      image: localhost:5000/mariadb
-      ports:
-        - containerPort: 3306
-      env:
-        - name: DBUSER
-          value: user
-        - name: DBPASS
-          value: mypassword
-        - name: DBNAME
-          value: mydb
+  - name: mariadb
+    image: localhost:5000/mariadb
+    ports:
+    - containerPort: 3306
+    env:
+    - name: DBUSER
+      value: user
+    - name: DBPASS
+      value: mypassword
+    - name: DBNAME
+      value: mydb
 ```
 
 Our wordpress container is much less complex, so let's do that pod next.
-
 ```bash
-mkdir -p ~/workspace/wordpress/openshift
-vi ~/workspace/wordpress/openshift/wordpress-pod.yaml
+$ mkdir -p ~/workspace/wordpress/openshift
+$ vi ~/workspace/wordpress/openshift/wordpress-pod.yaml
 ```
 
 ```yaml
@@ -179,46 +174,45 @@ spec:
   - name: wordpress
     image: localhost:5000/wordpress
     ports:
-      - containerPort: 8080
+    - containerPort: 8080
     env:
-      - name: DB_ENV_DBUSER
-        value: user
-      - name: DB_ENV_DBPASS
-        value: mypassword
-      - name: DB_ENV_DBNAME
-        value: mydb
+    - name: DB_ENV_DBUSER
+      value: user
+    - name: DB_ENV_DBPASS
+      value: mypassword
+    - name: DB_ENV_DBNAME
+      value: mydb
 ```
 
 A couple things to notice about this file. Obviously, we change all the appropriate names to reflect "wordpress" but, largely, it is the same as the mariadb pod file. We also use the environment variables that are specified by the wordpress container, although they need to get the same values as the ones in the mariadb pod.
 
 Ok, so, let's launch our pods and make sure they come up correctly. In order to do this, we need to introduce the ```oc``` command which is what drives OpenShift. Generally, speaking, the format of ```oc``` commands is ```oc <operation> <kind>```. Where ```<operation>``` is something like ```create```, ```get```, ```remove```, etc. and ```kind``` is the ```kind``` from the pod files.
 ```bash
-oc create -f ~/workspace/mariadb/openshift/mariadb-pod.yaml
-oc create -f ~/workspace/wordpress/openshift/wordpress-pod.yaml
+$ oc create -f ~/workspace/mariadb/openshift/mariadb-pod.yaml
+$ oc create -f ~/workspace/wordpress/openshift/wordpress-pod.yaml
 ```
 
 Now, I know i just said, ```kind``` is a parameter, but, as this is a create statement, it looks in the ```-f``` file for the ```kind```.
 
 Ok, let's see if they came up:
 ```bash
-oc get pods
+$ oc get pods
 ```
 
 Which should output two pods, one called ```mariadb``` and one called ```wordpress``` . You can also check the OpenShift web console if you already have it pulled up and verify the pods show up there as well.
 
 If you have any issues with the pods transistioning from a "Pending" state, you can check out the logs from the OpenShift containers in multiple ways. Here are a couple of options:
 ```bash
-oc logs mariadb
-oc describe pod mariadb
+$ oc logs mariadb
+$ oc describe pod mariadb
 
-oc logs wordpress
-oc describe pod wordpress
+$ oc logs wordpress
+$ oc describe pod wordpress
 ```
 
 Ok, now let's kill them off so we can introduce the services that will let them more dynamically find each other.
 ```bash
-oc delete pod mariadb
-oc delete pod wordpress
+$ oc delete po/mariadb po/wordpress
 ```
 
 **Note** you used the "singular" form here on the ```kind```, which, for delete, is required and requires a "name". However, you can, usually, use them interchangeably depending on the kind of information you want.
@@ -228,7 +222,7 @@ Now we want to create Kubernetes Services for our pods so that OpenShift can int
 
 Let's start with mariadb. Open up a service file:
 ```bash
-vi ~/workspace/mariadb/openshift/mariadb-service.yaml
+$ vi ~/workspace/mariadb/openshift/mariadb-service.yaml
 ```
 
 and insert the following content:
@@ -241,7 +235,7 @@ metadata:
     name: mariadb
 spec:
   ports:
-    - port: 3306
+  - port: 3306
   selector:
     name: mariadb
 ```
@@ -250,7 +244,7 @@ As you can probably tell, there isn't really anything new here. However, you nee
 
 OK, now let's move on to the wordpress service. Open up a new service file:
 ```bash
-vi ~/workspace/wordpress/openshift/wordpress-service.yaml
+$ vi ~/workspace/wordpress/openshift/wordpress-service.yaml
 ```
 
 and insert:
@@ -263,7 +257,7 @@ metadata:
     name: wordpress
 spec:
   ports:
-    - port: 8080
+  - port: 8080
   selector:
     name: wordpress
 ```
@@ -275,23 +269,23 @@ with that at the end of this lab if you have time.
 
 Now let's get things going. Start mariadb:
 ```bash
-oc create -f ~/workspace/mariadb/openshift/mariadb-pod.yaml
-oc create -f ~/workspace/mariadb/openshift/mariadb-service.yaml
+$ oc create -f ~/workspace/mariadb/openshift/mariadb-pod.yaml
+$ oc create -f ~/workspace/mariadb/openshift/mariadb-service.yaml
 ```
 
 Now let's start wordpress.
 ```bash
-oc create -f ~/workspace/wordpress/openshift/wordpress-pod.yaml
-oc create -f ~/workspace/wordpress/openshift/wordpress-service.yaml
+$ oc create -f ~/workspace/wordpress/openshift/wordpress-pod.yaml
+$ oc create -f ~/workspace/wordpress/openshift/wordpress-service.yaml
 ```
 
 OK, now let's make sure everything came up correctly:
 ```bash
-oc get pods
-oc get services
+$ oc get pods
+$ oc get services
 ```
 
-**Note** these may take a while to get to a ```RUNNING``` state as it pulls the image from the registry, spin up the containers, do the OpenShift magic, etc. 
+**Note** these may take a while to get to a ```RUNNING``` state as it pulls the image from the registry, spins up the containers, etc. 
 
 Eventually, you should see:
 ```bash
@@ -310,78 +304,20 @@ wordpress   172.30.237.62   <none>        8080/TCP     1m
 
 Now let's expose the wordpress service by creating a route
 ```bash
-oc expose svc/wordpress
+$ oc expose svc/wordpress
 ```
 
 And you should be able to see the service's accessible URL by viewing the routes:
 ```bash
 $ oc get routes
-NAME        HOST/PORT                         PATH      SERVICES    PORT      TERMINATION
-wordpress   wordpress-devel.<YOUR AWS VM PUBLIC DNS NAME HERE>             wordpress   8080        
+NAME        HOST/PORT                                        PATH      SERVICES    PORT  
+wordpress   wordpress-devel.<YOUR AWS VM PUBLIC IP>.nip.io             wordpress   8080  
 ```
 
 Check and make sure you can access the wordpress service through the route:
 ```bash
-curl -L wordpress-devel.<YOUR AWS VM PUBLIC DNS NAME HERE>
-or
-point your browser to the URL to view the GUI
+$ curl -L wordpress-devel.<YOUR AWS VM PUBLIC IP>.nip.io
+# OR open the URL in a browser to view the UI
 ```
 
-Seemed awfully manual and ordered up there, didn't it? Just wait til Lab5 where we make it a lot less painful!
-
-## Remote Deployment
-
-Now that we are satisfied that our containers and Kubernetes definitions work, let's try deploying to "production" on a "deployment" server running Atomic Host.
-
-First, let's log in to the remote cluster:
-```bash
-oc login --insecure-skip-tls-verify=true \
-    -u developer -p developer atomic-host.example.com:8443
-```
-
-This will create a new configuration file in ~/.kube/config. This file stores information about how to connect to the remote OpenShift cluster.
-
-Let's create a new project in the remote cluster:
-```bash
-oc new-project production
-```
-
-You should now be using the ```production``` project. Let's check the pods/services:
-```bash
-oc get pods
-oc get services
-```
-
-Nothing there, right? Ok, so let's start the bits up on the remote deployment server. 
-```bash
-oc create -f ~/workspace/mariadb/openshift/mariadb-pod.yaml
-oc create -f ~/workspace/mariadb/openshift/mariadb-service.yaml
-oc create -f ~/workspace/wordpress/openshift/wordpress-pod.yaml
-oc create -f ~/workspace/wordpress/openshift/wordpress-service.yaml
-```
-
-Now we should see similar results as our local machine from:
-```bash
-oc get all
-```
-
-Again, before we access the service, let's expose the route.
-```bash
-oc expose svc/wordpress
-```
-
-```bash
-$ oc get routes
-NAME        HOST/PORT                                      PATH      SERVICES    PORT      TERMINATION
-wordpress   wordpress-production.atomic-host.example.com             wordpress   8080        
-```
-
-And finally, access the site via the link:
-
-```
-curl -L http://wordpress-production.atomic-host.example.com
-or
-point your browser to the URL
-```
-
-As promised, in our [next lab](../lab5/chapter5.md) we'll demonstrate just how simple deployments can be with OpenShift templates.
+Seemed awfully manual and ordered up there, didn't it? In our [next lab](../lab5/chapter5.md) we'll demonstrate how simple deployments can be with OpenShift templates.
