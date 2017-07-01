@@ -94,8 +94,8 @@ $ ls -lR wordpress
 1. Add the dependent scripts and modify permissions to support non-root container runtime.
 
         ADD scripts /scripts
-        RUN chmod 755 /scripts/*
-        RUN MARIADB_DIRS="/var/lib/mysql /var/log/mariadb /run/mariadb" && \
+        RUN chmod 755 /scripts/* && \
+            MARIADB_DIRS="/var/lib/mysql /var/log/mariadb /run/mariadb" && \
             chown -R mysql:0 ${MARIADB_DIRS} && \
             chmod -R g+w /var/log/mariadb && \
             find ${MARIADB_DIRS} -type d -exec chmod g+rwx {} +
@@ -147,6 +147,7 @@ Now we'll create the Wordpress Dockerfile.
         COPY latest.tar.gz /latest.tar.gz
         RUN tar xvzf /latest.tar.gz -C /var/www/html --strip-components=1 && \
             rm /latest.tar.gz && \
+            usermod -u 48 apache && \
             sed -i 's/^Listen 80/Listen 8080/g' /etc/httpd/conf/httpd.conf && \
             APACHE_DIRS="/var/www/html /usr/share/httpd /var/log/httpd /run/httpd" && \
             chown -R apache:0 ${APACHE_DIRS} && \
@@ -183,9 +184,11 @@ Now we are ready to build the images to test our Dockerfiles.
 
         $ docker images
 
-1. Create the local directories for persistent storage.
+1. Create the local directories for persistent storage & set permissions for container runtime.
 
         $ sudo mkdir -p /var/lib/mariadb /var/lib/wp_uploads
+        $ sudo chown 27 /var/lib/mariadb
+        $ sudo chown 48 /var/lib/wp_uploads
 
 1. Run the database image to confirm connectivity. It takes some time to discover all of the necessary `docker run` options.
 
@@ -200,10 +203,12 @@ $ docker run -d -v /var/lib/mariadb:/var/lib/mysql:Z -p 3306:3306 -e DBUSER=user
 Note: See the difference in SELinux context after running w/ a volume & :Z.
 ```bash
 $ ls -lZd /var/lib/mariadb
-$ docker logs $(docker ps -ql)
 $ docker exec $(docker ps -ql) ps aux
+# check volume directory ownership inside the container
+$ docker exec $(docker ps -ql) stat --format="%U" /var/lib/mysql
+$ docker logs $(docker ps -ql)
 $ docker ps
-$ curl http://localhost:3306
+$ curl localhost:3306
 ```
 
   **Note**: the `curl` command does not return useful information but demonstrates 
@@ -219,8 +224,10 @@ $ docker run -d -v /var/lib/wp_uploads:/var/www/html/wp-content/uploads:Z -p 108
 Note: See the difference in SELinux context after running w/ a volume & :Z.
 ```bash
 $ ls -lZd /var/lib/wp_uploads
-$ docker logs $(docker ps -ql)
 $ docker exec $(docker ps -ql) ps aux
+# check volume directory ownership inside the container
+$ docker exec $(docker ps -ql) stat --format="%U" /var/www/html/wp-content
+$ docker logs $(docker ps -ql)
 $ docker ps
 $ curl -L http://localhost:1080
 ```
@@ -243,7 +250,7 @@ When we have a working `docker run` recipe we want a way to communicate that to 
 
         $ docker stop wordpress
         $ docker rm wordpress
-        $ yum -y install atomic
+        $ sudo yum -y install atomic
         $ atomic run wordpress
         $ curl -L http://localhost:1080
 
