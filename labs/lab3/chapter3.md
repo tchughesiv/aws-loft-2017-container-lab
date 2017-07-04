@@ -97,8 +97,7 @@ $ ls -lR wordpress
         RUN chmod 755 /scripts/* && \
             MARIADB_DIRS="/var/lib/mysql /var/log/mariadb /run/mariadb" && \
             chown -R mysql:0 ${MARIADB_DIRS} && \
-            chmod -R g+w /var/log/mariadb && \
-            find ${MARIADB_DIRS} -type d -exec chmod g+rwx {} +
+            chmod -R g=u ${MARIADB_DIRS}
 
 1. Add an instruction to expose the database port.
 
@@ -151,7 +150,7 @@ Now we'll create the Wordpress Dockerfile.
             sed -i 's/^Listen 80/Listen 8080/g' /etc/httpd/conf/httpd.conf && \
             APACHE_DIRS="/var/www/html /usr/share/httpd /var/log/httpd /run/httpd" && \
             chown -R apache:0 ${APACHE_DIRS} && \
-            find ${APACHE_DIRS} -type d -exec chmod g+rwx {} +
+            chmod -R g=u ${APACHE_DIRS}
 
 1. Add an instruction to expose the web server port.
 
@@ -159,7 +158,7 @@ Now we'll create the Wordpress Dockerfile.
 
 1. Add a `VOLUME` instruction. This ensures data will be persisted even if the container is lost.
 
-        VOLUME /var/www/html/wp-content/uploads
+        VOLUME /var/www/html/wp-content/uploads /var/log/httpd /run/httpd
 
 1. Switch to a non-root `USER`.
 
