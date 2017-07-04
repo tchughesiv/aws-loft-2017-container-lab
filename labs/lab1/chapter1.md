@@ -106,16 +106,16 @@ $ docker build -t redhat/apache .
 
 Next, let's run the image and make sure it started.
 ```bash
-$ docker run -dt -p 1080:80 --name apache redhat/apache
+$ docker run -dt -p 8080:80 --name apache redhat/apache
 $ docker ps
 ```
 
-Here we are using a few switches to configure the running container the way we want it. We are running a `-dt` to run in detached mode with a psuedo TTY. Next we are mapping a port from the host to the container. We are being explicit here. We are telling docker to map port 1080 on the host to port 80 in the container. Now, we could have let docker handle the host side port mapping dynamically by 
+Here we are using a few switches to configure the running container the way we want it. We are running a `-dt` to run in detached mode with a psuedo TTY. Next we are mapping a port from the host to the container. We are being explicit here. We are telling docker to map port 8080 on the host to port 80 in the container. Now, we could have let docker handle the host side port mapping dynamically by 
 passing a `-p 80`, in which case docker would have randomly assigned a port to the container. Finally, we passed in the name of the image that we built earlier.
 
 Okay, let's make sure we can access the web server.
 ```bash
-$ curl http://localhost:1080
+$ curl http://localhost:8080
 Apache
 ```
 
