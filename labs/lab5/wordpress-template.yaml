@@ -151,7 +151,7 @@ objects:
             timeoutSeconds: 1
           name: wordpress
           ports:
-          - containerPort: 80
+          - containerPort: 8080
             protocol: TCP
           readinessProbe:
             failureThreshold: 3

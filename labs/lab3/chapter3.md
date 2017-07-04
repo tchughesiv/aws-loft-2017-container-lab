@@ -216,7 +216,7 @@ $ curl localhost:3306
   * `--link <name>:<alias>` to link to the database container
 ```bash
 $ ls -lZd /var/lib/wp_uploads
-$ docker run -d -v /var/lib/wp_uploads:/var/www/html/wp-content/uploads:Z -p 1080:8080 --link mariadb:db --name wordpress wordpress
+$ docker run -d -v /var/lib/wp_uploads:/var/www/html/wp-content/uploads:Z -p 8080:8080 --link mariadb:db --name wordpress wordpress
 ```
 
 Note: See the difference in SELinux context after running w/ a volume & :Z.
@@ -227,10 +227,10 @@ $ docker exec $(docker ps -ql) ps aux
 $ docker exec $(docker ps -ql) stat --format="%U" /var/www/html/wp-content/uploads
 $ docker logs $(docker ps -ql)
 $ docker ps
-$ curl -L http://localhost:1080
+$ curl -L http://localhost:8080
 ```
 
-You may also load the Wordpress application in a browser to test its full functionality @ `http://<YOUR AWS VM PUBLIC DNS NAME HERE>:1080`.
+You may also load the Wordpress application in a browser to test its full functionality @ `http://<YOUR AWS VM PUBLIC DNS NAME HERE>:8080`.
 
 ### Simplify running containers with the atomic CLI
 
@@ -238,7 +238,7 @@ When we have a working `docker run` recipe we want a way to communicate that to 
 
 1. Edit `wordpress/Dockerfile` and add the following instruction near the bottom of the file above the CMD line.
 
-        LABEL run docker run -d -v /var/lib/wp_uploads:/var/www/html/wp-content/uploads:Z -p 1080:8080 --link=mariadb:db --name NAME -e NAME=NAME -e IMAGE=IMAGE IMAGE
+        LABEL run docker run -d -v /var/lib/wp_uploads:/var/www/html/wp-content/uploads:Z -p 8080:8080 --link=mariadb:db --name NAME -e NAME=NAME -e IMAGE=IMAGE IMAGE
         
 1. Rebuild the Wordpress image. The image cache will be used so only the changes will need to be built.
 
@@ -250,7 +250,7 @@ When we have a working `docker run` recipe we want a way to communicate that to 
         $ docker rm wordpress
         $ sudo yum -y install atomic
         $ atomic run wordpress
-        $ curl -L http://localhost:1080
+        $ curl -L http://localhost:8080
 
 1. Once satisfied with the images tag them with the URI of the local lab local registry. The tag is what OpenShift uses to identify the particular image that we want to import from the registry.
 

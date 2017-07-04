@@ -12,11 +12,11 @@ So, let's see what will happen. Launch the site:
 
 ```bash
 $ docker run -d -p 3306:3306 -e DBUSER=user -e DBPASS=mypassword -e DBNAME=mydb --name mariadb mariadb
-$ docker run -d -p 1080:8080 --link mariadb:db --name wordpress wordpress
+$ docker run -d -p 8080:8080 --link mariadb:db --name wordpress wordpress
 ```
 
 Take a look at the site in your web browser on your machine using 
-[http://<YOUR AWS VM PUBLIC DNS NAME HERE>:1080](http://<YOUR AWS VM PUBLIC DNS NAME HERE>:1080). As you learned before, you can confirm the port that your server is running on by executing:
+[http://<YOUR AWS VM PUBLIC DNS NAME HERE>:8080](http://<YOUR AWS VM PUBLIC DNS NAME HERE>:8080). As you learned before, you can confirm the port that your server is running on by executing:
 ```bash
 $ docker ps
 $ docker port wordpress
@@ -24,7 +24,7 @@ $ docker port wordpress
 
 and taking look at the "PORTS" column for the wordpress site. 
 
-However, we have some nice DNS set up and chose port 1080, so you can just use [http://<YOUR AWS VM PUBLIC DNS NAME HERE>:1080](http://<YOUR AWS VM PUBLIC DNS NAME HERE>:1080).
+However, we have some nice DNS set up and chose port 8080, so you can just use [http://<YOUR AWS VM PUBLIC DNS NAME HERE>:8080](http://<YOUR AWS VM PUBLIC DNS NAME HERE>:8080).
 
 Now, let's see what happens when we kick over the database. However, for a later experiment, let's grab the container-id right before you do it. 
 ```bash
@@ -34,9 +34,9 @@ $ docker stop mariadb
 
 Take a look at the site in your web browser or using curl now. And, imagine, explosions! (*making sound effects will be much appreciated by your lab mates.*)
 ```bash
-web browser -> http://<YOUR AWS VM PUBLIC DNS NAME HERE>:1080
+web browser -> http://<YOUR AWS VM PUBLIC DNS NAME HERE>:8080
 # OR
-$ curl -L http://localhost:1080
+$ curl -L http://localhost:8080
 ```
 
 Now, what is neat about a container system, assuming your web application can handle it, is we can bring it right back up, with no loss of data.
@@ -52,9 +52,9 @@ $ echo -e "$OLD_CONTAINER_ID\n$NEW_CONTAINER_ID"
 
 Hmmm. Well, that is cool, they are exactly the same. OK, so all in all, about what you would expect for a web server and a database running on VMs, but a whole lot faster. Let's take a look at the site now.
 ```bash
-web browser -> http://<YOUR AWS VM PUBLIC DNS NAME HERE>:1080
+web browser -> http://<YOUR AWS VM PUBLIC DNS NAME HERE>:8080
 # OR
-$ curl -L http://localhost:1080
+$ curl -L http://localhost:8080
 ```
 
 And.. Your site is back! Fortunately wordpress seems to be designed such that it does not need a restart if its database goes away temporarily.
