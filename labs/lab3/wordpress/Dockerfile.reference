@@ -15,7 +15,7 @@ RUN tar xvzf /latest.tar.gz -C /var/www/html --strip-components=1 && \
     sed -i 's/^Listen 80/Listen 8080/g' /etc/httpd/conf/httpd.conf && \
     APACHE_DIRS="/var/www/html /usr/share/httpd /var/log/httpd /run/httpd" && \
     chown -R apache:0 ${APACHE_DIRS} && \
-    find ${APACHE_DIRS} -type d -exec chmod g+rwx {} +
+    chmod -R g=u ${APACHE_DIRS}
 
 EXPOSE 8080
 VOLUME /var/www/html/wp-content/uploads /var/log/httpd /run/httpd
