@@ -16,7 +16,7 @@ Agenda:
 * Inspect a container
 * Build docker registry
 
-Perform the following commands as student unless instructed otherwise.
+Perform the following commands as `ec2-user` unless instructed otherwise.
 
 ## docker and systemd
 
@@ -76,7 +76,7 @@ $ cat Dockerfile
 ```
 ```dockerfile
 FROM registry.access.redhat.com/rhel7
-MAINTAINER Student <student@foo.io>
+MAINTAINER Student <student@example.com>
 
 RUN yum -y install httpd --disablerepo "*" --enablerepo rhel-7-server-rpms
 RUN echo "Apache" >> /var/www/html/index.html
@@ -138,24 +138,23 @@ You can see the IP address that was assinged to the container.
 
 We can apply the same filter to any value in the json output. Try a few different ones.
 
-Now lets look inside the container and see what that environment looks like. Execute commands in the namespace with `docker exec`.
+Now lets look inside the container and see what that environment looks like. Execute commands in the namespace with `docker exec <container-name OR container-id> <cmd>`
 ```bash
-# docker exec <container-name OR container-id> <cmd>
 $ docker exec -it apache bash
 ```
 
 Now run some commands and explore the environment. Remember, we are in a slimmed down container at this point - this is by design. You may find yourself restricted.
 ```bash
-$ ps aux
-$ ls /bin
-$ cat /etc/hosts
-$ ip addr
+[apache]# ps aux
+[apache]# ls /bin
+[apache]# cat /etc/hosts
+[apache]# ip addr
 ```
 
 Well, what can we do?  You can install software into this container.
 ```bash
-$ yum -y install iproute --disablerepo "*" --enablerepo rhel-7-server-rpms
-$ ip addr
+[apache]# yum -y install iproute --disablerepo "*" --enablerepo rhel-7-server-rpms
+[apache]# ip addr
 ```
 
 Exit the container namespace with `CTRL+d` or `exit`.

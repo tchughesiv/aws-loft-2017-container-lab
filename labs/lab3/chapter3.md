@@ -19,7 +19,7 @@ $ docker exec -it bigapp /bin/bash
 From the container namespace list the log directories.
 
 ```bash
-$ ls -l /var/log/
+[CONTAINER_NAMESPACE]# ls -l /var/log/
 ```
 
 We see `httpd` and `mariadb`. These are the services that make up the Wordpress application.
@@ -29,7 +29,7 @@ We see `httpd` and `mariadb`. These are the services that make up the Wordpress 
 We saw in the Dockerfile that port 80 was exposed. This is for the web server. Let's look at the mariadb logs for the port the database uses:
 
 ```bash
-$ grep port /var/log/mariadb/mariadb.log
+[CONTAINER_NAMESPACE]# grep port /var/log/mariadb/mariadb.log
 ```
 
 This shows port 3306 is used.
@@ -41,7 +41,7 @@ This shows port 3306 is used.
 The Wordpress tar file was extracted into `/var/www/html`. List the files.
 
 ```bash
-$ ls -l /var/www/html
+[CONTAINER_NAMESPACE]# ls -l /var/www/html
 ```
 
 These are sensitive files for our application and it would be unfortunate if changes to these files were lost. Currently the running container does not have any associated "volumes", which means that if this container dies all changes will be lost. This mount point in the container should be backed by a "volume". Later in this lab we'll use a host directory backed "volume" to make sure these files persist.
@@ -50,14 +50,14 @@ These are sensitive files for our application and it would be unfortunate if cha
 
 Inspect the `mariadb.log` file to discover the database directory.
 ```bash
-$ grep databases /var/log/mariadb/mariadb.log
+[CONTAINER_NAMESPACE]# grep databases /var/log/mariadb/mariadb.log
 ```
 
 Again, we have found some files that are in need of some non-volatile storage. The `/var/lib/mysql` should also be mounted to persistent storage on the host.
 
 Now that we've inspected the container stop and remove it. `docker ps -ql` prints the ID of the latest created container.  First you will need to exit the container.
 ```bash
-$ exit
+[CONTAINER_NAMESPACE]# exit
 $ docker stop $(docker ps -ql)
 $ docker rm $(docker ps -ql)
 ```
@@ -76,14 +76,14 @@ $ ls -lR wordpress
 
 ### MariaDB Dockerfile
 
-1. In a text editor create a file named `Dockerfile` in the `mariadb` directory.
+1. In a text editor create a file named `Dockerfile` in the `mariadb` directory. (There is a reference file in the `mariadb` directory if needed)
 
         $ vi mariadb/Dockerfile
 
 1. Add a `FROM` line that uses a specific image tag. Also add `MAINTAINER` information.
 
         FROM registry.access.redhat.com/rhel7:7.3-97
-        MAINTAINER Student <student@foo.io>
+        MAINTAINER Student <student@example.com>
 
 1. Add the required packages. We'll include `yum clean all` at the end to clear the yum cache.
 
@@ -119,7 +119,7 @@ Save the file and exit the editor.
 
 ### Wordpress Dockerfile
 
-Now we'll create the Wordpress Dockerfile.
+Now we'll create the Wordpress Dockerfile. (As before, there is a reference file in the `wordpress` directory if needed)
 
 1. Using a text editor create a file named `Dockerfile` in the `wordpress` directory.
 
@@ -128,7 +128,7 @@ Now we'll create the Wordpress Dockerfile.
 1. Add a `FROM` line that uses a specific image tag. Also add `MAINTAINER` information.
 
         FROM registry.access.redhat.com/rhel7:7.3-97
-        MAINTAINER Student <student@foo.io>
+        MAINTAINER Student <student@example.com>
 
 1. Add the required packages. We'll include `yum clean all` at the end to clear the yum cache.
 
@@ -202,7 +202,10 @@ Note: See the difference in SELinux context after running w/ a volume & :Z.
 ```bash
 $ ls -lZd /var/lib/mariadb
 $ docker exec $(docker ps -ql) ps aux
-# check volume directory ownership inside the container
+```
+
+Check volume directory ownership inside the container
+```bash
 $ docker exec $(docker ps -ql) stat --format="%U" /var/lib/mysql
 $ docker logs $(docker ps -ql)
 $ docker ps
@@ -223,7 +226,10 @@ Note: See the difference in SELinux context after running w/ a volume & :Z.
 ```bash
 $ ls -lZd /var/lib/wp_uploads
 $ docker exec $(docker ps -ql) ps aux
-# check volume directory ownership inside the container
+```
+
+Check volume directory ownership inside the container
+```bash
 $ docker exec $(docker ps -ql) stat --format="%U" /var/www/html/wp-content/uploads
 $ docker logs $(docker ps -ql)
 $ docker ps

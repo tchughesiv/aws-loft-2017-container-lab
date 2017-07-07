@@ -1,6 +1,6 @@
 # LAB 5: OpenShift templates and web console
 
-In this lab we introduce how to simplify your container deployments w/ OpenShift templates.  We will also explore the web console.
+In this lab we introduce how to simplify your container deployments with OpenShift templates.  We will also explore the web console.
 
 This lab should be performed on **YOUR ASSIGNED AWS VM** as `ec2-user` unless otherwise instructed.
 
@@ -22,19 +22,22 @@ developer
 
 ## Wordpress templated deployment
 
-This time, let's simplify things by deploying an application template.  We've already included a template w/ lab5 which leverages our wordpress & mariadb images.
+This time, let's simplify things by deploying an application template.  We've already included a template with lab5 which leverages our wordpress & mariadb images.
 ```bash
 $ cd ~/aws-loft-2017-container-lab/labs/lab5/
 $ grep localhost:5000 wordpress-template.yaml
 ```
 
-Let's deploy this wordpress template:
+Feel free to view the full template.
+
+Let's deploy this wordpress template by adding your template to the production project
 ```bash
-# add your template to the production project
 $ oc create -f wordpress-template.yaml
 template "wordpress" created
+```
 
-# deploy your new template w/ "oc new-app" and note its output
+Deploy your new template with "oc new-app" and note its output
+```bash
 $ oc new-app --template wordpress
 --> Deploying template "production/wordpress" to project production
 ```
@@ -74,8 +77,9 @@ Check and make sure you can access the wordpress service through it's route:
 ```bash
 $ oc get routes
 $ curl -L wordpress-production.<YOUR AWS VM PUBLIC IP>.nip.io
-# OR open the URL in a browser to view the UI
 ```
+
+* Or open the URL in a browser to view the UI
 
 OpenShift includes several ready-made templates. Let's take a look at some of them:
 ```shell

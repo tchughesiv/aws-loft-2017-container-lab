@@ -1,5 +1,5 @@
 FROM registry.access.redhat.com/rhel7
-MAINTAINER Student <student@foo.io>
+MAINTAINER Student <student@example.com>
 
 RUN yum -y install docker-registry --disablerepo "*" \
       --enablerepo rhel-7-server-extras-rpms && \
