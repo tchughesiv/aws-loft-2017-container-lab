@@ -1,5 +1,5 @@
 FROM registry.access.redhat.com/rhel7
-MAINTAINER Student <student@foo.io>
+MAINTAINER Student <student@example.com>
 
 # ADD set up scripts
 ADD scripts /scripts

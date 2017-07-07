@@ -61,15 +61,15 @@ $ docker logs -f bigapp
 If you need to inspect more than just the stderr/stdout of the machine then you can enter into the namespace of the container to inspect things more closely. The easiest way to do this is to use `docker exec`. Try it out:
 ```bash
 $ docker exec -it bigapp /bin/bash
-$ pstree
-$ cat /var/www/html/wp-config.php | grep '=='
-$ tail /var/log/httpd/access_log /var/log/httpd/error_log /var/log/mariadb/mariadb.log
+[CONTAINER_NAMESPACE]# pstree
+[CONTAINER_NAMESPACE]# cat /var/www/html/wp-config.php | grep '=='
+[CONTAINER_NAMESPACE]# tail /var/log/httpd/access_log /var/log/httpd/error_log /var/log/mariadb/mariadb.log
 ```
 
-Explore the running processes.  Here you will httpd and MySQL running in the background.
+Explore the running processes.  Here you will see `httpd` and `MySQL` running in the background.
 
 ```bash
-$ ps aux
+[CONTAINER_NAMESPACE]# ps aux
 ```
 
 Press `CTRL+d` or type `exit` to leave the container shell.
@@ -96,7 +96,7 @@ FROM registry.access.redhat.com/rhel7
 
 >>> No tags on image specification - updates could break things
 
-MAINTAINER Student <student@foo.io>
+MAINTAINER Student <student@example.com>
 
 # ADD set up scripts
 ADD  scripts /scripts

@@ -16,15 +16,12 @@ $ docker run -d -p 8080:8080 --link mariadb:db --name wordpress wordpress
 ```
 
 Take a look at the site in your web browser on your machine using 
-[http://<YOUR AWS VM PUBLIC DNS NAME HERE>:8080](http://<YOUR AWS VM PUBLIC DNS NAME HERE>:8080). As you learned before, you can confirm the port that your server is running on by executing:
+`http://<YOUR AWS VM PUBLIC DNS NAME HERE>:8080`. As you learned before, you can confirm the port that your server is running on by executing:
 ```bash
 $ docker ps
 $ docker port wordpress
+8080/tcp -> 0.0.0.0:8080
 ```
-
-and taking look at the "PORTS" column for the wordpress site. 
-
-However, we have some nice DNS set up and chose port 8080, so you can just use [http://<YOUR AWS VM PUBLIC DNS NAME HERE>:8080](http://<YOUR AWS VM PUBLIC DNS NAME HERE>:8080).
 
 Now, let's see what happens when we kick over the database. However, for a later experiment, let's grab the container-id right before you do it. 
 ```bash
@@ -32,10 +29,11 @@ $ OLD_CONTAINER_ID=$(docker inspect --format '{{ .Id }}' mariadb)
 $ docker stop mariadb
 ```
 
-Take a look at the site in your web browser or using curl now. And, imagine, explosions! (*making sound effects will be much appreciated by your lab mates.*)
+Take a look at the site in your web browser or using curl now. And, imagine explosions! (*making sound effects will be much appreciated by your lab mates.*)
+  
+* web browser -> `http://<YOUR AWS VM PUBLIC DNS NAME HERE>:8080`
+OR
 ```bash
-web browser -> http://<YOUR AWS VM PUBLIC DNS NAME HERE>:8080
-# OR
 $ curl -L http://localhost:8080
 ```
 
@@ -51,9 +49,10 @@ $ echo -e "$OLD_CONTAINER_ID\n$NEW_CONTAINER_ID"
 ```
 
 Hmmm. Well, that is cool, they are exactly the same. OK, so all in all, about what you would expect for a web server and a database running on VMs, but a whole lot faster. Let's take a look at the site now.
+
+* web browser -> `http://<YOUR AWS VM PUBLIC DNS NAME HERE>:8080`
+OR
 ```bash
-web browser -> http://<YOUR AWS VM PUBLIC DNS NAME HERE>:8080
-# OR
 $ curl -L http://localhost:8080
 ```
 
@@ -215,6 +214,11 @@ Ok, now let's kill them off so we can introduce the services that will let them 
 $ oc delete po/mariadb po/wordpress
 ```
 
+Verify they are terminating or are gone:
+```bash
+$ oc get pods
+```
+
 **Note** you used the "singular" form here on the ```kind```, which, for delete, is required and requires a "name". However, you can, usually, use them interchangeably depending on the kind of information you want.
 
 ## Service Creation
@@ -317,7 +321,8 @@ wordpress   wordpress-devel.<YOUR AWS VM PUBLIC IP>.nip.io             wordpress
 Check and make sure you can access the wordpress service through the route:
 ```bash
 $ curl -L wordpress-devel.<YOUR AWS VM PUBLIC IP>.nip.io
-# OR open the URL in a browser to view the UI
 ```
+
+* OR open the URL in a browser to view the UI
 
 Seemed awfully manual and ordered up there, didn't it? In our [next lab](../lab5/chapter5.md) we'll demonstrate how simple deployments can be with OpenShift templates.
