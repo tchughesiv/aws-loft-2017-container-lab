@@ -31,8 +31,8 @@ $ oc cluster status
 Web console URL: https://ec2-xx.xx.xxx.xx.us-west-1.compute.amazonaws.com:8443
 ```
 
-### ask student to go through guided overview on right menu first...
+### ask student to login as developer & go through guided tour on right menu first...
 
 ### have them do hello-world apb deploy... view site landing page... then have them run postgres apb w/ bind to hello-world app.  redeploy hello-world & show same landing page w/ postgres connection showing.
 
-### explore on their own
+### explore on their own ... maybe logout and back in as admin?
