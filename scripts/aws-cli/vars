@@ -1,10 +1,11 @@
 # Create Custom Variables.  You can change this to anything you want, makes a unique environment.
-# Example: UNIQ_VAR=tohuges-loft or UNIQ_VAR=scollier-loft
-UNIQ_VAR="loft"
+# Example: LAB_USER=tohuges or LAB_USER=scollier or LAB_USER=student
+LAB_USER="student"
+ENV_NAME="loft-lab"
 
 # Number of loft nodes that need to be created
 # Just provide a start and finish number
-NODE_COUNT=`seq 1 5`
+NODE_COUNT=$(seq 1 100)
 
 # AMI Id
 # This needs to be updated everytime you update the AMI on AWS.
@@ -29,11 +30,13 @@ AZ_1=us-west-1a
 LOFT_SEC_GROUP=aws-devops-loft
 
 # Tags
-KEY_TAG=${UNIQ_VAR}-role
-LOFT_TAGS=${UNIQ_VAR}
+TAG_KEY1="lab_type"
+TAG_VALUE1=${ENV_NAME}
+TAG_KEY2="lab_user"
+TAG_VALUE2=${LAB_USER}
 
 # Loft node names
-LOFT_NODE=${UNIQ_VAR}
+LOFT_NODE=${ENV_NAME}-${LAB_USER}
 
 # AWS Key
 KEY_NAME=aws-devops-loft
