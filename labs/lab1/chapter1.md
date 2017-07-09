@@ -149,9 +149,10 @@ Now run some commands and explore the environment. Remember, we are in a slimmed
 [apache]# ls /bin
 [apache]# cat /etc/hosts
 [apache]# ip addr
+bash: ip: command not found
 ```
 
-Well, what can we do?  You can install software into this container.
+The last command failed, what can we do?  You can install software into this container.
 ```bash
 [apache]# yum -y install iproute --disablerepo "*" --enablerepo rhel-7-server-rpms
 [apache]# ip addr
