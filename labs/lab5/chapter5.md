@@ -111,6 +111,7 @@ And after we’ve logged in, we see a list of projects that the developer user h
 ![image not loading](images/2.png "Projects")
 
 Our project landing page provides us with a high-level overview of our wordpress application's pods, services, and route:
+**_NOTE_**: Your web console will show 2 pods for wordpress due to the replica value.
 ![image not loading](images/3.png "Overview")
 
 Let's dive a little deeper. We want to view a list of our pods by clicking on `Pods` in the left Applications menu:
