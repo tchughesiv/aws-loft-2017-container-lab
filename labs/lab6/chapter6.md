@@ -29,7 +29,8 @@ oc v3.6.136
 kubernetes v1.6.1+5115d708d7
 features: Basic-Auth GSSAPI Kerberos SPNEGO
 
-$ oc login -u developer -p developer
+#$ oc login -u developer -p developer
+#$ oc login -u admin -p admin
 $ oc cluster status
 Web console URL: https://ec2-xx.xx.xxx.xx.us-west-1.compute.amazonaws.com:8443
 ```
