@@ -6,3 +6,4 @@
 1. **[LAB 3](labs/lab3/chapter3.md)** Deconstructing an application into microservices
 1. **[LAB 4](labs/lab4/chapter4.md)** Orchestrated deployment of a decomposed application
 1. **[LAB 5](labs/lab5/chapter5.md)** OpenShift templates and web console
+1. **[LAB 6](labs/lab6/chapter6.md)** OpenShift Service Catalog tech preview
