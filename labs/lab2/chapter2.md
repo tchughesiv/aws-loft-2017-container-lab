@@ -28,9 +28,13 @@ To perform some generic configuration of mariadb and wordpress there are startup
 
 ## Building the docker Image
 
-To build the docker image for this lab please execute the following commands:
+View the `Dockerfile` provided for `bigapp` which is not written with best practices in mind:
 ```bash
 $ cd ~/aws-loft-2017-container-lab/labs/lab2/bigapp/
+$ cat Dockerfile
+
+Build the docker image for this by executing the following command:
+```bash
 $ docker build -t bigimg .
 ```
 

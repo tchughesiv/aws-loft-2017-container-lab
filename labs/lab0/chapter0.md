@@ -4,16 +4,35 @@ In this lab, we are going to leverage a process known as [`oc cluster up`](https
 
 Expected completion: 5-10 minutes
 
+## Find your AWS Instance
+This lab is designed for AWS Loft and can accomodate 100 students. Refer to this [student instances table](http://ec2-54-153-82-60.us-west-1.compute.amazonaws.com/) to locate your instance.
+**_NOTE_**: If the table is not displaying or if you prefer you can use the [JSON](http://ec2-54-153-82-60.us-west-1.compute.amazonaws.com/aws-loft-list.json)
+
+Download the [private key](http://ec2-54-153-82-60.us-west-1.compute.amazonaws.com/aws-key.pem)
+```bash
+$ curl -O http://ec2-54-153-82-60.us-west-1.compute.amazonaws.com/aws-key.pem
+$ chmod  600 aws-key.pem
+```
+
 ## Connecting to your AWS Instance
 This lab should be performed on **YOUR ASSIGNED AWS INSTANCE** as `ec2-user` unless otherwise instructed.
 
-Connect to your AWS Instance
+Connect to **_YOUR_** AWS Instance as per the table mentioned above that corresponds to your student number.
+**_NOTE__**: Please be respectful and only connect to your assigned instance. Every instance for this lab uses the same public key so you could accidentally (or with malicious intent) connect to the wrong system. If you have any issues please inform an instructor.
 ```bash
-$ ssh -i <PRIVATE_KEY> ec2-user@<YOUR AWS VM PUBLIC DNS NAME HERE>
+$ ssh -i aws-key.pem ec2-user@<YOUR AWS VM PUBLIC DNS NAME HERE>
 ```
 
 ## Getting Set Up
 For the sake of time, much of the required setup has already been taken care of on your lab VM. For future reference though, the easiest way to get started is to head over to the OpenShift Origin repo on github and follow the "[cluster up and down instructions](https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md)" instructions. The instructions cover getting started on Windows, MacOS, and Linux. 
+
+Since some of these labs will have long running processes, it is recommended to use something like `tmux` or `screen` in case you lose your connection at some point so you can reconnect:
+```bash
+$ sudo yum -y install screen
+$ screen
+```
+
+In case you get disconnected use `screen -x` to reattach once you reestablish ssh connectivity.
 
 All that's left to do is run OpenShift by executing the `start-oc.sh` script in your home directory. First, let's take a look at what this script is doing:
 ```bash
