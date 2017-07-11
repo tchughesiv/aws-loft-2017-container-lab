@@ -5,12 +5,14 @@ In this lab, we are going to leverage a process known as [`oc cluster up`](https
 Expected completion: 5-10 minutes
 
 ## Find your AWS Instance
-This lab is designed for AWS Loft and can accomodate 100 students. Refer to this [student instances table](http://ec2-54-153-82-60.us-west-1.compute.amazonaws.com/) to locate your instance.
-**_NOTE_**: If the table is not displaying or if you prefer you can use the [JSON](http://ec2-54-153-82-60.us-west-1.compute.amazonaws.com/aws-loft-list.json)
+This lab is designed for AWS Loft and can accomodate 100 students. For ease of keeping track please edit the following spreadsheet to claim an instance: 
+https://docs.google.com/spreadsheets/d/19mgb5d-dA8HIqZSdNhkW7GQqeXSdGP2MBLmYP2JeewM/edit?usp=sharing
 
-Download the [private key](http://ec2-54-153-82-60.us-west-1.compute.amazonaws.com/aws-key.pem)
+**_NOTE_**: Please be considerate and only modify empty fields in the D (Claimed By) column.
+
+Download the [private key](http://server.aws-loft.sysdeseng.com/aws-key.pem)
 ```bash
-$ curl -O http://ec2-54-153-82-60.us-west-1.compute.amazonaws.com/aws-key.pem
+$ curl -O http://server.aws-loft.sysdeseng.com/aws-key.pem
 $ chmod  600 aws-key.pem
 ```
 
