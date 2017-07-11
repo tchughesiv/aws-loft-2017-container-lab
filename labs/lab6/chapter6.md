@@ -9,29 +9,34 @@ Expected completion: 5-10 minutes
 If you don't already have a docker hub account, you'll need one for this lab. Sign up here: 
 [https://hub.docker.com/](https://hub.docker.com/)
 
-Cleanup the previous labs
+We are going to reset the environment to proceed with this chapter. Cleanup the previous labs.
+
 ```bash
 $ ~/cleanup-oc.sh
 ```
 
 Setup `pip` for `python`
+
 ```bash
 $ curl https://bootstrap.pypa.io/get-pip.py | sudo python -
 ```
 
-Install virtualenv as this is tech preview and not available in the official repositories yet
+Install virtualenv as this is tech preview and not available in the official repositories yet.  Once the code matures a bit, we'll use rpms to provision the software.
+
 ```bash
 $ cd ~/ && virtualenv --clear --system-site-packages ansible
 $ sudo pip install virtualenv
 ```
 
-Install the latest version of Ansible
+Install the latest version of Ansible.
+
 ```bash
 $ source ~/ansible/bin/activate
 $ pip install -U docker ansible
 ```
 
-Setup the Catalogue Service Broker
+Setup the Catalogue Service Broker by cloning our git repo and checking out our aws-loft branch.
+
 ```bash
 $ git clone https://github.com/tchughesiv/catasb
 $ cd catasb/local/linux/
@@ -42,6 +47,7 @@ $ git checkout aws-loft
 Enter personal docker hub user/pass and use `ansibleplaybookbundle` for org.
 
 A successful deployment will end with output similar to:
+
 ```bash
 TASK [debug] *********************************************************************************************************************
 ok: [localhost] => {
@@ -60,7 +66,10 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=61   changed=28   unreachable=0    failed=0
 ```
 
+At this point, you now have a new OpenShift environment set up with the new service catalog interface. As usual, you can interact with the environment via the CLI or the web based UI.
+
 To interact w/ new cluster via command line -
+
 ```bash
 $ source ~/ansible/bin/activate
 $ export PATH=~/bin:$PATH
