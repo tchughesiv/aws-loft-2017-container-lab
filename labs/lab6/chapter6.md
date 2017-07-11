@@ -41,6 +41,25 @@ $ git checkout aws-loft
 
 Enter personal docker hub user/pass and use `ansibleplaybookbundle` for org.
 
+A successful deployment will end with output similar to:
+```bash
+TASK [debug] *********************************************************************************************************************
+ok: [localhost] => {
+    "msg": [
+        "Hostname:                  <YOUR PUBLIC DNS HOSTNAME>
+        "Next steps:",
+        "Visit https://<YOUR PUBLIC DNS HOSTNAME>:8443 for the web console",
+        "OR",
+        "For CLI access:",
+        "oc login --insecure-skip-tls-verify <YOUR PUBLIC DNS HOSTNAME>:8443 -u <USERNAME> -p <PASSWORD>",
+        ""
+    ]
+}
+
+PLAY RECAP ***********************************************************************************************************************
+localhost                  : ok=61   changed=28   unreachable=0    failed=0
+```
+
 To interact w/ new cluster via command line -
 ```bash
 $ source ~/ansible/bin/activate
