@@ -151,4 +151,8 @@ Now that we have deployed an application, you'll notice that when you clicked on
 - Once again, click on the three dots `...` and now click `Deploy`.  This will launch a new version of your application.
 - Once the deployment is finished, go back to the hello-world application url and refresh.  Now you should see PostgreSQL information populated.
 
-This concludes the lab.
+This concludes the lab. To summarize, we started out with Docker basics as a review, built a large monolithic application and then decomposed it.  Next we automated the deployment of that application using OpenShift templates.  Finally, we experimented with the new service broker technology and the new OpenShift console.  All of this while evaluating technologies like Red Hat Enterprise Linux, OpenShift, running on instnaces hosted on AWS.
+
+Please feel free to share this lab and contribute to it.  We love contributions.
+
+
