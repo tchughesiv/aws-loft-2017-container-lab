@@ -123,4 +123,7 @@ Next, let's click on one of our running pods for greater detail:
 With this view, we have access to pod information like status, logs, image, volumes, and more:
 ![image not loading](images/6.png "PodDetails")
 
-Feel free to continue exploring the console and thanks for taking the lab!
+
+Feel free to continue exploring the console.
+
+In the final [bonus lab](../lab6/chapter6.md) you'll get to play with some "tech preview" features, the service catalog and broker.

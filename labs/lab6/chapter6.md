@@ -1,7 +1,7 @@
 
 ## Introduction
 
-In this lab, we are going to build upon the previous labs and leverage what we have learned to utilize the OpenShift service broker. As part of this process, we will be using the latest code available for this project. To start out, you will provision a clean OpenShift environment that has the tech preview service broker interface.  By the time you are finished with the lab, you will have deployed an application, a database and binded the two together.  It should become evident how this self service process can improve the productivity of developers on your team.
+In this lab, we are going to build upon the previous labs and leverage what we have learned to utilize the OpenShift service broker. As part of this process, we will be using the latest upstream code available for this project. To start out, you will provision a clean OpenShift environment that has the tech preview service broker interface.  By the time you are finished with the lab, you will have deployed an application, a database and binded the two together.  It should become evident how this self service process can improve the productivity of developers on your team.
 
 Expected completion: 5-10 minutes
 
@@ -32,21 +32,24 @@ Install the latest version of Ansible.
 
 ```bash
 $ source ~/ansible/bin/activate
-$ pip install -U docker ansible
+(ansible) $ pip install -U docker ansible
 ```
 
-Setup the Catalogue Service Broker by cloning our git repo and checking out our aws-loft branch.
+Setup the Service Catalog & Broker by cloning our git repo and checking out the aws-loft branch.
 
 ```bash
-$ git clone https://github.com/tchughesiv/catasb
-$ cd catasb/local/linux/
-$ git checkout aws-loft
-./run_setup_local.sh
+(ansible) $ git clone https://github.com/tchughesiv/catasb
+(ansible) $ cd catasb/local/linux/
+(ansible) $ git checkout aws-loft
 ```
 
-NOTE: Enter personal docker hub user/pass and use `ansibleplaybookbundle` for org.
+Run the setup script.
+_NOTE: When prompted, enter your personal docker hub user/pass and use `ansibleplaybookbundle` for the org._
+```bash
+(ansible) $ ./run_setup_local.sh
+```
 
-The `./run_setup_local.sh` deploys a new OpenShift environment.  The difference between this enviornment and the OpenShift environment we provisioned in Chapter 0, is that this is using newer code which contains tech preview support for the service broker.  Welcome to the latest code.
+The `./run_setup_local.sh` deploys a new OpenShift environment.  The difference between this enviornment and the OpenShift environment we provisioned in Chapter 0, is that this is using newer code from [OpenShift Origin](https://github.com/openshift/origin), which contains tech preview features for the service catalog/broker.  Welcome to the latest code.
 
 A successful deployment will end with output similar to:
 
@@ -73,41 +76,37 @@ As usual, you can interact with the OpenShift API via the `oc` CLI or the web ba
 To interact w/ new cluster via command line -
 
 ```bash
-$ source ~/ansible/bin/activate
-$ export PATH=~/bin:$PATH
-$ oc version
-oc v3.6.136
+(ansible) $ export PATH=~/bin:$PATH
+(ansible) $ oc version
+oc v3.6.140
 kubernetes v1.6.1+5115d708d7
 features: Basic-Auth GSSAPI Kerberos SPNEGO
 ```
 
-Now login with both the developer user and the admin user, switch around - check things out.
+Now login with the developer user and check things out.
 
 ```bash
-$ oc login -u developer -p developer
-$ oc get all
-$ oc project
-$ oc logout
-$ oc project
+(ansible) $ oc login -u developer -p developer
+(ansible) $ oc get all
+(ansible) $ oc project
 ```
 
 Now log in with the `admin` user. You can switch projects, browse around.
 
 ```bash
-$ oc login -u admin -p admin
-$ oc get all
-$ oc project
+(ansible) $ oc login -u admin -p admin
+(ansible) $ oc get all -n service-catalog
 ```
 
 Now get the URL for the web console for your AWS VM by checking the cluster status.  The web console URL is listed as part of the output.
 ```bash
-$ oc cluster status
+(ansible) $ oc cluster status
 Web console URL: https://ec2-xx.xx.xxx.xx.us-west-1.compute.amazonaws.com:8443
 ```
 
-Open the web console and take the `Take Home Page Tour` that is listed on the right navigation panel. That will quickly walk you through 5 steps to show you what some of the capabilities of the UI are.
+Login to the web console with the `developer` user and click through the `Take Home Page Tour` that is listed on the right navigation panel. That will quickly walk you through 5 steps to show you what some of the capabilities of the Catalog UI are.
 
-Now, we are going to deploy our first application using the new inteface. 
+Now, we are going to deploy our first application using the new interface. 
 
 - In the middle navigation panel, click on `all` and then click on the `hello-world-apb` application.
 - On the right hand side of the pop-up window, click the dropdown under `Add to Project` and select `Create Project`.
@@ -118,21 +117,22 @@ Now, we are going to deploy our first application using the new inteface.
 - Now go back to your CLI and explore what was just created.
 
 ```bash
-$ oc get projects | grep hello
+(ansible) $ oc get projects | grep hello
 hello-world-apb                         Active
 ```
 
 Switch to that project and look at what was created.
 
 ```bash
-$ oc project hello-world-apb
-$ oc get all
+(ansible) $ oc project hello-world-apb
+(ansible) $ oc get all
+(ansible) $ oc status
 ```
 
-Now that we have deployed an application, you'll notice that when you clicked on the application and opened it up in a new window, it doesn't have any data.  Go back and find it.
+Now that we have deployed an application, you'll notice that when you clicked on the application and opened it up in a new window, it doesn't have a data connection. Let's add one.
 - In the upper left navigation pane in the web console, click `Home`.
 - On right hand navigation pane, click the `hello-world-apb` project.
-- Now you are back to the screen that has the URL to the application in the top right.  Click that again. You'll notice that the database server says `None`.  It is all empty.  Let's create a database server and bind to the hello-world-apb app.
+- Now you are back to the screen that has the URL to the application in the top right.  Click that again. You'll notice that the database information all says `None`.  It is all empty.  Let's create a database server and bind to the hello-world-apb app.
 - Return to the OpenShift web console.
 - In the upper navigation pane in the hello-world-apb project page, click `Add to Project`, select `Browse Catalog`.
 - Select the `PostgreSQL (APB)` database from the catalog.
@@ -145,8 +145,10 @@ Now that we have deployed an application, you'll notice that when you clicked on
 - On the `hello-world` application, on the far right hand side, click the three dots `...` and click `Create Binding`. 
 - Click `Bind`.
 - Click `Close`.
-- After the bind was created, you need to redeploy your application so it can consume the secrets that were just created and attach to the database.
+- Let's look at the newly created secret by clicking `Resources` on the left menu and then `Secrets`. The newest secret should be at the top of the list.
+- Return to the Project Overview page by clicking `Overview` on the left menu.
+- Now that the bind is created, you need to redeploy your application so it can consume the secrets that were just created, and attach to the database.
 - Once again, click on the three dots `...` and now click `Deploy`.  This will launch a new version of your application.
-- Once the deployment is finished, go back to the tab with the hello-world application deployed and refresh.  Now you should see the PostgreSQL information populated.
+- Once the deployment is finished, go back to the hello-world application url and refresh.  Now you should see PostgreSQL information populated.
 
 This concludes the lab.
