@@ -1,0 +1,11 @@
+#!/bin/bash -x
+source ~/cleanup-oc.sh
+curl https://bootstrap.pypa.io/get-pip.py | sudo python -
+sudo pip install virtualenv
+cd ~/ && virtualenv --clear --system-site-packages ansible
+source ~/ansible/bin/activate
+pip install -U docker ansible
+git clone https://github.com/tchughesiv/catasb
+cd catasb/local/linux/
+git checkout aws-loft
+./run_setup_local.sh
