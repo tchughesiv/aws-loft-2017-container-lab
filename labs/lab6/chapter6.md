@@ -109,13 +109,13 @@ Open the web console and take the `Take Home Page Tour` that is listed on the ri
 
 Now, we are going to deploy our first application using the new inteface. 
 
-In the middle navigation panel, click on `all` and then click on the `hello-world-apb` application.
-On the right hand side of the pop-up window, click the dropdown under `Add to Project` and select `Create Project`.
-Give the project a name `hello-world-apb`.  Leave the rest of the options as default and click `Create`.
-Now you will notice that the service is being provisioned.  Click on the `View Project` button. This will take you to the new project namespace that was created when we made the application.
-Give the project a minute or so to finish, and in the upper right hand side, you will see a new URL that points to your application.  Click on that and it will open a new tab.
-Go back to the project, explore the environment, view logs, look at events, scale the application up, deploy it again, etc...
-Now go back to your CLI and explore what was just created.
+- In the middle navigation panel, click on `all` and then click on the `hello-world-apb` application.
+- On the right hand side of the pop-up window, click the dropdown under `Add to Project` and select `Create Project`.
+- Give the project a name `hello-world-apb`.  Leave the rest of the options as default and click `Create`.
+- Now you will notice that the service is being provisioned.  Click on the `View Project` button. This will take you to the new project namespace that was created when we made the application.
+- Give the project a minute or so to finish, and in the upper right hand side, you will see a new URL that points to your application.  Click on that and it will open a new tab.
+- Go back to the project, explore the environment, view logs, look at events, scale the application up, deploy it again, etc...
+- Now go back to your CLI and explore what was just created.
 
 ```bash
 $ oc get projects | grep hello
@@ -133,12 +133,20 @@ Now that we have deployed an application, you'll notice that when you clicked on
 - In the upper left navigation pane in the web console, click `Home`.
 - On right hand navigation pane, click the `hello-world-apb` project.
 - Now you are back to the screen that has the URL to the application in the top right.  Click that again. You'll notice that the database server says `None`.  It is all empty.  Let's create a database server and bind to the hello-world-apb app.
+- Return to the OpenShift web console.
+- In the upper navigation pane in the hello-world-apb project page, click `Add to Project`, select `Browse Catalog`.
+- Select the `PostgreSQL (APB)` database from the catalog.
+- Do not enter a password, one will be generated for you.
+- Select PostgreSQL version of 9.5.
+- Click `Next`
+- Click `Create`.  Do not bind at this time.
+- Click `View Project`.
+- Once PostgreSQL is provisioned, you'll see both the `hello-world-apb` and the `postgresql` applications.  This may take a minute or so.
+- On the `hello-world` application, on the far right hand side, click the three dots `...` and click `Create Binding`. 
+- Click `Bind`.
+- Click `Close`.
+- After the bind was created, you need to redeploy your application so it can consume the secrets that were just created and attach to the database.
+- Once again, click on the three dots `...` and now click `Deploy`.  This will launch a new version of your application.
+- Once the deployment is finished, go back to the tab with the hello-world application deployed and refresh.  Now you should see the PostgreSQL information populated.
 
-
-
-TODO: have them do hello-world apb deploy... view site landing page... then have them run postgres apb w/ bind to hello-world app.  redeploy hello-world & show same landing page w/ postgres connection showing.
-
-
-
-
-TODO: explore on their own ... maybe logout and back in as admin?
+This concludes the lab.
