@@ -24,8 +24,8 @@ $ curl https://bootstrap.pypa.io/get-pip.py | sudo python -
 Install virtualenv as this is tech preview and not available in the official repositories yet.  Once the code matures a bit, we'll use rpms to provision the software.
 
 ```bash
-$ cd ~/ && virtualenv --clear --system-site-packages ansible
 $ sudo pip install virtualenv
+$ cd ~/ && virtualenv --clear --system-site-packages ansible
 ```
 
 Install the latest version of Ansible.
