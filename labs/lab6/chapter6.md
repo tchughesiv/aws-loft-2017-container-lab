@@ -1,9 +1,8 @@
-
 ## Introduction
 
 In this lab, we are going to build upon the previous labs and leverage what we have learned to utilize the OpenShift service broker. As part of this process, we will be using the latest upstream code available for this project. To start out, you will provision a clean OpenShift environment that has the tech preview service broker interface.  By the time you are finished with the lab, you will have deployed an application, a database and binded the two together.  It should become evident how this self service process can improve the productivity of developers on your team.
 
-Expected completion: 5-10 minutes
+Expected completion: 10-20 minutes
 
 ## Setup Environment
 If you don't already have a docker hub account, you'll need one for this lab. Sign up here: 
@@ -44,12 +43,13 @@ $ git checkout aws-loft
 ```
 
 Run the setup script.
+
 _NOTE: When prompted, enter your personal docker hub user/pass and use `ansibleplaybookbundle` for the org._
 ```bash
 $ ./run_setup_local.sh
 ```
 
-The `./run_setup_local.sh` deploys a new OpenShift environment.  The difference between this enviornment and the OpenShift environment we provisioned in Chapter 0, is that this is using newer code from [OpenShift Origin](https://github.com/openshift/origin), which contains tech preview features for the service catalog/broker.  Welcome to the latest code.
+The `./run_setup_local.sh` deploys a new OpenShift environment.  The difference between this enviornment and the OpenShift environment we provisioned in Chapter 0, is that this is using newer code from [OpenShift Origin](https://github.com/openshift/origin), which contains tech preview features for the service catalog. It also installs the ansible service broker. Welcome to the latest code.
 
 A successful deployment will end with output similar to:
 
@@ -73,7 +73,7 @@ localhost                  : ok=61   changed=28   unreachable=0    failed=0
 
 **NOTE**: If you have any issues, you can rerun these steps to try again via the script in `aws-loft-2017-container-lab/labs/lab6/scripts/chapter6-setup`
 
-## Setup Ansible Service Broker
+## Login
 As usual, you can interact with the OpenShift API via the `oc` CLI or the web based UI.
 
 To interact w/ new cluster via command line -
@@ -109,7 +109,7 @@ $ oc cluster status
 Web console URL: https://<YOUR AWS PUBLIC HOSTNAME>:8443
 ```
 
-Login to the web console with the `developer` user and click through the `Take Home Page Tour` that is listed on the right navigation panel. That will quickly walk you through 5 steps to show you what some of the capabilities of the Catalog UI are.
+Login to the web console with the `developer` user and click through the `Take Home Page Tour` that is listed on the right navigation panel. That will quickly walk you through a few steps to show you what some of the capabilities of the Catalog UI are.
 
 ## Deploy Ansible Playbook Bundle Application
 Now, we are going to deploy our first application using the new interface. 
@@ -143,6 +143,7 @@ Now that we have deployed an application, you'll notice that when you clicked on
 - Return to the OpenShift web console.
 - In the upper navigation pane in the hello-world-apb project page, click `Add to Project`, select `Browse Catalog`.
 - Select the `PostgreSQL (APB)` database from the catalog.
+- Select `hello-world-apb` project in the drop-down.
 - Do not enter a password, one will be generated for you.
 - Select PostgreSQL version of 9.5.
 - Click `Next`
@@ -155,11 +156,11 @@ Now that we have deployed an application, you'll notice that when you clicked on
 - Select the `PostgreSQL` database.
 - Click `Bind`.
 - Click `Close`.
+- Now that the bind is created, you need to redeploy your application so it can consume the secrets that were just created, and attach to the database.
 - Once again, click on the three dots `...` and now click `Deploy`.  This will launch a new version of your application.
 - Let's look at the newly created secret by clicking `Resources` on the left menu and then `Secrets`. The newest secret should be at the top of the list.
 - Return to the Project Overview page by clicking `Overview` on the left menu.
-- Now that the bind is created, you need to redeploy your application so it can consume the secrets that were just created, and attach to the database.
-- Once the deployment is finished, go back to the hello-world application url and refresh.  Now you should see PostgreSQL information populated.
+- Once the new deployment is finished, go back to the hello-world application url and refresh.  Now you should see PostgreSQL information populated.
 
 This concludes the lab. To summarize, we started out with Docker basics as a review, built a large monolithic application and then decomposed it.  Next we automated the deployment of that application using OpenShift templates.  Finally, we experimented with the new service broker technology and the new OpenShift console.  All of this while evaluating technologies like Red Hat Enterprise Linux, OpenShift, running on instnaces hosted on AWS.
 
