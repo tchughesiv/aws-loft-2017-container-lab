@@ -6,9 +6,9 @@ Expected completion: 5-10 minutes
 
 ## Find your AWS Instance
 This lab is designed for AWS Loft and can accomodate 100 students. For ease of keeping track please edit the following spreadsheet to claim an instance: 
-https://docs.google.com/spreadsheets/d/19mgb5d-dA8HIqZSdNhkW7GQqeXSdGP2MBLmYP2JeewM/edit?usp=sharing
+http://bit.ly/AWSLoftList
 
-**_NOTE_**: Please be considerate and only modify empty fields in the D (Claimed By) column.
+**_NOTE_**: Please be considerate and only modify empty fields in the D (**_Claimed By_**) column. Use anything to uniquely identify you, but no personal information is required.
 
 Download the [private key](http://server.aws-loft.sysdeseng.com/aws-key.pem)
 ```bash
@@ -23,9 +23,9 @@ Connect to **_YOUR_** AWS Instance as per the table mentioned above that corresp
 **_NOTE__**: Please be respectful and only connect to your assigned instance. Every instance for this lab uses the same public key so you could accidentally (or with malicious intent) connect to the wrong system. If you have any issues please inform an instructor.
 ```bash
 $ ssh -i aws-key.pem ec2-user@<YOUR AWS VM PUBLIC DNS NAME HERE>
-
-**NOTE**: For Windows users you will have to use a terminal like [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) to SSH using the private key. You will need to download the key and convert it using PuTTYGen, for details see: https://access.redhat.com/solutions/413553
 ```
+
+**NOTE**: For Windows users you will have to use a terminal like [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) to SSH using the private key. You will need to download the key and convert it using PuTTYGen, for details see: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html
 
 ## Getting Set Up
 For the sake of time, much of the required setup has already been taken care of on your lab VM. For future reference though, the easiest way to get started is to head over to the OpenShift Origin repo on github and follow the "[cluster up and down instructions](https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md)" instructions. The instructions cover getting started on Windows, MacOS, and Linux. 
