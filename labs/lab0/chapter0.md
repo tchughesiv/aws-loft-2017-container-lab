@@ -6,9 +6,9 @@ Expected completion: 5-10 minutes
 
 ## Find your AWS Instance
 This lab is designed for AWS Loft and can accomodate 100 students. For ease of keeping track please edit the following spreadsheet to claim an instance: 
-https://docs.google.com/spreadsheets/d/19mgb5d-dA8HIqZSdNhkW7GQqeXSdGP2MBLmYP2JeewM/edit?usp=sharing
+http://bit.ly/AWSLoftList
 
-**_NOTE_**: Please be considerate and only modify empty fields in the D (Claimed By) column.
+**_NOTE_**: Please be considerate and only modify empty fields in the D (**_Claimed By_**) column. Use anything to uniquely identify you, but no personal information is required.
 
 Download the [private key](http://server.aws-loft.sysdeseng.com/aws-key.pem)
 ```bash
