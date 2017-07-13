@@ -20,7 +20,8 @@ $ chmod  600 aws-key.pem
 This lab should be performed on **YOUR ASSIGNED AWS INSTANCE** as `ec2-user` unless otherwise instructed.
 
 Connect to **_YOUR_** AWS Instance as per the table mentioned above that corresponds to your student number.
-**_NOTE__**: Please be respectful and only connect to your assigned instance. Every instance for this lab uses the same public key so you could accidentally (or with malicious intent) connect to the wrong system. If you have any issues please inform an instructor.
+
+**_NOTE_**: Please be respectful and only connect to your assigned instance. Every instance for this lab uses the same public key so you could accidentally (or with malicious intent) connect to the wrong system. If you have any issues please inform an instructor.
 ```bash
 $ ssh -i aws-key.pem ec2-user@<YOUR AWS VM PUBLIC DNS NAME HERE>
 ```
