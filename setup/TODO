@@ -1,0 +1,3 @@
+Change to CentOS image?
+Leave as Red Hat and put in instructions and pre-reqs for obtaining developer access.
+To avoid having to share our AMI, document any changes we made to our AMI and ansiblize them so anyone can launch a CentOS or RH instance and then run through the lab.
