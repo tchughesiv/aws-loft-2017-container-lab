@@ -84,9 +84,9 @@ $ oc version
 oc v3.6.140
 kubernetes v1.6.1+5115d708d7
 features: Basic-Auth GSSAPI Kerberos SPNEGO
+```
 
 **NOTE**: Please stop and flag an instructor if your versions are lower than the ones listed.
-```
 
 Now login with the developer user and check things out.
 
