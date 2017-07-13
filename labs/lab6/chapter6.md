@@ -32,21 +32,21 @@ Install the latest version of Ansible.
 
 ```bash
 $ source ~/ansible/bin/activate
-(ansible) $ pip install -U docker ansible
+$ pip install -U docker ansible
 ```
 
 Setup the Service Catalog & Broker by cloning our git repo and checking out the aws-loft branch.
 
 ```bash
-(ansible) $ git clone https://github.com/tchughesiv/catasb
-(ansible) $ cd catasb/local/linux/
-(ansible) $ git checkout aws-loft
+$ git clone https://github.com/tchughesiv/catasb
+$ cd catasb/local/linux/
+$ git checkout aws-loft
 ```
 
 Run the setup script.
 _NOTE: When prompted, enter your personal docker hub user/pass and use `ansibleplaybookbundle` for the org._
 ```bash
-(ansible) $ ./run_setup_local.sh
+$ ./run_setup_local.sh
 ```
 
 The `./run_setup_local.sh` deploys a new OpenShift environment.  The difference between this enviornment and the OpenShift environment we provisioned in Chapter 0, is that this is using newer code from [OpenShift Origin](https://github.com/openshift/origin), which contains tech preview features for the service catalog/broker.  Welcome to the latest code.
@@ -79,36 +79,39 @@ As usual, you can interact with the OpenShift API via the `oc` CLI or the web ba
 To interact w/ new cluster via command line -
 
 ```bash
-(ansible) $ export PATH=~/bin:$PATH
-(ansible) $ oc version
+$ export PATH=~/bin:$PATH
+$ oc version
 oc v3.6.140
 kubernetes v1.6.1+5115d708d7
 features: Basic-Auth GSSAPI Kerberos SPNEGO
+
+**NOTE**: Please stop and flag an instructor if your versions are lower than the ones listed.
 ```
 
 Now login with the developer user and check things out.
 
 ```bash
-(ansible) $ oc login -u developer -p developer
-(ansible) $ oc get all
-(ansible) $ oc project
+$ oc login -u developer -p developer
+$ oc get all
+$ oc project
 ```
 
 Now log in with the `admin` user. You can switch projects, browse around.
 
 ```bash
-(ansible) $ oc login -u admin -p admin
-(ansible) $ oc get all -n service-catalog
+$ oc login -u admin -p admin
+$ oc get all -n service-catalog
 ```
 
 Now get the URL for the web console for your AWS VM by checking the cluster status.  The web console URL is listed as part of the output.
 ```bash
-(ansible) $ oc cluster status
-Web console URL: https://ec2-xx.xx.xxx.xx.us-west-1.compute.amazonaws.com:8443
+$ oc cluster status
+Web console URL: https://<YOUR AWS PUBLIC HOSTNAME>:8443
 ```
 
 Login to the web console with the `developer` user and click through the `Take Home Page Tour` that is listed on the right navigation panel. That will quickly walk you through 5 steps to show you what some of the capabilities of the Catalog UI are.
 
+## Deploy Ansible Playbook Bundle Application
 Now, we are going to deploy our first application using the new interface. 
 
 - In the middle navigation panel, click on `all` and then click on the `hello-world-apb` application.
@@ -120,18 +123,19 @@ Now, we are going to deploy our first application using the new interface.
 - Now go back to your CLI and explore what was just created.
 
 ```bash
-(ansible) $ oc get projects | grep hello
+$ oc get projects | grep hello
 hello-world-apb                         Active
 ```
 
 Switch to that project and look at what was created.
 
 ```bash
-(ansible) $ oc project hello-world-apb
-(ansible) $ oc get all
-(ansible) $ oc status
+$ oc project hello-world-apb
+$ oc get all
+$ oc status
 ```
 
+## Create Database
 Now that we have deployed an application, you'll notice that when you clicked on the application and opened it up in a new window, it doesn't have a data connection. Let's add one.
 - In the upper left navigation pane in the web console, click `Home`.
 - On right hand navigation pane, click the `hello-world-apb` project.
@@ -145,7 +149,10 @@ Now that we have deployed an application, you'll notice that when you clicked on
 - Click `Create`.  Do not bind at this time.
 - Click `View Project`.
 - Once PostgreSQL is provisioned, you'll see both the `hello-world-apb` and the `postgresql` applications.  This may take a minute or so.
+
+## Bind Application to Database
 - On the `hello-world` application, on the far right hand side, click the three dots `...` and click `Create Binding`. 
+- Select the `PostgreSQL` database.
 - Click `Bind`.
 - Click `Close`.
 - Let's look at the newly created secret by clicking `Resources` on the left menu and then `Secrets`. The newest secret should be at the top of the list.
