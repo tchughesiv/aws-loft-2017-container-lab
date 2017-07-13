@@ -155,10 +155,10 @@ Now that we have deployed an application, you'll notice that when you clicked on
 - Select the `PostgreSQL` database.
 - Click `Bind`.
 - Click `Close`.
+- Once again, click on the three dots `...` and now click `Deploy`.  This will launch a new version of your application.
 - Let's look at the newly created secret by clicking `Resources` on the left menu and then `Secrets`. The newest secret should be at the top of the list.
 - Return to the Project Overview page by clicking `Overview` on the left menu.
 - Now that the bind is created, you need to redeploy your application so it can consume the secrets that were just created, and attach to the database.
-- Once again, click on the three dots `...` and now click `Deploy`.  This will launch a new version of your application.
 - Once the deployment is finished, go back to the hello-world application url and refresh.  Now you should see PostgreSQL information populated.
 
 This concludes the lab. To summarize, we started out with Docker basics as a review, built a large monolithic application and then decomposed it.  Next we automated the deployment of that application using OpenShift templates.  Finally, we experimented with the new service broker technology and the new OpenShift console.  All of this while evaluating technologies like Red Hat Enterprise Linux, OpenShift, running on instnaces hosted on AWS.
