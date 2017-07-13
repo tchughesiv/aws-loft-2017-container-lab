@@ -71,6 +71,9 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=61   changed=28   unreachable=0    failed=0
 ```
 
+**NOTE**: If you have any issues, you can rerun these steps to try again via the script in `aws-loft-2017-container-lab/labs/lab6/scripts/chapter6-setup`
+
+## Setup Ansible Service Broker
 As usual, you can interact with the OpenShift API via the `oc` CLI or the web based UI.
 
 To interact w/ new cluster via command line -
@@ -154,5 +157,3 @@ Now that we have deployed an application, you'll notice that when you clicked on
 This concludes the lab. To summarize, we started out with Docker basics as a review, built a large monolithic application and then decomposed it.  Next we automated the deployment of that application using OpenShift templates.  Finally, we experimented with the new service broker technology and the new OpenShift console.  All of this while evaluating technologies like Red Hat Enterprise Linux, OpenShift, running on instnaces hosted on AWS.
 
 Please feel free to share this lab and contribute to it.  We love contributions.
-
-
