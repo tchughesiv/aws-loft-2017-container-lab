@@ -32,6 +32,7 @@ View the `Dockerfile` provided for `bigapp` which is not written with best pract
 ```bash
 $ cd ~/aws-loft-2017-container-lab/labs/lab2/bigapp/
 $ cat Dockerfile
+```
 
 Build the docker image for this by executing the following command:
 ```bash
