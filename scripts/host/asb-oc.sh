@@ -4,7 +4,7 @@
 sudo yum -y install gcc python-devel openssl-devel
 curl https://bootstrap.pypa.io/get-pip.py | sudo python -
 sudo pip install virtualenv
-cd ~/ && virtualenv --clear ansible
+cd ~/ && virtualenv --clear --system-site-packages ansible
 source ~/ansible/bin/activate
 pip install -U docker ansible
 git clone https://github.com/tchughesiv/catasb
