@@ -31,6 +31,7 @@ Install the latest version of Ansible.
 
 ```bash
 $ source ~/ansible/bin/activate
+$ pip install -U pip
 $ pip install -U docker ansible
 ```
 
@@ -44,7 +45,7 @@ $ git checkout aws-loft
 
 Run the setup script.
 
-_NOTE: When prompted, enter your personal docker hub user/pass and use `ansibleplaybookbundle` for the org._
+_NOTE: When prompted, enter your personal docker hub user/pass._
 ```bash
 $ ./run_setup_local.sh
 ```
