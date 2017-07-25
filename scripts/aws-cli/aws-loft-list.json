@@ -1,0 +1,522 @@
+[
+  {
+    "StudentID": 1,
+    "PublicHostname": "ec2-54-183-253-18.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.183.253.18"
+  },
+  {
+    "StudentID": 2,
+    "PublicHostname": "ec2-54-193-0-196.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.193.0.196"
+  },
+  {
+    "StudentID": 3,
+    "PublicHostname": "ec2-54-67-110-242.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.67.110.242"
+  },
+  {
+    "StudentID": 4,
+    "PublicHostname": "ec2-54-193-119-132.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.193.119.132"
+  },
+  {
+    "StudentID": 5,
+    "PublicHostname": "ec2-54-193-122-55.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.193.122.55"
+  },
+  {
+    "StudentID": 6,
+    "PublicHostname": "ec2-54-193-33-29.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.193.33.29"
+  },
+  {
+    "StudentID": 7,
+    "PublicHostname": "ec2-54-153-54-33.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.153.54.33"
+  },
+  {
+    "StudentID": 8,
+    "PublicHostname": "ec2-54-183-47-204.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.183.47.204"
+  },
+  {
+    "StudentID": 9,
+    "PublicHostname": "ec2-54-193-34-119.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.193.34.119"
+  },
+  {
+    "StudentID": 10,
+    "PublicHostname": "ec2-54-153-41-230.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.153.41.230"
+  },
+  {
+    "StudentID": 11,
+    "PublicHostname": "ec2-52-53-169-245.us-west-1.compute.amazonaws.com",
+    "PublicIP": "52.53.169.245"
+  },
+  {
+    "StudentID": 12,
+    "PublicHostname": "ec2-54-193-114-73.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.193.114.73"
+  },
+  {
+    "StudentID": 13,
+    "PublicHostname": "ec2-54-215-242-218.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.215.242.218"
+  },
+  {
+    "StudentID": 14,
+    "PublicHostname": "ec2-52-53-251-182.us-west-1.compute.amazonaws.com",
+    "PublicIP": "52.53.251.182"
+  },
+  {
+    "StudentID": 15,
+    "PublicHostname": "ec2-54-153-122-250.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.153.122.250"
+  },
+  {
+    "StudentID": 16,
+    "PublicHostname": "ec2-52-53-186-26.us-west-1.compute.amazonaws.com",
+    "PublicIP": "52.53.186.26"
+  },
+  {
+    "StudentID": 17,
+    "PublicHostname": "ec2-52-53-223-138.us-west-1.compute.amazonaws.com",
+    "PublicIP": "52.53.223.138"
+  },
+  {
+    "StudentID": 18,
+    "PublicHostname": "ec2-54-241-141-102.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.241.141.102"
+  },
+  {
+    "StudentID": 19,
+    "PublicHostname": "ec2-54-193-78-111.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.193.78.111"
+  },
+  {
+    "StudentID": 20,
+    "PublicHostname": "ec2-54-215-238-209.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.215.238.209"
+  },
+  {
+    "StudentID": 21,
+    "PublicHostname": "ec2-54-241-141-33.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.241.141.33"
+  },
+  {
+    "StudentID": 22,
+    "PublicHostname": "ec2-54-183-248-4.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.183.248.4"
+  },
+  {
+    "StudentID": 23,
+    "PublicHostname": "ec2-54-183-161-231.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.183.161.231"
+  },
+  {
+    "StudentID": 24,
+    "PublicHostname": "ec2-54-215-235-2.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.215.235.2"
+  },
+  {
+    "StudentID": 25,
+    "PublicHostname": "ec2-54-215-177-137.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.215.177.137"
+  },
+  {
+    "StudentID": 26,
+    "PublicHostname": "ec2-54-193-25-165.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.193.25.165"
+  },
+  {
+    "StudentID": 27,
+    "PublicHostname": "ec2-54-183-146-246.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.183.146.246"
+  },
+  {
+    "StudentID": 28,
+    "PublicHostname": "ec2-54-193-10-145.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.193.10.145"
+  },
+  {
+    "StudentID": 29,
+    "PublicHostname": "ec2-54-219-172-102.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.219.172.102"
+  },
+  {
+    "StudentID": 30,
+    "PublicHostname": "ec2-54-219-191-153.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.219.191.153"
+  },
+  {
+    "StudentID": 31,
+    "PublicHostname": "ec2-54-215-148-211.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.215.148.211"
+  },
+  {
+    "StudentID": 32,
+    "PublicHostname": "ec2-52-53-149-251.us-west-1.compute.amazonaws.com",
+    "PublicIP": "52.53.149.251"
+  },
+  {
+    "StudentID": 33,
+    "PublicHostname": "ec2-52-53-149-110.us-west-1.compute.amazonaws.com",
+    "PublicIP": "52.53.149.110"
+  },
+  {
+    "StudentID": 34,
+    "PublicHostname": "ec2-54-183-97-126.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.183.97.126"
+  },
+  {
+    "StudentID": 35,
+    "PublicHostname": "ec2-52-53-159-251.us-west-1.compute.amazonaws.com",
+    "PublicIP": "52.53.159.251"
+  },
+  {
+    "StudentID": 36,
+    "PublicHostname": "ec2-54-67-11-136.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.67.11.136"
+  },
+  {
+    "StudentID": 37,
+    "PublicHostname": "ec2-54-153-18-33.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.153.18.33"
+  },
+  {
+    "StudentID": 38,
+    "PublicHostname": "ec2-54-67-99-3.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.67.99.3"
+  },
+  {
+    "StudentID": 39,
+    "PublicHostname": "ec2-52-53-202-19.us-west-1.compute.amazonaws.com",
+    "PublicIP": "52.53.202.19"
+  },
+  {
+    "StudentID": 40,
+    "PublicHostname": "ec2-54-193-74-86.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.193.74.86"
+  },
+  {
+    "StudentID": 41,
+    "PublicHostname": "ec2-54-183-209-248.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.183.209.248"
+  },
+  {
+    "StudentID": 42,
+    "PublicHostname": "ec2-54-67-36-174.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.67.36.174"
+  },
+  {
+    "StudentID": 43,
+    "PublicHostname": "ec2-54-153-113-16.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.153.113.16"
+  },
+  {
+    "StudentID": 44,
+    "PublicHostname": "ec2-54-215-197-104.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.215.197.104"
+  },
+  {
+    "StudentID": 45,
+    "PublicHostname": "ec2-54-215-250-235.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.215.250.235"
+  },
+  {
+    "StudentID": 46,
+    "PublicHostname": "ec2-54-183-162-61.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.183.162.61"
+  },
+  {
+    "StudentID": 47,
+    "PublicHostname": "ec2-54-215-250-12.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.215.250.12"
+  },
+  {
+    "StudentID": 48,
+    "PublicHostname": "ec2-54-193-96-227.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.193.96.227"
+  },
+  {
+    "StudentID": 49,
+    "PublicHostname": "ec2-54-215-187-93.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.215.187.93"
+  },
+  {
+    "StudentID": 50,
+    "PublicHostname": "ec2-54-215-196-213.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.215.196.213"
+  },
+  {
+    "StudentID": 51,
+    "PublicHostname": "ec2-52-53-164-194.us-west-1.compute.amazonaws.com",
+    "PublicIP": "52.53.164.194"
+  },
+  {
+    "StudentID": 52,
+    "PublicHostname": "ec2-54-219-171-144.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.219.171.144"
+  },
+  {
+    "StudentID": 53,
+    "PublicHostname": "ec2-54-153-122-176.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.153.122.176"
+  },
+  {
+    "StudentID": 54,
+    "PublicHostname": "ec2-52-53-187-153.us-west-1.compute.amazonaws.com",
+    "PublicIP": "52.53.187.153"
+  },
+  {
+    "StudentID": 55,
+    "PublicHostname": "ec2-54-67-95-154.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.67.95.154"
+  },
+  {
+    "StudentID": 56,
+    "PublicHostname": "ec2-54-183-205-159.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.183.205.159"
+  },
+  {
+    "StudentID": 57,
+    "PublicHostname": "ec2-54-183-154-4.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.183.154.4"
+  },
+  {
+    "StudentID": 58,
+    "PublicHostname": "ec2-54-183-154-239.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.183.154.239"
+  },
+  {
+    "StudentID": 59,
+    "PublicHostname": "ec2-54-215-249-58.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.215.249.58"
+  },
+  {
+    "StudentID": 60,
+    "PublicHostname": "ec2-54-193-65-60.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.193.65.60"
+  },
+  {
+    "StudentID": 61,
+    "PublicHostname": "ec2-52-53-186-157.us-west-1.compute.amazonaws.com",
+    "PublicIP": "52.53.186.157"
+  },
+  {
+    "StudentID": 62,
+    "PublicHostname": "ec2-54-183-174-220.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.183.174.220"
+  },
+  {
+    "StudentID": 63,
+    "PublicHostname": "ec2-54-67-72-246.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.67.72.246"
+  },
+  {
+    "StudentID": 64,
+    "PublicHostname": "ec2-54-241-142-250.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.241.142.250"
+  },
+  {
+    "StudentID": 65,
+    "PublicHostname": "ec2-54-183-233-7.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.183.233.7"
+  },
+  {
+    "StudentID": 66,
+    "PublicHostname": "ec2-54-67-116-204.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.67.116.204"
+  },
+  {
+    "StudentID": 67,
+    "PublicHostname": "ec2-54-67-116-41.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.67.116.41"
+  },
+  {
+    "StudentID": 68,
+    "PublicHostname": "ec2-52-53-149-146.us-west-1.compute.amazonaws.com",
+    "PublicIP": "52.53.149.146"
+  },
+  {
+    "StudentID": 69,
+    "PublicHostname": "ec2-54-183-35-145.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.183.35.145"
+  },
+  {
+    "StudentID": 70,
+    "PublicHostname": "ec2-54-241-156-130.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.241.156.130"
+  },
+  {
+    "StudentID": 71,
+    "PublicHostname": "ec2-54-193-54-0.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.193.54.0"
+  },
+  {
+    "StudentID": 72,
+    "PublicHostname": "ec2-52-53-202-5.us-west-1.compute.amazonaws.com",
+    "PublicIP": "52.53.202.5"
+  },
+  {
+    "StudentID": 73,
+    "PublicHostname": "ec2-52-53-165-215.us-west-1.compute.amazonaws.com",
+    "PublicIP": "52.53.165.215"
+  },
+  {
+    "StudentID": 74,
+    "PublicHostname": "ec2-52-53-210-74.us-west-1.compute.amazonaws.com",
+    "PublicIP": "52.53.210.74"
+  },
+  {
+    "StudentID": 75,
+    "PublicHostname": "ec2-54-193-80-103.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.193.80.103"
+  },
+  {
+    "StudentID": 76,
+    "PublicHostname": "ec2-54-215-190-254.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.215.190.254"
+  },
+  {
+    "StudentID": 77,
+    "PublicHostname": "ec2-54-183-29-246.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.183.29.246"
+  },
+  {
+    "StudentID": 78,
+    "PublicHostname": "ec2-54-183-224-77.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.183.224.77"
+  },
+  {
+    "StudentID": 79,
+    "PublicHostname": "ec2-54-215-224-125.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.215.224.125"
+  },
+  {
+    "StudentID": 80,
+    "PublicHostname": "ec2-54-153-69-206.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.153.69.206"
+  },
+  {
+    "StudentID": 81,
+    "PublicHostname": "ec2-52-53-235-7.us-west-1.compute.amazonaws.com",
+    "PublicIP": "52.53.235.7"
+  },
+  {
+    "StudentID": 82,
+    "PublicHostname": "ec2-54-219-172-95.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.219.172.95"
+  },
+  {
+    "StudentID": 83,
+    "PublicHostname": "ec2-52-53-162-93.us-west-1.compute.amazonaws.com",
+    "PublicIP": "52.53.162.93"
+  },
+  {
+    "StudentID": 84,
+    "PublicHostname": "ec2-52-53-207-50.us-west-1.compute.amazonaws.com",
+    "PublicIP": "52.53.207.50"
+  },
+  {
+    "StudentID": 85,
+    "PublicHostname": "ec2-54-153-71-1.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.153.71.1"
+  },
+  {
+    "StudentID": 86,
+    "PublicHostname": "ec2-54-67-17-212.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.67.17.212"
+  },
+  {
+    "StudentID": 87,
+    "PublicHostname": "ec2-54-183-200-240.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.183.200.240"
+  },
+  {
+    "StudentID": 88,
+    "PublicHostname": "ec2-52-53-159-0.us-west-1.compute.amazonaws.com",
+    "PublicIP": "52.53.159.0"
+  },
+  {
+    "StudentID": 89,
+    "PublicHostname": "ec2-54-183-161-114.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.183.161.114"
+  },
+  {
+    "StudentID": 90,
+    "PublicHostname": "ec2-54-183-0-27.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.183.0.27"
+  },
+  {
+    "StudentID": 91,
+    "PublicHostname": "ec2-52-53-208-228.us-west-1.compute.amazonaws.com",
+    "PublicIP": "52.53.208.228"
+  },
+  {
+    "StudentID": 92,
+    "PublicHostname": "ec2-54-153-121-247.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.153.121.247"
+  },
+  {
+    "StudentID": 93,
+    "PublicHostname": "ec2-54-183-146-40.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.183.146.40"
+  },
+  {
+    "StudentID": 94,
+    "PublicHostname": "ec2-54-215-250-161.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.215.250.161"
+  },
+  {
+    "StudentID": 95,
+    "PublicHostname": "ec2-52-53-247-252.us-west-1.compute.amazonaws.com",
+    "PublicIP": "52.53.247.252"
+  },
+  {
+    "StudentID": 96,
+    "PublicHostname": "ec2-54-183-140-100.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.183.140.100"
+  },
+  {
+    "StudentID": 97,
+    "PublicHostname": "ec2-54-153-83-252.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.153.83.252"
+  },
+  {
+    "StudentID": 98,
+    "PublicHostname": "ec2-54-215-142-10.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.215.142.10"
+  },
+  {
+    "StudentID": 99,
+    "PublicHostname": "ec2-52-53-244-254.us-west-1.compute.amazonaws.com",
+    "PublicIP": "52.53.244.254"
+  },
+  {
+    "StudentID": 100,
+    "PublicHostname": "ec2-54-153-79-17.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.153.79.17"
+  },
+  {
+    "StudentID": 101,
+    "PublicHostname": "ec2-54-219-135-166.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.219.135.166"
+  },
+  {
+    "StudentID": 102,
+    "PublicHostname": "ec2-54-67-58-68.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.67.58.68"
+  },
+  {
+    "StudentID": 103,
+    "PublicHostname": "ec2-54-153-44-54.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.153.44.54"
+  },
+  {
+    "StudentID": 104,
+    "PublicHostname": "ec2-54-219-168-216.us-west-1.compute.amazonaws.com",
+    "PublicIP": "54.219.168.216"
+  }
+]
