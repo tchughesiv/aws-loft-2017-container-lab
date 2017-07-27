@@ -23,19 +23,19 @@ $ curl https://bootstrap.pypa.io/get-pip.py | sudo python -
 Install virtualenv as this is tech preview and not available in the official repositories yet.  Once the code matures a bit, we'll use rpms to provision the software.
 
 ```bash
+$ sudo yum -y install gcc python-devel openssl-devel
 $ sudo pip install virtualenv
 $ cd ~/ && virtualenv --clear --system-site-packages ansible
 ```
 
-Install the latest version of Ansible.
+Install a newer version of Ansible.
 
 ```bash
 $ source ~/ansible/bin/activate
-$ pip install -U pip
-$ pip install -U docker ansible
+$ pip install six==1.10.0 docker==2.4.2 ansible==2.3.0
 ```
 
-Setup the Service Catalog & Broker by cloning our git repo and checking out the aws-loft branch.
+Setup the Service Catalog & Broker by cloning our git repo and checking out the `aws-loft` branch.
 
 ```bash
 $ git clone https://github.com/tchughesiv/catasb
@@ -82,9 +82,7 @@ To interact w/ new cluster via command line -
 ```bash
 $ export PATH=~/bin:$PATH
 $ oc version
-oc v3.6.140
-kubernetes v1.6.1+5115d708d7
-features: Basic-Auth GSSAPI Kerberos SPNEGO
+oc v3.6.171
 ```
 
 **NOTE**: Please stop and flag an instructor if your versions are lower than the ones listed.
