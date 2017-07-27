@@ -5,7 +5,7 @@ In this lab, we are going to leverage a process known as [`oc cluster up`](https
 Expected completion: 5-10 minutes
 
 ## Find your AWS Instance
-This lab is designed for AWS Loft and can accomodate 100 students. For ease of keeping track please edit the following spreadsheet to claim an instance: 
+This lab is designed for AWS Loft and can accomodate 100 students. For ease of keeping track please edit the following spreadsheet to claim an instance:
 http://bit.ly/AWSLoftList
 
 **_NOTE_**: Please be considerate and only modify empty fields in the D (**_Claimed By_**) column. Use anything to uniquely identify you, but no personal information is required.
@@ -26,10 +26,10 @@ Connect to **_YOUR_** AWS Instance as per the table mentioned above that corresp
 $ ssh -i aws-key.pem ec2-user@<YOUR AWS VM PUBLIC DNS NAME HERE>
 ```
 
-**NOTE**: For Windows users you will have to use a terminal like [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) to SSH using the private key. You will need to download the key and convert it using PuTTYGen, for details see: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html
+**NOTE**: For Windows users you will have to use a terminal like [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) to SSH using the private key. You will need to download the key and convert it using PuTTYGen, for details see: [PuTTY Configuration](windows.md)
 
 ## Getting Set Up
-For the sake of time, much of the required setup has already been taken care of on your lab VM. For future reference though, the easiest way to get started is to head over to the OpenShift Origin repo on github and follow the "[cluster up and down instructions](https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md)" instructions. The instructions cover getting started on Windows, MacOS, and Linux. 
+For the sake of time, much of the required setup has already been taken care of on your lab VM. For future reference though, the easiest way to get started is to head over to the OpenShift Origin repo on github and follow the "[cluster up and down instructions](https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md)" instructions. The instructions cover getting started on Windows, MacOS, and Linux.
 
 Since some of these labs will have long running processes, it is recommended to use something like `tmux` or `screen` in case you lose your connection at some point so you can reconnect:
 ```bash
