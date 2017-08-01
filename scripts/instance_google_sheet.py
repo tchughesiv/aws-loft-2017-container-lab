@@ -19,11 +19,11 @@ def main():
 
     filters = [{'Name':'tag:lab_type', 'Values':["loft-lab"],'Name': 'instance-state-name', 'Values': ['running']}]
     instances = ec2.describe_instances(Filters=filters)
-    gc = pygsheets.authorize(service_file='/home/jcallen/client_secret.json')
+    gc = pygsheets.authorize(service_file='/home/jcallen/nycawsloft-af8212519288.json')
 
     row = ["Student ID", "Public URL", "Public IP Address", "Claimed By"]
 
-    sht = gc.open("aws-loft")
+    sht = gc.open("NYC AWS Loft Instances")
     wks = sht.worksheet('index', 0)
 
     wks.update_row(1, values=row)
