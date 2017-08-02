@@ -82,7 +82,7 @@ To interact w/ new cluster via command line -
 ```bash
 $ export PATH=~/bin:$PATH
 $ oc version
-oc v3.6.171
+oc v3.6.x
 ```
 
 **NOTE**: Please stop and flag an instructor if your versions are lower than the ones listed.
@@ -113,7 +113,7 @@ Login to the web console with the `developer` user and click through the `Take H
 ## Deploy Ansible Playbook Bundle Application
 Now, we are going to deploy our first application using the new interface. 
 
-- In the middle navigation panel, click on `all` and then click on the `hello-world-apb` application.
+- In the middle navigation panel, click on `all` and then click on the `Hello World (APB)` application.
 - On the right hand side of the pop-up window, click the dropdown under `Add to Project` and select `Create Project`.
 - Give the project a name `hello-world-apb`.  Leave the rest of the options as default and click `Create`.
 - Now you will notice that the service is being provisioned.  Click on the `View Project` button. This will take you to the new project namespace that was created when we made the application.
@@ -138,10 +138,11 @@ $ oc status
 Now that we have deployed an application, you'll notice that when you clicked on the application and opened it up in a new window, it doesn't have a data connection. Let's add one.
 - In the upper left navigation pane in the web console, click `Home`.
 - On right hand navigation pane, click the `hello-world-apb` project.
-- Now you are back to the screen that has the URL to the application in the top right.  Click that again. You'll notice that the database information all says `None`.  It is all empty.  Let's create a database server and bind to the hello-world-apb app.
+- Now you are back to the screen that has the URL to the application in the top right.  Click that again. You'll notice that the database information all says `No database connected`.  Let's create a database and then bind from the hello-world-apb app.
 - Return to the OpenShift web console.
 - In the upper navigation pane in the hello-world-apb project page, click `Add to Project`, select `Browse Catalog`.
 - Select the `PostgreSQL (APB)` database from the catalog.
+- Select the `Development` Plan, click next.
 - Select `hello-world-apb` project in the drop-down.
 - Do not enter a password, one will be generated for you.
 - Select PostgreSQL version of 9.5.
