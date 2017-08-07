@@ -4,6 +4,8 @@ In this lab you will deconstruct an application into microservices, creating a m
 
 This lab should be performed on **YOUR ASSIGNED AWS VM** as `ec2-user` unless otherwise instructed.
 
+NOTE: In the steps below we use `vi` to edit files.  If you are unfamiliar this is a [good beginner's guide](https://www.howtogeek.com/102468/a-beginners-guide-to-editing-text-files-with-vi/).
+
 Expected completion: 20-30 minutes
 
 ## Decompose the application
@@ -174,7 +176,7 @@ Save the Dockerfile and exit the editor.
 
 Now we are ready to build the images to test our Dockerfiles.
 
-1. Build each image. When building an image docker requires the path to the directory of the Dockerfile. 
+1. Build each image. When building an image docker requires the path to the directory of the Dockerfile.
 
         $ docker build -t mariadb mariadb/
         $ docker build -t wordpress wordpress/
@@ -212,7 +214,7 @@ $ docker ps
 $ curl localhost:3306
 ```
 
-  **Note**: the `curl` command does not return useful information but demonstrates 
+  **Note**: the `curl` command does not return useful information but demonstrates
             a response on the port.
 
 5. Test the Wordpress image to confirm connectivity. Additional run options:
@@ -245,7 +247,7 @@ When we have a working `docker run` recipe we want a way to communicate that to 
 1. Edit `wordpress/Dockerfile` and add the following instruction near the bottom of the file above the CMD line.
 
         LABEL run docker run -d -v /var/lib/wp_uploads:/var/www/html/wp-content/uploads:Z -p 8080:8080 --link=mariadb:db --name NAME -e NAME=NAME -e IMAGE=IMAGE IMAGE
-        
+
 1. Rebuild the Wordpress image. The image cache will be used so only the changes will need to be built.
 
         $ docker build -t wordpress wordpress/
@@ -257,6 +259,8 @@ When we have a working `docker run` recipe we want a way to communicate that to 
         $ sudo yum -y install atomic
         $ atomic run wordpress
         $ curl -L http://localhost:8080
+
+### Push images to local registry
 
 1. Once satisfied with the images tag them with the URI of the local lab local registry. The tag is what OpenShift uses to identify the particular image that we want to import from the registry.
 

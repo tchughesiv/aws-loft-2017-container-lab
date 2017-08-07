@@ -1,0 +1,7 @@
+- name: Send Notification
+  hosts: aws
+  gather_facts: false
+  tasks:
+    - name: Wall instance poweroff
+      command: 'wall "instance will poweroff at 1:30 est"'
+      become: true
