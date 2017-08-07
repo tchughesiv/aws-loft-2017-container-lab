@@ -13,6 +13,7 @@
 from __future__ import print_function
 import pygsheets
 import boto3
+import time
 
 def main():
     ec2 = boto3.client('ec2')
@@ -44,6 +45,10 @@ def main():
             print(i['PublicIpAddress'])
 
             row = [student_id, i['PublicDnsName'], i['PublicIpAddress']]
+
+            # Sleep is required otherwise the script will hit the API limit
+
+            time.sleep(0.5)
 
             wks.update_row(row_count, values=row)
 
