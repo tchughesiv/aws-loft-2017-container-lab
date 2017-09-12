@@ -13,6 +13,7 @@
 from __future__ import print_function
 import pygsheets
 import boto3
+import os
 import time
 
 def main():
@@ -20,7 +21,7 @@ def main():
 
     filters = [{'Name':'tag:lab_type', 'Values':["loft-lab"],'Name': 'instance-state-name', 'Values': ['running']}]
     instances = ec2.describe_instances(Filters=filters)
-    gc = pygsheets.authorize(service_file='/home/jcallen/nycawsloft-af8212519288.json')
+    gc = pygsheets.authorize(service_file='%s/nycawsloft-af8212519288.json' % os.environ['HOME'])
 
     row = ["Student ID", "Public URL", "Public IP Address", "Claimed By"]
 
