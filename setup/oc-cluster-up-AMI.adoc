@@ -1,15 +1,15 @@
-Pre-Reqs
+## Pre-Reqs
 
 * VPC is created
 * Key pair has been created
-* jq is installed on the host running the loft_launch script
-* awscli is installed and configured on the host running the loft_launch script
 ** Provide the aws access and secret key
 ** Provide the correct region
 * In order to run the instance_google_sheet.py script you will need to configure google API access
 ** Follow these instructions: https://pygsheets.readthedocs.io/en/latest/authorizing.html
 
-Launch AMI
+## Configure the AMI
+
+### Launch AMI
 
 * Log into AWS
 * Choose EC2
@@ -31,7 +31,7 @@ Launch AMI
 * Click "Launch Instances"
 * Click "View Instances"
 
-At this point, we want to SSH into that instance and configure it.
+### Configure the AMI
 
 Do this as root:
 
@@ -87,13 +87,14 @@ Meet the requirements of "oc cluster up"
 
 Now log into the console with the URL given as "oc cluster up" output.  Once you can do that, you are ready to create an AWS AMI.
 
-Create AMI
+### Create AMI
 
 * In AWS console right click on the instance you just configured.
  - Choose "Image", and then "Create Image"
  - Provide an "Image Name", "Image Description", Click "Create Image"
 
-That's it.
+## Set up the lab for the students
+
 
 References:
 
