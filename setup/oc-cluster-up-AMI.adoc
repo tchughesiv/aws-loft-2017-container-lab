@@ -73,6 +73,7 @@ Get the latest "oc" client.
 * wget https://github.com/openshift/origin/releases/download/v3.6.0/openshift-origin-client-tools-v3.6.0-c4dd4cf-linux-64bit.tar.gz
 * tar xzvf openshift-origin-client-tools-v3.6.0-c4dd4cf-linux-64bit.tar.gz
 * sudo cp openshift-origin-client-tools-v3.6.0-c4dd4cf-linux-64bit/oc /usr/sbin/
+* sudo rm -rf openshift-origin-client*
 
 Meet the requirements of "oc cluster up"
 
