@@ -114,6 +114,7 @@ Now log into the console with the URL given as "oc cluster up" output.  Once you
 * Use the same AMI launch sequence for a lightweight apache web server
 * Install httpd, start and enable the service
 * Copy the lab private key to the web server and make available via http
+* May want to add AWS termination protection on this to make sure noone blows it away
 
 ## Launch the VMs for the students
 
