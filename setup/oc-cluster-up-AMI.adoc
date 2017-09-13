@@ -120,7 +120,7 @@ Now log into the console with the URL given as "oc cluster up" output.  Once you
 
 Clone the repository, this is done from your local workstation
 
-* git clone https://github.com/sabre1041/managing-ocp-install-beyond.git
+* git clone -b RHTE-EMEA-PROD https://github.com/scollier/managing-ocp-install-beyond.git
 * cd managing-ocp-install-beyond/
 * cp my_secrets.yml <my-username>.yml
 ** Fill out the variables in the file
