@@ -7,7 +7,7 @@
 * In order to run the instance_google_sheet.py script you will need to configure google API access
 ** Follow these instructions: https://pygsheets.readthedocs.io/en/latest/authorizing.html
 
-## Configure the AMI
+## Prepare the AMI
 
 ### Launch AMI
 
@@ -53,6 +53,10 @@ Configure Docker
  * systemctl daemon-reload
  * systemctl restart docker
  * systemctl enable docker
+ * sudo groupadd docker
+ * sudo usermod -aG docker ec2-user
+ * sudo reboot
+
 
  Configure Firewalld
 
