@@ -58,7 +58,7 @@ Configure Docker
  * sudo reboot
 
 
- Configure Firewalld
+Configure Firewalld
 
 * systemctl restart firewalld
 * firewall-cmd --permanent --new-zone dockerc
