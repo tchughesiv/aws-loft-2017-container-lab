@@ -5,25 +5,20 @@ In this lab, we are going to leverage a process known as [`oc cluster up`](https
 Expected completion: 5-10 minutes
 
 ## Find your AWS Instance
-This lab is designed for AWS Loft and can accomodate 100 students. For ease of keeping track please edit the following spreadsheet to claim an instance:
-http://bit.ly/NYCAWSLoft
+This lab is designed for to accomodate many students. Each student will be given a VM running on AWS. The naming convention for the lab is:
 
-**_NOTE_**: Please be considerate and only modify empty fields in the D (**_Claimed By_**) column. Use anything to uniquely identify you, but no personal information is required.
+**rhte-student-<number>**.rhte.sysdeseng.com
 
-Download the [private key](http://server.aws-loft.sysdeseng.com/aws-key.pem)
-```bash
-$ curl -O http://server.aws-loft.sysdeseng.com/aws-key.pem
-$ chmod  600 aws-key.pem
-```
+You will be assigned a number by the instructor.
+
+Download the [private key](http://rhte-instructor.rhte.sysdeseng.com/key). The instructor will provide you with a password.
 
 ## Connecting to your AWS Instance
 This lab should be performed on **YOUR ASSIGNED AWS INSTANCE** as `ec2-user` unless otherwise instructed.
 
-Connect to **_YOUR_** AWS Instance as per the table mentioned above that corresponds to your student number.
-
 **_NOTE_**: Please be respectful and only connect to your assigned instance. Every instance for this lab uses the same public key so you could accidentally (or with malicious intent) connect to the wrong system. If you have any issues please inform an instructor.
 ```bash
-$ ssh -i aws-key.pem ec2-user@<YOUR AWS VM PUBLIC DNS NAME HERE>
+$ ssh -i aws-key.pem ec2-user@rhte-student-<number>.rhte.sysdeseng.com
 ```
 
 **NOTE**: For Windows users you will have to use a terminal like [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) to SSH using the private key. You will need to download the key and convert it using PuTTYGen, for details see: [PuTTY Configuration](windows.md)
