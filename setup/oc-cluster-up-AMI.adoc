@@ -99,8 +99,20 @@ Now log into the console with the URL given as "oc cluster up" output.  Once you
 
 ## Set up the lab for the students
 
+Clone the repository
 
-References:
+* git clone https://github.com/sabre1041/managing-ocp-install-beyond.git
+* cd managing-ocp-install-beyond/
+* cp my_secrets.yml <my-username>.yml
+** Fill out the variables in the file
+* launch the playbook
+** ansible-playbook -v -e @<my-username>.yml aws_lab_launch.yml
+* log into the AWS vm and start the lab
+** ssh -i /path/to/rhte.pem ec2-user@tower-<my-username>-devops-test-1.rhte.sysdeseng.com
+
+Each VM is assigned a public DNS name.  Log in with your student ID substituted in the the DNS name above
+
+##References
 
 * https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md
 * https://access.redhat.com/documentation/en-us/openshift_container_platform/3.6/html/installation_and_configuration/installing-a-cluster#install-config-install-host-preparation
