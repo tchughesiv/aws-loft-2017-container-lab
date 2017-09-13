@@ -1,3 +1,13 @@
+# Introduction
+
+This guide is here to show instructors how to set up and run the lab.  It covers a few tasks:
+
+* Local environment pre-reqs
+* AWS pre-reqs
+* AMI preparation
+* Docker configuration
+* Lab launch instructions
+
 ## Pre-Reqs
 
 * VPC is created
