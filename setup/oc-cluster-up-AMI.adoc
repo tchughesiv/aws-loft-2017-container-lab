@@ -7,6 +7,7 @@ This guide is here to show instructors how to set up and run the lab.  It covers
 * AMI preparation
 * Docker configuration
 * Lab launch instructions
+* Web server configuration
 
 ## Pre-Reqs
 
@@ -16,6 +17,7 @@ This guide is here to show instructors how to set up and run the lab.  It covers
 ** Provide the correct region
 * In order to run the instance_google_sheet.py script you will need to configure google API access
 ** Follow these instructions: https://pygsheets.readthedocs.io/en/latest/authorizing.html
+* Running web server to host the ssh key
 
 ## Prepare the AMI
 
@@ -107,7 +109,13 @@ Now log into the console with the URL given as "oc cluster up" output.  Once you
  - Choose "Image", and then "Create Image"
  - Provide an "Image Name", "Image Description", Click "Create Image"
 
-## Set up the lab for the students
+## Set up a web server for the students
+
+* Use the same AMI launch sequence for a lightweight apache web server
+* Install httpd, start and enable the service
+* Copy the lab private key to the web server and make available via http
+
+## Launch the VMs for the students
 
 Clone the repository
 
