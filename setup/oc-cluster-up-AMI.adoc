@@ -62,6 +62,8 @@ Configure Docker
 * firewall-cmd --permanent --zone dockerc --add-port 8443/tcp
 * firewall-cmd --permanent --zone dockerc --add-port 53/udp
 * firewall-cmd --permanent --zone dockerc --add-port 8053/udp
+* firewall-cmd --permanent --zone public  --add-port=8443/tcp
+* firewall-cmd --permanent --zone public  --add-port=80/tcp
 * firewall-cmd --reload
 
 Do these as regular user:
@@ -80,6 +82,7 @@ Meet the requirements of "oc cluster up"
 * mv /home/ec2-user/aws-loft-2017-container-lab/scripts/host/start-oc.sh ~
 * sudo aws-loft-2017-container-lab/scripts/host/start-oc.sh
 * sudo iptables -I INPUT -p tcp --dport 8443 -j ACCEPT
+* sudo ./start-oc.sh
 
 Now log into the console with the URL given as "oc cluster up" output.  Once you can do that, you are ready to create an AWS AMI.
 
