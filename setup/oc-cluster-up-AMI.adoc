@@ -112,7 +112,7 @@ Clone the repository
 
 Each VM is assigned a public DNS name.  Log in with your student ID substituted in the the DNS name above
 
-##References
+## References
 
 * https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md
 * https://access.redhat.com/documentation/en-us/openshift_container_platform/3.6/html/installation_and_configuration/installing-a-cluster#install-config-install-host-preparation
