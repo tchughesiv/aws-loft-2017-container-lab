@@ -118,7 +118,7 @@ Now log into the console with the URL given as "oc cluster up" output.  Once you
 
 ## Launch the VMs for the students
 
-Clone the repository
+Clone the repository, this is done from your local workstation
 
 * git clone https://github.com/sabre1041/managing-ocp-install-beyond.git
 * cd managing-ocp-install-beyond/
