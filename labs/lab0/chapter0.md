@@ -7,11 +7,11 @@ Expected completion: 5-10 minutes
 ## Find your AWS Instance
 This lab is designed for to accomodate many students. Each student will be given a VM running on AWS. The naming convention for the lab is:
 
-**rhte-student-<number>**.rhte.sysdeseng.com
+**rhte-student-\<number\>**.rhte.sysdeseng.com
 
 You will be assigned a number by the instructor.
 
-Download the [private key](http://rhte-instructor.rhte.sysdeseng.com/key). The instructor will provide you with a password.
+Retrieve the key from the [instructor host](http://rhte-instructor.rhte.sysdeseng.com/key) so that you can _SSH_ into the instances by accessing the password protected directory from the table above. Download the _rhte.pem_ file to your local machine and change the permissions of the file to 600.
 
 ## Connecting to your AWS Instance
 This lab should be performed on **YOUR ASSIGNED AWS INSTANCE** as `ec2-user` unless otherwise instructed.
@@ -34,7 +34,7 @@ $ screen
 
 In case you get disconnected use `screen -x` to reattach once you reestablish ssh connectivity.
 
-All that's left to do is run OpenShift by executing the `start-oc.sh` script in your home directory. First, let's take a look at what this script is doing:
+All that's left to do is run OpenShift by executing the `start-oc.sh` script in your home directory. First, let's take a look at what this script is doing, it's grabbing AWS instance metadata so that it can conifigure OpenShift to start up properly on AWS:
 ```bash
 $ cat ~/start-oc.sh
 ```
