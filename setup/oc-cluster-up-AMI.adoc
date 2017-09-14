@@ -130,7 +130,7 @@ mv /home/ec2-user/aws-loft-2017-container-lab/scripts/host/cleanup-oc.sh ~
 Start the cluster to cache the iamges.
 
 ```
-sudo ./start-oc.sh
+./start-oc.sh
 sudo rm -rf /home/ec2-user/aws-loft-2017-container-lab
 ```
 
