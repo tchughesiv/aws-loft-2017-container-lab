@@ -7,7 +7,7 @@ Expected completion: 5-10 minutes
 ## Find your AWS Instance
 This lab is designed for to accomodate many students. Each student will be given a VM running on AWS. The naming convention for the lab is:
 
-**rhte-student-\<number\>**.rhte.sysdeseng.com
+**student-\<number\>**.rhte.sysdeseng.com
 
 You will be assigned a number by the instructor.
 
