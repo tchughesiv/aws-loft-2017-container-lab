@@ -15,8 +15,6 @@ This guide is here to show instructors how to set up and run the lab.  It covers
 * Key pair has been created
 ** Provide the aws access and secret key
 ** Provide the correct region
-* In order to run the instance_google_sheet.py script you will need to configure google API access
-** Follow these instructions: https://pygsheets.readthedocs.io/en/latest/authorizing.html
 * Running web server to host the ssh key
 
 ## Prepare the AMI
