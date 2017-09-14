@@ -122,7 +122,9 @@ Clone the lab repo:
 ```
 git clone https://github.com/tchughesiv/aws-loft-2017-container-lab.git
 chmod +x /home/ec2-user/aws-loft-2017-container-lab/scripts/host/start-oc.sh
+chmod +x /home/ec2-user/aws-loft-2017-container-lab/scripts/host/cleanup-oc.sh
 mv /home/ec2-user/aws-loft-2017-container-lab/scripts/host/start-oc.sh ~
+mv /home/ec2-user/aws-loft-2017-container-lab/scripts/host/cleanup-oc.sh ~
 ```
 
 Start the cluster to cache the iamges.
