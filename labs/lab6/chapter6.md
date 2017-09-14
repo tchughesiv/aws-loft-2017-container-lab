@@ -14,39 +14,39 @@ We are going to reset the environment to proceed with this chapter. Cleanup the 
 $ ~/cleanup-oc.sh
 ```
 
-Setup `pip` for `python`
-
-```bash
-$ curl https://bootstrap.pypa.io/get-pip.py | sudo python -
-```
-
-Install virtualenv as this is tech preview and not available in the official repositories yet.  Once the code matures a bit, we'll use rpms to provision the software.
-
-```bash
-$ sudo yum -y install gcc python-devel openssl-devel
-$ sudo pip install virtualenv
-$ cd ~/ && virtualenv --clear --system-site-packages ansible
-```
-
 Install a newer version of Ansible.
 
 ```bash
-$ source ~/ansible/bin/activate
-$ pip install six==1.10.0 docker==2.4.2 ansible==2.3.0
+$ sudo easy_install pip
+$ sudo pip install ansible
 ```
 
-Setup the Service Catalog & Broker by cloning our git repo and checking out the `aws-loft` branch.
+Setup the Service Catalog & Broker by cloning the catasb git repo. 
 
 ```bash
-$ git clone https://github.com/tchughesiv/catasb
-$ cd catasb/local/linux/
-$ git checkout aws-loft
+$ git clone https://github.com/fusor/catasb.git
+```
+The first step is to set up the environment variables.
+
+```bash
+$ cd catasb/config
+```
+
+The `linux_env_vars` file should look like the following.
+
+```bash
+metadata_endpoint="http://169.254.169.254/latest/meta-data"
+export PUBLIC_IP="$( curl -m 20 -s "${metadata_endpoint}/public-ipv4" )"
+export OPENSHIFT_HOSTNAME="$( curl -m 20 -s "${metadata_endpoint}/public-hostname" )"
+export OPENSHIFT_ROUTING_SUFFIX="${PUBLIC_IP}.nip.io"
+export EXTRA_VARS="{\"openshift_hostname\":\"${OPENSHIFT_HOSTNAME}\", \"openshift_routing_suffix\":\"${OPENSHIFT_ROUTING_SUFFIX}\" }"
 ```
 
 Run the setup script.
 
 _NOTE: When prompted, enter your personal docker hub user/pass._
 ```bash
+$ cd ~/catasb/local/linux
 $ ./run_setup_local.sh
 ```
 
@@ -90,7 +90,7 @@ oc v3.6.x
 Now login with the developer user and check things out.
 
 ```bash
-$ oc login -u developer -p developer
+$ oc login -u system:admin
 $ oc get all
 $ oc project
 ```
