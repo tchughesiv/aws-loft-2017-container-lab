@@ -81,6 +81,19 @@ Configure Firewalld
 * firewall-cmd --permanent --zone dockerc --add-port 8053/udp
 * firewall-cmd --permanent --zone public  --add-port=8443/tcp
 * firewall-cmd --permanent --zone public  --add-port=80/tcp
+* firewall-cmd --permanent --zone public  --add-port=53/tcp
+* firewall-cmd --permanent --zone public  --add-port=53/udp
+* firewall-cmd --permanent --zone public  --add-port=80/tcp
+* firewall-cmd --permanent --zone public  --add-port=443/tcp
+* firewall-cmd --permanent --zone public  --add-port=2379/tcp
+* firewall-cmd --permanent --zone public  --add-port=2380/tcp
+* firewall-cmd --permanent --zone public  --add-port=4789/udp
+* firewall-cmd --permanent --zone public  --add-port=8053/tcp
+* firewall-cmd --permanent --zone public  --add-port=8053/udp
+* firewall-cmd --permanent --zone public  --add-port=8443/tcp
+* firewall-cmd --permanent --zone public  --add-port=8444/tcp
+* firewall-cmd --permanent --zone public  --add-port=10250/tcp
+
 * firewall-cmd --reload
 
 Do these as regular user:
@@ -98,7 +111,6 @@ Meet the requirements of "oc cluster up"
 * Clone the lab repo: "git clone https://github.com/tchughesiv/aws-loft-2017-container-lab.git"
 * chmod +x /home/ec2-user/aws-loft-2017-container-lab/scripts/host/start-oc.sh
 * mv /home/ec2-user/aws-loft-2017-container-lab/scripts/host/start-oc.sh ~
-* sudo iptables -I INPUT -p tcp --dport 8443 -j ACCEPT
 * sudo ./start-oc.sh
 * sudo rm -rf /home/ec2-user/aws-loft-2017-container-lab
 
