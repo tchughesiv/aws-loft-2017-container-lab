@@ -24,6 +24,7 @@ $ sudo pip install ansible
 Setup the Service Catalog & Broker by cloning the catasb git repo. 
 
 ```bash
+$ cd
 $ git clone https://github.com/fusor/catasb.git
 ```
 The first step is to set up the environment variables.
@@ -42,7 +43,7 @@ export OPENSHIFT_ROUTING_SUFFIX="${PUBLIC_IP}.nip.io"
 export EXTRA_VARS="{\"openshift_hostname\":\"${OPENSHIFT_HOSTNAME}\", \"openshift_routing_suffix\":\"${OPENSHIFT_ROUTING_SUFFIX}\" }"
 ```
 
-Run the setup script.
+Run the setup script. For this part to work, you `MUST` have an account on Docker hub: https://hub.docker.com/.  Also, when it prompts you for the Docker Org., use `ansibleplaybookbundle`.  More about that Docker Org can be found here: https://hub.docker.com/r/ansibleplaybookbundle/
 
 _NOTE: When prompted, enter your personal docker hub user/pass._
 ```bash
