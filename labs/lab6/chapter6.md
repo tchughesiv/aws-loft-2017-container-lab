@@ -91,16 +91,17 @@ oc v3.6.x
 Now login with the developer user and check things out.
 
 ```bash
-$ oc login -u system:admin
+$ oc login -u developer
 $ oc get all
-$ oc project
+$ oc projects
 ```
 
 Now log in with the `admin` user. You can switch projects, browse around.
 
 ```bash
-$ oc login -u admin -p admin
+$ oc login -u system:admin
 $ oc get all -n service-catalog
+$ oc projects
 ```
 
 Now get the URL for the web console for your AWS VM by checking the cluster status.  The web console URL is listed as part of the output.
@@ -139,7 +140,9 @@ $ oc status
 Now that we have deployed an application, you'll notice that when you clicked on the application and opened it up in a new window, it doesn't have a data connection. Let's add one.
 - In the upper left navigation pane in the web console, click `Home`.
 - On right hand navigation pane, click the `hello-world-apb` project.
-- Now you are back to the screen that has the URL to the application in the top right.  Click that again. You'll notice that the database information all says `No database connected`.  Let's create a database and then bind from the hello-world-apb app.
+
+Now you are back to the screen that has the URL to the application in the top right.  Click that again. You'll notice that the database information all says `No database connected`.  Let's create a database and then bind from the hello-world-apb app.
+
 - Return to the OpenShift web console.
 - In the upper navigation pane in the hello-world-apb project page, click `Add to Project`, select `Browse Catalog`.
 - Select the `PostgreSQL (APB)` database from the catalog.
@@ -159,7 +162,7 @@ Now that we have deployed an application, you'll notice that when you clicked on
 - Click `Close`.
 - Now that the bind is created, you need to redeploy your application so it can consume the secrets that were just created, and attach to the database.
 - Once again, click on the three dots `...` and now click `Deploy`.  This will launch a new version of your application.
-- Let's look at the newly created secret by clicking `Resources` on the left menu and then `Secrets`. The newest secret should be at the top of the list.
+- Let's look at the newly created secret by clicking `Resources` on the left menu and then `Secrets`. The newest secret should be at the top of the list. Click on the newest secret and reveal the password that was automatically generated.
 - Return to the Project Overview page by clicking `Overview` on the left menu.
 - Once the new deployment is finished, go back to the hello-world application url and refresh.  Now you should see PostgreSQL information populated.
 
