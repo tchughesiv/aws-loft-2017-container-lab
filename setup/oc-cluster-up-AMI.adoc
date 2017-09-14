@@ -57,7 +57,8 @@ Do this as root:
     --enable="rhel-7-server-extras-rpms" \
     --enable="rhel-7-server-ose-3.6-rpms" \
     --enable="rhel-7-fast-datapath-rpms"
-* Install a couple of packages: "sudo yum -y install git wget firewalld docker bash-completion"
+* Install a couple of packages: "sudo yum -y install ansible python2-docker python-devel git wget firewalld docker bash-completion"
+* Install the development tools: "sudo yum groupinstall -y "Development Tools"
 
 Configure Docker
 
