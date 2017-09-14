@@ -48,15 +48,11 @@ Do this as root:
 * Example: "ssh -i <KEY PAIR NAME HERE>.pem ec2-user@ec2-54-204-171-139.compute-1.amazonaws.com"
 * You will need to subscribe to Red Hat CDN, and then disable RHUI. You'll need to use an account that has the appropriate permissions.
  - subscription-manager register
- - subscription-manager list --available --matches '*OpenShift*'
+ - subscription-manager list --available --matches 'Red Hat OpenShift Enterprise Infrastructure'
  - subscription-manager attach --pool 8a85f9XXXXXXXXXXXX
- - subscription-manager repos \
-    --enable="rhel-7-server-rpms" \
-    --enable="rhel-7-server-extras-rpms" \
-    --enable="rhel-7-server-ose-3.6-rpms" \
-    --enable="rhel-7-fast-datapath-rpms"
-* Install a couple of packages: "sudo yum -y install ansible python2-docker python-devel git wget firewalld docker bash-completion"
-* Install the development tools: "sudo yum groupinstall -y "Development Tools"
+ - subscription-manager repos --enable="rhel-7-server-rpms" --enable="rhel-7-server-extras-rpms" --enable="rhel-7-server-ose-3.6-rpms" --enable="rhel-7-fast-datapath-rpms"
+* Install a couple of packages: "yum -y install ansible python2-docker python-devel git wget firewalld docker bash-completion"
+* Install the development tools: "yum groupinstall -y "Development Tools""
 
 Configure Docker
 
@@ -64,33 +60,35 @@ Configure Docker
  * systemctl daemon-reload
  * systemctl restart docker
  * systemctl enable docker
- * sudo groupadd docker
- * sudo usermod -aG docker ec2-user
- * sudo reboot
-
+ * groupadd docker
+ * usermod -aG docker ec2-user
+ * reboot
 
 Configure Firewalld
 
 * systemctl restart firewalld
-* firewall-cmd --permanent --new-zone dockerc
-* firewall-cmd --permanent --zone dockerc --add-source 172.17.0.0/16
-* firewall-cmd --permanent --zone dockerc --add-port 8443/tcp
-* firewall-cmd --permanent --zone dockerc --add-port 53/udp
-* firewall-cmd --permanent --zone dockerc --add-port 8053/udp
-* firewall-cmd --permanent --zone public  --add-port=8443/tcp
-* firewall-cmd --permanent --zone public  --add-port=80/tcp
-* firewall-cmd --permanent --zone public  --add-port=53/tcp
-* firewall-cmd --permanent --zone public  --add-port=53/udp
-* firewall-cmd --permanent --zone public  --add-port=80/tcp
-* firewall-cmd --permanent --zone public  --add-port=443/tcp
-* firewall-cmd --permanent --zone public  --add-port=2379/tcp
-* firewall-cmd --permanent --zone public  --add-port=2380/tcp
-* firewall-cmd --permanent --zone public  --add-port=4789/udp
-* firewall-cmd --permanent --zone public  --add-port=8053/tcp
-* firewall-cmd --permanent --zone public  --add-port=8053/udp
-* firewall-cmd --permanent --zone public  --add-port=8443/tcp
-* firewall-cmd --permanent --zone public  --add-port=8444/tcp
-* firewall-cmd --permanent --zone public  --add-port=10250/tcp
+
+```
+firewall-cmd --permanent --new-zone dockerc
+firewall-cmd --permanent --zone dockerc --add-source 172.17.0.0/16
+firewall-cmd --permanent --zone dockerc --add-port 8443/tcp
+firewall-cmd --permanent --zone dockerc --add-port 53/udp
+firewall-cmd --permanent --zone dockerc --add-port 8053/udp
+firewall-cmd --permanent --zone public  --add-port=8443/tcp
+firewall-cmd --permanent --zone public  --add-port=80/tcp
+firewall-cmd --permanent --zone public  --add-port=53/tcp
+firewall-cmd --permanent --zone public  --add-port=53/udp
+firewall-cmd --permanent --zone public  --add-port=80/tcp
+firewall-cmd --permanent --zone public  --add-port=443/tcp
+firewall-cmd --permanent --zone public  --add-port=2379/tcp
+firewall-cmd --permanent --zone public  --add-port=2380/tcp
+firewall-cmd --permanent --zone public  --add-port=4789/udp
+firewall-cmd --permanent --zone public  --add-port=8053/tcp
+firewall-cmd --permanent --zone public  --add-port=8053/udp
+firewall-cmd --permanent --zone public  --add-port=8443/tcp
+firewall-cmd --permanent --zone public  --add-port=8444/tcp
+firewall-cmd --permanent --zone public  --add-port=10250/tcp
+```
 
 * firewall-cmd --reload
 
