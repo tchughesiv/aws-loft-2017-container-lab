@@ -25,7 +25,7 @@ Setup the Service Catalog & Broker by cloning the catasb git repo.
 
 ```bash
 $ cd
-$ git clone https://github.com/fusor/catasb.git
+$ git clone https://github.com/scollier/catasb.git
 ```
 The first step is to set up the environment variables.
 
