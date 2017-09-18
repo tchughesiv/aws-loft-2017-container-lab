@@ -18,7 +18,7 @@ This lab should be performed on **YOUR ASSIGNED AWS INSTANCE** as `ec2-user` unl
 
 **_NOTE_**: Please be respectful and only connect to your assigned instance. Every instance for this lab uses the same public key so you could accidentally (or with malicious intent) connect to the wrong system. If you have any issues please inform an instructor.
 ```bash
-$ ssh -i aws-key.pem ec2-user@student-<number>.rhte.sysdeseng.com
+$ ssh -i rhte.pem ec2-user@student-<number>.rhte.sysdeseng.com
 ```
 
 **NOTE**: For Windows users you will have to use a terminal like [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) to SSH using the private key. You will need to download the key and convert it using PuTTYGen, for details see: [PuTTY Configuration](windows.md)
