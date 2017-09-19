@@ -55,7 +55,7 @@ subscription-manager attach --pool 8a85f9XXXXXXXXXXXX
 subscription-manager repos --enable="rhel-7-server-rpms" --enable="rhel-7-server-extras-rpms" --enable="rhel-7-server-ose-3.6-rpms" --enable="rhel-7-fast-datapath-rpms"
 ```
 
-* Install a couple of packages: "yum -y install ansible python2-docker python-devel git wget firewalld docker bash-completion"
+* Install a couple of packages: "yum -y install ansible python-devel git wget firewalld docker bash-completion"
 * Install the development tools: "yum groupinstall -y "Development Tools""
 
 Configure Docker
