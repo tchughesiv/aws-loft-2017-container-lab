@@ -21,6 +21,13 @@ $ sudo easy_install pip
 $ sudo pip install ansible
 ```
 
+Fix some package conflicts.
+
+```bash
+$ sudo yum erase python-docker-py 
+$ sudo yum install python2-docker
+```
+
 Setup the Service Catalog & Broker by cloning the catasb git repo. 
 
 ```bash
