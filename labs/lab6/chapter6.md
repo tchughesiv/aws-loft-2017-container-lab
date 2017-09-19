@@ -73,7 +73,7 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=61   changed=28   unreachable=0    failed=0
 ```
 
-**NOTE**: If you have any issues, you can rerun these steps to try again via the script in `aws-loft-2017-container-lab/labs/lab6/scripts/chapter6-setup`
+**NOTE**: If you have any issues, you can rerun these steps to try again via the script in `~./aws-loft-2017-container-lab/labs/lab6/scripts/chapter6-setup`
 
 ## Login
 As usual, you can interact with the OpenShift API via the `oc` CLI or the web based UI.
