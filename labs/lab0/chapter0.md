@@ -21,7 +21,11 @@ This lab should be performed on **YOUR ASSIGNED AWS INSTANCE** as `ec2-user` unl
 $ ssh -i rhte.pem ec2-user@student-<number>.rhte.sysdeseng.com
 ```
 
-**NOTE**: For Windows users you will have to use a terminal like [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) to SSH using the private key. You will need to download the key and convert it using PuTTYGen, for details see: [PuTTY Configuration](windows.md)
+**NOTE**: For Windows users you will have to use a terminal like [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) to SSH using the private key. 
+
+Once installed, use the following instructions to SSH to the Tower instance link:http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html[http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html].
+
+TIP: Use the rhte.ppk key located at:  [instructor host](http://rhte-instructor.rhte.sysdeseng.com/key)
 
 ## Getting Set Up
 For the sake of time, some of the required setup has already been taken care of on your AWS VM. For future reference though, the easiest way to get started is to head over to the OpenShift Origin repo on github and follow the "[cluster up and down instructions](https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md)" instructions. The instructions cover getting started on Windows, MacOS, and Linux.
