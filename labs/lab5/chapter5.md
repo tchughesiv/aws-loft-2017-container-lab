@@ -24,7 +24,7 @@ developer
 
 This time, let's simplify things by deploying an application template.  We've already included a template with lab5 which leverages our wordpress & mariadb images.
 ```bash
-$ cd ~/aws-loft-2017-container-lab/labs/lab5/
+$ cd ~/rh-container-lab/labs/lab5/
 $ grep localhost:5000 wordpress-template.yaml
 ```
 

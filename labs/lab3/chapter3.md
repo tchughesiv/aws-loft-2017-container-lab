@@ -70,8 +70,8 @@ Now we will develop the two images. Using the information above and the Dockerfi
 ```bash
 $ mkdir ~/workspace
 $ cd ~/workspace
-$ cp -R ~/aws-loft-2017-container-lab/labs/lab3/mariadb .
-$ cp -R ~/aws-loft-2017-container-lab/labs/lab3/wordpress .
+$ cp -R ~/rh-container-lab/labs/lab3/mariadb .
+$ cp -R ~/rh-container-lab/labs/lab3/wordpress .
 $ ls -lR mariadb
 $ ls -lR wordpress
 ```

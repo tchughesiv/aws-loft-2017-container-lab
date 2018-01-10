@@ -1,4 +1,4 @@
-# AWS Loft Lab 2017: Container Development & OpenShift
+# Lab 2018: Red Hat Container Development & OpenShift
 
 1. **[LAB 0](labs/lab0/chapter0.md)** Introduction / Setup
 1. **[LAB 1](labs/lab1/chapter1.md)** Docker refresh

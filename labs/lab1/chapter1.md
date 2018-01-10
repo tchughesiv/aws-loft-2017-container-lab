@@ -20,13 +20,14 @@ Perform the following commands as `ec2-user` unless instructed otherwise.
 
 ## docker and systemd
 
-Check out the systemd unit file that starts docker and notice that it includes 3 EnvironmentFiles. These files tell docker how the docker daemon, storage and networking should be set up and configured. Take a look at those files too. Specifically, in the /etc/sysconfig/docker file check out the registry settings. You may find it interesting that you can `ADD_REGISTRY` and `BLOCK_REGISTRY`. Think about the different use cases for that.
+Check out the systemd unit file that starts docker and notice that it includes 4 EnvironmentFiles. These files tell docker how the docker daemon, storage and networking should be set up and configured. Take a look at those files too. Specifically, in the /run/containers/registries.conf file check out the registry settings. You may find it interesting that you can `--add-registry` and `--block-registry` by modifying /etc/containers/registries.conf. Think about the different use cases for that.
 ```bash
 $ cat /usr/lib/systemd/system/docker.service
-$ cat /usr/lib/systemd/system/docker-storage-setup.service
+$ cat /run/containers/registries.conf
 $ cat /etc/sysconfig/docker
 $ cat /etc/sysconfig/docker-storage
 $ cat /etc/sysconfig/docker-network
+$ cat /usr/lib/systemd/system/docker-storage-setup.service
 ```
 
 Now check on the status of docker.
@@ -69,9 +70,9 @@ $ docker images
 
 Here we are just going to explore a simple Dockerfile. The purpose for this is to have a look at some of the basic commands that are used to construct a docker image. For this lab, we will explore a basic Apache Dockerfile and then confirm functionality.
 
-Change to `~/aws-loft-2017-container-lab/labs/lab1` and `cat` out the Dockerfile
+Change to `~/rh-container-lab/labs/lab1` and `cat` out the Dockerfile
 ```bash
-$ cd ~/aws-loft-2017-container-lab/labs/lab1
+$ cd ~/rh-container-lab/labs/lab1
 $ cat Dockerfile
 ```
 ```dockerfile

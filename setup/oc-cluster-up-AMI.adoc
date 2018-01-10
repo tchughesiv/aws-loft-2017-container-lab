@@ -52,26 +52,35 @@ Do this as root:
 subscription-manager register
 subscription-manager list --available --matches 'Red Hat OpenShift Enterprise Infrastructure'
 subscription-manager attach --pool 8a85f9XXXXXXXXXXXX
-subscription-manager repos --enable="rhel-7-server-rpms" --enable="rhel-7-server-extras-rpms" --enable="rhel-7-server-ose-3.6-rpms" --enable="rhel-7-fast-datapath-rpms"
+subscription-manager refresh
+subscription-manager repos --disable=*
+subscription-manager repos --enable="rhel-7-server-rpms" --enable="rhel-7-server-extras-rpms" --enable="rhel-7-server-ose-3.7-rpms"
+yum repolist
 ```
 
+* Update: "yum -y update"
 * Install a couple of packages: "yum -y install ansible python-devel git wget firewalld docker bash-completion"
-* Install the development tools: "yum groupinstall -y "Development Tools""
+* Install the development tools: "yum -y groupinstall "Development Tools""
 
 Configure Docker
 
 ```
-sed -i '/OPTIONS=.*/c\OPTIONS="--selinux-enabled --insecure-registry 172.30.0.0/16"' /etc/sysconfig/docker
+echo "INSECURE_REGISTRY='--insecure-registry 172.30.0.0/16'" >> /etc/sysconfig/docker
 systemctl daemon-reload
 systemctl restart docker
 systemctl enable docker
 groupadd docker
 usermod -aG docker ec2-user
+```
+
+Get the latest "oc" client.
+
+```
+yum -y install atomic-openshift-clients
 reboot
 ```
 
 Configure Firewalld
-
 
 ```
 systemctl restart firewalld
@@ -102,15 +111,6 @@ firewall-cmd --reload
 
 Do these as regular user:
 
-Get the latest "oc" client.
-
-```
-wget https://github.com/openshift/origin/releases/download/v3.6.0/openshift-origin-client-tools-v3.6.0-c4dd4cf-linux-64bit.tar.gz
-tar xzvf openshift-origin-client-tools-v3.6.0-c4dd4cf-linux-64bit.tar.gz
-sudo cp openshift-origin-client-tools-v3.6.0-c4dd4cf-linux-64bit/oc /usr/sbin/
-sudo rm -rf openshift-origin-client*
-```
-
 Meet the requirements of "oc cluster up"
  
 ```
@@ -120,18 +120,19 @@ sudo sysctl -w net.ipv4.ip_forward=1
 Clone the lab repo: 
 
 ```
-git clone https://github.com/tchughesiv/aws-loft-2017-container-lab.git
-chmod +x /home/ec2-user/aws-loft-2017-container-lab/scripts/host/start-oc.sh
-chmod +x /home/ec2-user/aws-loft-2017-container-lab/scripts/host/cleanup-oc.sh
-mv /home/ec2-user/aws-loft-2017-container-lab/scripts/host/start-oc.sh ~
-mv /home/ec2-user/aws-loft-2017-container-lab/scripts/host/cleanup-oc.sh ~
+git clone https://github.com/tchughesiv/rh-container-lab
+chmod +x /home/ec2-user/rh-container-lab/scripts/host/start-oc.sh
+chmod +x /home/ec2-user/rh-container-lab/scripts/host/cleanup-oc.sh
+mv /home/ec2-user/rh-container-lab/scripts/host/start-oc.sh ~
+mv /home/ec2-user/rh-container-lab/scripts/host/cleanup-oc.sh ~
 ```
 
 Start the cluster to cache the iamges.
 
 ```
 ./start-oc.sh
-sudo rm -rf /home/ec2-user/aws-loft-2017-container-lab
+docker rm -vf $(docker ps -q)
+rm -rf /home/ec2-user/rh-container-lab
 ```
 
 Now log into the console with the URL given as "oc cluster up" output.  Once you can do that, you are ready to create an AWS AMI.
@@ -177,4 +178,4 @@ Each VM is assigned a public DNS name.  Log in with your student ID substituted 
 ## References
 
 * https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md
-* https://access.redhat.com/documentation/en-us/openshift_container_platform/3.6/html/installation_and_configuration/installing-a-cluster#install-config-install-host-preparation
+* https://access.redhat.com/documentation/en-us/openshift_container_platform/3.7/html/installation_and_configuration/installing-a-cluster#install-config-install-host-preparation
