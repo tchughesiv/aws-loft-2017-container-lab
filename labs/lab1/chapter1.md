@@ -27,7 +27,6 @@ $ cat /run/containers/registries.conf
 $ cat /etc/sysconfig/docker
 $ cat /etc/sysconfig/docker-storage
 $ cat /etc/sysconfig/docker-network
-$ cat /usr/lib/systemd/system/docker-storage-setup.service
 ```
 
 Now check on the status of docker.

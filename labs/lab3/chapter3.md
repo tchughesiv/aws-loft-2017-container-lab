@@ -84,7 +84,7 @@ $ ls -lR wordpress
 
 1. Add a `FROM` line that uses a specific image tag. Also add `MAINTAINER` information.
 
-        FROM registry.access.redhat.com/rhel7:7.3-97
+        FROM registry.access.redhat.com/rhel7:7.4-129
         MAINTAINER Student <student@example.com>
 
 1. Add the required packages. We'll include `yum clean all` at the end to clear the yum cache.
@@ -129,7 +129,7 @@ Now we'll create the Wordpress Dockerfile. (As before, there is a reference file
 
 1. Add a `FROM` line that uses a specific image tag. Also add `MAINTAINER` information.
 
-        FROM registry.access.redhat.com/rhel7:7.3-97
+        FROM registry.access.redhat.com/rhel7:7.4-129
         MAINTAINER Student <student@example.com>
 
 1. Add the required packages. We'll include `yum clean all` at the end to clear the yum cache.
