@@ -23,7 +23,7 @@ $ ssh -i rhte.pem ec2-user@student-<number>.rhte.sysdeseng.com
 
 **NOTE**: For Windows users you will have to use a terminal like [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) to SSH using the private key. 
 
-Once installed, use the following instructions to SSH to the Tower instance link:http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html[http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html].
+Once installed, use the following instructions to SSH to the Tower instance link: [http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html).
 
 TIP: Use the rhte.ppk key located at:  [instructor host](http://rhte-instructor.rhte.sysdeseng.com/key)
 
@@ -54,24 +54,25 @@ The resulting output should be something of this nature
 
    You are logged in as:
        User:     developer
-       Password: developer
+       Password: <any value>
 ```
 You should get a lot of feedback about the launch of OpenShift. As long as you don't get any errors you are in good shape.
 
 OK, so now that OpenShift is available, let's ask for a cluster status & take a look at our running containers:
 ```bash
+$ oc version
 $ oc cluster status
 $ docker ps
 $ docker images
 ```
-We can also check out the OpenShift console. Open a browser and navigate to `https://<public-hostname>:8443`. Once it loads (and you bypass the certificate error), you can log in to the console using the default developer username/password.
+We can also check out the OpenShift console. Open a browser and navigate to `https://<public-hostname>:8443`. Once it loads (and you bypass the certificate error), you can log in to the console using the default developer username (use any password).
 
 ## Lab Materials
 
 Clone the lab repository from github:
 ```bash
 $ cd ~/
-$ git clone https://github.com/tchughesiv/aws-loft-2017-container-lab
+$ git clone https://github.com/tchughesiv/rh-container-lab
 ```
 
 ## OpenShift Container Platform

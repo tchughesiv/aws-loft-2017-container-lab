@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/rhel7:7.3-97
+FROM registry.access.redhat.com/rhel7:7.4-129
 MAINTAINER Student <student@example.com>
 
 # Deps for mariadb

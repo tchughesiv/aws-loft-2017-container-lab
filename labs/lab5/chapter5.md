@@ -24,7 +24,7 @@ developer
 
 This time, let's simplify things by deploying an application template.  We've already included a template with lab5 which leverages our wordpress & mariadb images.
 ```bash
-$ cd ~/aws-loft-2017-container-lab/labs/lab5/
+$ cd ~/rh-container-lab/labs/lab5/
 $ grep localhost:5000 wordpress-template.yaml
 ```
 
@@ -102,8 +102,7 @@ $ oc cluster status
 
 ```
 
-The credentials are `developer | developer`
-
+Login to the web console with the `developer` user and click through the `Take Home Page Tour` that is listed on the right navigation panel. That will quickly walk you through a few steps to show you what some of the capabilities of the UI are.
 
 ![image not loading](images/1.png "Login")
 
