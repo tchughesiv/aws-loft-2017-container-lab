@@ -35,7 +35,12 @@
 #source ~/cleanup-oc.sh
 
 ASB_VERSION=ansible-service-broker-1.1.4-1
+NAMESPACE=ansible-service-broker
+BROKER_IMAGE="registry.access.redhat.com/openshift3/ose-ansible-service-broker:v3.7"
+ETCD_IMAGE="registry.access.redhat.com/rhel7/etcd:latest"
+ETCD_PATH="/usr/bin/etcd"
 
+# REGISTRY_USER <- RHCC user, REGISTRY_PASS <- RHCC password, REGISTRY_TYPE="rhcc", REGISTRY_NAME="rhcc", REGISTRY_URL="https://registry.access.redhat.com"
 #metadata_endpoint="http://169.254.169.254/latest/meta-data"
 #PUBLIC_HOSTNAME="$( curl -s "${metadata_endpoint}/public-hostname" )"
 #PUBLIC_IP="$( curl -s "${metadata_endpoint}/public-ipv4" )"
@@ -52,7 +57,7 @@ ASB_VERSION=ansible-service-broker-1.1.4-1
 # creating ansible-service-broker project
 #
 oc login -u system:admin
-oc new-project ansible-service-broker
+oc new-project $NAMESPACE
 
 #
 # A valid dockerhub username/password is required so the broker may
@@ -80,7 +85,7 @@ VARS="-p BROKER_CA_CERT=$(oc get secret -n kube-service-catalog -o go-template='
 
 # Creating openssl certs to use.
 mkdir -p /tmp/etcd-cert
-openssl req -nodes -x509 -newkey rsa:4096 -keyout /tmp/etcd-cert/key.pem -out /tmp/etcd-cert/cert.pem -days 365 -subj "/CN=asb-etcd.ansible-service-broker.svc"
+openssl req -nodes -x509 -newkey rsa:4096 -keyout /tmp/etcd-cert/key.pem -out /tmp/etcd-cert/cert.pem -days 365 -subj "/CN=asb-etcd.$NAMESPACE.svc"
 openssl genrsa -out /tmp/etcd-cert/MyClient1.key 2048 \
 && openssl req -new -key /tmp/etcd-cert/MyClient1.key -out /tmp/etcd-cert/MyClient1.csr -subj "/CN=client" \
 && openssl x509 -req -in /tmp/etcd-cert/MyClient1.csr -CA /tmp/etcd-cert/cert.pem -CAkey /tmp/etcd-cert/key.pem -CAcreateserial -out /tmp/etcd-cert/MyClient1.pem -days 1024
@@ -91,7 +96,10 @@ BROKER_CLIENT_KEY=$(cat /tmp/etcd-cert/MyClient1.key | base64)
 
 curl -s $TEMPLATE_URL \
   | oc process \
-  -n ansible-service-broker \
+  -n $NAMESPACE \
+  -p BROKER_IMAGE="$BROKER_IMAGE" \
+  -p ETCD_IMAGE="$ETCD_IMAGE" \
+  -p ETCD_PATH="$ETCD_PATH" \
   -p DOCKERHUB_ORG="$DOCKERHUB_ORG" \
   -p ENABLE_BASIC_AUTH="$ENABLE_BASIC_AUTH" \
   -p ETCD_TRUSTED_CA_FILE=/var/run/etcd-auth-secret/ca.crt \
@@ -100,7 +108,7 @@ curl -s $TEMPLATE_URL \
   -p ETCD_TRUSTED_CA="$ETCD_CA_CERT" \
   -p BROKER_CLIENT_CERT="$BROKER_CLIENT_CERT" \
   -p BROKER_CLIENT_KEY="$BROKER_CLIENT_KEY" \
-  -p NAMESPACE=ansible-service-broker \
+  -p NAMESPACE="$NAMESPACE" \
   $VARS -f - | oc create -f -
 if [ "$?" -ne 0 ]; then
   echo "Error processing template and creating deployment"
