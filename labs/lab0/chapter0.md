@@ -7,25 +7,25 @@ Expected completion: 5-10 minutes
 ## Find your AWS Instance
 This lab is designed for to accomodate many students. Each student will be given a VM running on AWS. The naming convention for the lab is:
 
-**student-\<number\>**.rhte.sysdeseng.com
+**student-\<number\>**.labs.sysdeseng.com
 
 You will be assigned a number by the instructor.
 
-Retrieve the key from the [instructor host](http://rhte-instructor.rhte.sysdeseng.com/key) so that you can _SSH_ into the instances by accessing the password protected directory from the table above. Download the _rhte.pem_ file to your local machine and change the permissions of the file to 600.
+Retrieve the key from the [instructor host](https://instructor.labs.sysdeseng.com/rhte.pem) so that you can _SSH_ into the instances by accessing the password protected directory from the table above. Download the _rhte.pem_ file to your local machine and change the permissions of the file to 600.
 
 ## Connecting to your AWS Instance
 This lab should be performed on **YOUR ASSIGNED AWS INSTANCE** as `ec2-user` unless otherwise instructed.
 
 **_NOTE_**: Please be respectful and only connect to your assigned instance. Every instance for this lab uses the same public key so you could accidentally (or with malicious intent) connect to the wrong system. If you have any issues please inform an instructor.
 ```bash
-$ ssh -i rhte.pem ec2-user@student-<number>.rhte.sysdeseng.com
+$ ssh -i rhte.pem ec2-user@student-<number>.labs.sysdeseng.com
 ```
 
 **NOTE**: For Windows users you will have to use a terminal like [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) to SSH using the private key. 
 
 Once installed, use the following instructions to SSH to the Tower instance link: [http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html).
 
-TIP: Use the rhte.ppk key located at:  [instructor host](http://rhte-instructor.rhte.sysdeseng.com/key)
+TIP: Use the rhte.ppk key located at:  [instructor host](https://instructor.labs.sysdeseng.com/rhte.ppk)
 
 ## Getting Set Up
 For the sake of time, some of the required setup has already been taken care of on your AWS VM. For future reference though, the easiest way to get started is to head over to the OpenShift Origin repo on github and follow the "[cluster up and down instructions](https://github.com/openshift/origin/blob/master/docs/cluster_up_down.md)" instructions. The instructions cover getting started on Windows, MacOS, and Linux.
