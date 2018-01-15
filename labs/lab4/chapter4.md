@@ -69,7 +69,7 @@ Starting and stopping is definitely easy, and fast. However, it is still pretty 
 
 Now login to our local OpenShift & create a new project:
 ```bash
-$ oc login -u developer -p developer
+$ oc login -u developer
 Using project "myproject".
 
 $ oc new-project devel

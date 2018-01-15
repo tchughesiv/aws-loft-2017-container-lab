@@ -36,9 +36,9 @@
 
 ASB_VERSION=ansible-service-broker-1.1.4-1
 NAMESPACE=ansible-service-broker
-BROKER_IMAGE="registry.access.redhat.com/openshift3/ose-ansible-service-broker:v3.7"
-ETCD_IMAGE="registry.access.redhat.com/rhel7/etcd:latest"
-ETCD_PATH="/usr/bin/etcd"
+#BROKER_IMAGE="registry.access.redhat.com/openshift3/ose-ansible-service-broker:v3.7"
+#ETCD_IMAGE="registry.access.redhat.com/rhel7/etcd:latest"
+#ETCD_PATH="/usr/bin/etcd"
 
 # REGISTRY_USER <- RHCC user, REGISTRY_PASS <- RHCC password, REGISTRY_TYPE="rhcc", REGISTRY_NAME="rhcc", REGISTRY_URL="https://registry.access.redhat.com"
 #metadata_endpoint="http://169.254.169.254/latest/meta-data"
@@ -94,12 +94,10 @@ ETCD_CA_CERT=$(cat /tmp/etcd-cert/cert.pem | base64)
 BROKER_CLIENT_CERT=$(cat /tmp/etcd-cert/MyClient1.pem | base64)
 BROKER_CLIENT_KEY=$(cat /tmp/etcd-cert/MyClient1.key | base64)
 
-curl -s $TEMPLATE_URL \
+ # -p BROKER_IMAGE="$BROKER_IMAGE" -p ETCD_IMAGE="$ETCD_IMAGE" -p ETCD_PATH="$ETCD_PATH" \
+ curl -s $TEMPLATE_URL \
   | oc process \
   -n $NAMESPACE \
-  -p BROKER_IMAGE="$BROKER_IMAGE" \
-  -p ETCD_IMAGE="$ETCD_IMAGE" \
-  -p ETCD_PATH="$ETCD_PATH" \
   -p DOCKERHUB_ORG="$DOCKERHUB_ORG" \
   -p ENABLE_BASIC_AUTH="$ENABLE_BASIC_AUTH" \
   -p ETCD_TRUSTED_CA_FILE=/var/run/etcd-auth-secret/ca.crt \

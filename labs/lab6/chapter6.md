@@ -5,12 +5,16 @@ In this lab, we are going to build upon the previous labs and leverage what we h
 Expected completion: 10-20 minutes
 
 ## Setup Environment
+First, free up some resources:
+```bash
+$ oc delete project devel production
+```
+
+The `./run_latest_build.sh` deploys the Ansible Broker to your existing OpenShift environment.
 ```bash
 $ cd ~/rh-container-lab/labs/lab6/scripts/
 $ ./run_latest_build.sh
 ```
-
-The `./run_latest_build.sh` deploys the tech preview Ansible Broker to your existing OpenShift environment.
 
 A successful deployment will end with output similar to:
 ```bash
@@ -40,6 +44,7 @@ Verify the rollout is successful before proceeding.
 ```bash
 $ oc rollout status -w dc/asb
 $ oc get all
+$ oc logs dc/asb
 ```
 
 You are now logged in with the `admin` user. You can switch projects, browse around.
@@ -56,56 +61,52 @@ $ oc projects
 ```
 
 
-Now get the URL for the web console for your AWS VM by checking the cluster status.  The web console URL is listed as part of the output.
+Now get the URL for the web console for your AWS VM by checking the cluster status. The web console URL is listed as part of the output. Be sure to refresh your browser.
 ```bash
 $ oc cluster status
 Web console URL: https://<YOUR AWS PUBLIC HOSTNAME>:8443
 ```
 
-## Deploy Ansible Playbook Bundle Application
-Now, we are going to deploy our first application using the new interface. 
+## Deploy an Ansible Playbook Bundle Application
+Now, we are going to deploy our first application using the ansible broker. 
 
-- In the middle navigation panel, click on `all` and then click on the `Hello World (APB)` application.
+- In the middle navigation panel, click on `All` and then click on the `Hello World (APB)` application.
 - Click `Next`.
 - Click the dropdown under `Add to Project` and select `Create Project`.
-- Give the project a name `hello-world-apb`.  Leave the rest of the options as default and click `Create`.
+- Give the project a name `apb`.  Leave the rest of the options as default and click `Create`.
 - Now you will notice that the service is being provisioned. Click on the `Continue to the project overview` button. This will take you to the new project namespace that was created when we made the application.
 - Give the deployment a minute or so to finish, and in the upper right hand side, you will see a new URL that points to your application.  Click on that and it will open a new tab.
 - Go back to the project, explore the environment, view logs, look at events, scale the application up, deploy it again, etc...
 - Now go back to your CLI and explore what was just created.
 
 ```bash
-$ oc get projects | grep hello
-hello-world-apb                         Active
+$ oc get projects | grep apb
+apb                         Active
 ```
 
 Switch to that project and look at what was created.
 
 ```bash
-$ oc project hello-world-apb
+$ oc project apb
 $ oc get all
 $ oc status
 ```
 
 ## Create Database
-Now that we have deployed an application, you'll notice that when you clicked on the application and opened it up in a new window, it doesn't have a data connection. Let's add one.
-- In the upper left navigation pane in the web console, click `Home`.
-- On right hand navigation pane, click the `hello-world-apb` project.
-
-Now you are back to the screen that has the URL to the application in the top right. Click that again. You'll notice that the database information all says `No database connected`.  Let's create a database and then bind from the hello-world-apb app.
+Now that we have deployed an application, you'll notice that its database information says `No database connected`.  Let's create a database and then bind from the hello-world app.
 
 - Return to the OpenShift web console.
-- In the upper navigation pane in the hello-world-apb project page, click `Add to Project`, select `Browse Catalog`.
+- In the upper right part of the page, click `Add to Project` and then `Browse Catalog`.
 - Select the `PostgreSQL (APB)` database from the catalog.
 - Click `Next`.
 - Select the `Development` Plan and click `Next`.
-- Select `hello-world-apb` project in the drop-down.
+- Select `apb` project in the drop-down.
 - Enter a password.
 - Select a PostgreSQL version.
 - Click `Next`
 - Click `Create`. Do not bind at this time.
 - Click on the `Continue to the project overview`.
-- Once PostgreSQL is provisioned, you'll see both the `hello-world-apb` and the `postgresql` applications.  This may take a minute or so.
+- Once PostgreSQL is provisioned, you'll see both the `hello-world` and the `postgresql` applications.  This may take a minute or so.
 
 ## Bind Application to Database
 - At the bottom of the project overview page, you should see a set of our newly provisioned services.

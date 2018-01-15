@@ -102,15 +102,14 @@ $ oc cluster status
 
 ```
 
-Login to the web console with the `developer` user and click through the `Take Home Page Tour` that is listed on the right navigation panel. That will quickly walk you through a few steps to show you what some of the capabilities of the UI are.
+Login to the web console with the `developer` user.
 
 ![image not loading](images/1.png "Login")
 
 And after we’ve logged in, we see a list of projects that the developer user has access to. Let's select the `production` project:
 ![image not loading](images/2.png "Projects")
 
-Our project landing page provides us with a high-level overview of our wordpress application's pods, services, and route:
-**_NOTE_**: Your web console will show 2 pods for wordpress due to the replica value.
+Our project landing page provides us with a high-level overview of our wordpress application's pods, services, and route. Notice the wordpress deployment shows 2 pods due to our template's replica setting:
 ![image not loading](images/3.png "Overview")
 
 Let's dive a little deeper. We want to view a list of our pods by clicking on `Pods` in the left Applications menu:
@@ -125,4 +124,4 @@ With this view, we have access to pod information like status, logs, image, volu
 
 Feel free to continue exploring the console.
 
-In the final [bonus lab](../lab6/chapter6.md) you'll get to play with some "tech preview" features, the service catalog and broker.
+In the final [bonus lab](../lab6/chapter6.md) you'll get to play with some new features, the service catalog and broker.
