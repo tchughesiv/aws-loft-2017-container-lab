@@ -86,9 +86,22 @@ objects:
                 -e 'SELECT 1'
             initialDelaySeconds: 5
             timeoutSeconds: 1
-          resources: {}
+          volumeMounts:
+          - mountPath: /run/mariadb
+            name: mariadb-volume-1
+          - mountPath: /var/lib/mysql
+            name: mariadb-volume-2
+          - mountPath: /var/log/mariadb
+            name: mariadb-volume-3
         dnsPolicy: ClusterFirst
         restartPolicy: Always
+        volumes:
+        - emptyDir: {}
+          name: mariadb-volume-1
+        - emptyDir: {}
+          name: mariadb-volume-2
+        - emptyDir: {}
+          name: mariadb-volume-3
     triggers:
     - type: ConfigChange
     - imageChangeParams:
@@ -160,9 +173,22 @@ objects:
             tcpSocket:
               port: 8080
             timeoutSeconds: 1
-          resources: {}
+          volumeMounts:
+          - mountPath: /var/www/html/wp-content/uploads
+            name: wordpress-volume-1
+          - mountPath: /var/log/httpd
+            name: wordpress-volume-2
+          - mountPath: /run/httpd
+            name: wordpress-volume-3
         dnsPolicy: ClusterFirst
         restartPolicy: Always
+        volumes:
+        - emptyDir: {}
+          name: wordpress-volume-1
+        - emptyDir: {}
+          name: wordpress-volume-2
+        - emptyDir: {}
+          name: wordpress-volume-3
     triggers:
     - type: ConfigChange
     - imageChangeParams:
@@ -179,8 +205,6 @@ objects:
     labels:
       app: wordpress
     name: wordpress
-    annotations:
-      "service.alpha.openshift.io/dependencies": "[{\"name\": \"mariadb\", \"kind\": \"Service\"}]"
   spec:
     ports:
     - name: 8080-tcp

@@ -6,7 +6,6 @@ ADD scripts /scripts
 RUN chmod 755 /scripts/*
 
 # Disable all but the necessary repo(s)
-RUN yum repolist
 RUN yum-config-manager --disable \* &> /dev/null
 RUN yum-config-manager --enable rhel-7-server-rpms
 

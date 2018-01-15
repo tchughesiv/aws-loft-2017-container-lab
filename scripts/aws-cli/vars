@@ -9,7 +9,7 @@ NODE_COUNT=$(seq 1 2)
 
 # AMI Id
 # This needs to be updated everytime you update the AMI on AWS.
-AMI_ID=ami-028a176d
+AMI_ID=ami-ec43df83
 
 # Instance types
 # I only requested an extension to 105 instances for this type.  Can't launch more than 15 of any other type.
