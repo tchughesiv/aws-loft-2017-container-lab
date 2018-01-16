@@ -50,14 +50,14 @@ $ oc logs dc/asb
 You are now logged in with the `admin` user. You can switch projects, browse around.
 ```bash
 $ oc get all -n kube-service-catalog
-$ oc projects
+$ oc get projects
 ```
 
 Now log back in with the developer user.
 ```bash
 $ oc login -u developer
 $ oc get all
-$ oc projects
+$ oc get projects
 ```
 
 
@@ -80,8 +80,9 @@ Now, we are going to deploy our first application using the ansible broker.
 - Now go back to your CLI and explore what was just created.
 
 ```bash
-$ oc get projects | grep apb
-apb                         Active
+$ oc get projects
+NAME        DISPLAY NAME   STATUS
+apb                        Active
 ```
 
 Switch to that project and look at what was created.
