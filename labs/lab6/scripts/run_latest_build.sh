@@ -33,6 +33,8 @@
 # 172.17.0.1 if not customized
 #
 #source ~/cleanup-oc.sh
+docker pull docker.io/ansibleplaybookbundle/origin-ansible-service-broker:sprint143
+docker tag docker.io/ansibleplaybookbundle/origin-ansible-service-broker:sprint143 docker.io/ansibleplaybookbundle/origin-ansible-service-broker:latest
 
 ASB_VERSION=ansible-service-broker-1.1.4-1
 NAMESPACE=ansible-service-broker
