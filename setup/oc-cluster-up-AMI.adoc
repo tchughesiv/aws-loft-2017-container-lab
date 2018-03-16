@@ -65,24 +65,26 @@ yum repolist
 Configure Docker
 
 ```
-echo "INSECURE_REGISTRY='--insecure-registry 172.30.0.0/16'" >> /etc/sysconfig/docker
+vi /etc/containers/registries.conf
+    [registries.insecure]
+    registries = ['172.30.0.0/16']
+groupadd docker
+usermod -aG docker ec2-user
 systemctl daemon-reload
 systemctl restart docker
 systemctl enable docker
-groupadd docker
-usermod -aG docker ec2-user
 ```
 
 Get the latest "oc" client.
 
 ```
 yum -y install atomic-openshift-clients
-reboot
 ```
 
 Configure Firewalld
 
 ```
+systemctl enable firewalld
 systemctl restart firewalld
 
 firewall-cmd --permanent --new-zone dockerc
@@ -106,19 +108,18 @@ firewall-cmd --permanent --zone public  --add-port=8444/tcp
 firewall-cmd --permanent --zone public  --add-port=10250/tcp
 
 firewall-cmd --reload
+reboot
 ```
 
 
-Do these as regular user:
+Do the following as the ec2-user:
 
-Meet the requirements of "oc cluster up"
- 
+Meet the requirements of "oc cluster up" 
 ```
 sudo sysctl -w net.ipv4.ip_forward=1
 ```
 
 Clone the lab repo: 
-
 ```
 git clone https://github.com/tchughesiv/rh-container-lab
 chmod +x /home/ec2-user/rh-container-lab/scripts/host/start-oc.sh
@@ -130,12 +131,15 @@ mv /home/ec2-user/rh-container-lab/scripts/host/cleanup-oc.sh ~
 Start the cluster to cache the iamges.
 
 ```
-./start-oc.sh
-docker rm -vf $(docker ps -q)
-rm -rf /home/ec2-user/rh-container-lab
+~/start-oc.sh
 ```
 
 Now log into the console with the URL given as "oc cluster up" output.  Once you can do that, you are ready to create an AWS AMI.
+
+```
+~/cleanup-oc.sh
+rm -rf /home/ec2-user/rh-container-lab
+```
 
 ### Create AMI
 
